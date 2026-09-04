@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#060608] text-[#ecebe8]">
+<html lang="en" class="scroll-smooth bg-[#050507] text-[#ecebe8]">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ2G5PQ130"></script>
@@ -18,6 +18,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Three.js 3D Graphics Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <!-- Premium Fonts: Playfair Display + JetBrains Mono + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +51,7 @@
   </script>
   <style>
     html, body {
-      background-color: #060608 !important;
+      background-color: #050507 !important;
       color: #ecebe8 !important;
       margin: 0;
       padding: 0;
@@ -65,63 +67,77 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #060608;
+      background: #050507;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1f1f26;
+      background: #1c1c22;
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #cbb28d;
     }
 
-    /* Spatial 3D Lighting & Glassmorphic Elevation Engine */
+    /* Spatial 3D Lighting & Glassmorphic Elevation */
     .glass-spatial-card {
-      background: linear-gradient(145deg, rgba(24, 24, 30, 0.65) 0%, rgba(10, 10, 13, 0.85) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-top: 1px solid rgba(222, 199, 166, 0.32);
+      background: linear-gradient(145deg, rgba(22, 22, 28, 0.7) 0%, rgba(9, 9, 12, 0.9) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(222, 199, 166, 0.38);
       box-shadow: 
         0 24px 60px -15px rgba(0, 0, 0, 0.95),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
-        0 0 25px rgba(203, 178, 141, 0.03);
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
+        0 0 30px rgba(203, 178, 141, 0.04);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: perspective(1000px) translateZ(0);
+      transform: perspective(1200px) translateZ(0);
     }
     .glass-spatial-card:hover {
-      transform: perspective(1000px) translateY(-5px) translateZ(8px);
-      border-top: 1px solid rgba(222, 199, 166, 0.65);
+      transform: perspective(1200px) translateY(-5px) translateZ(10px);
+      border-top: 1px solid rgba(222, 199, 166, 0.7);
       box-shadow: 
         0 35px 80px -20px rgba(0, 0, 0, 0.98),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
-        0 0 40px rgba(203, 178, 141, 0.12);
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+        0 0 45px rgba(203, 178, 141, 0.15);
     }
 
-    /* Machined Titanium & Frosted Glass Badge */
+    /* 3D Gatekeeper Floating Vault Card */
+    .vault-3d-card {
+      background: linear-gradient(160deg, rgba(18, 18, 24, 0.92) 0%, rgba(7, 7, 10, 0.98) 100%);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(203, 178, 141, 0.3);
+      border-top: 1.5px solid rgba(222, 199, 166, 0.7);
+      box-shadow: 
+        0 40px 100px -20px rgba(0, 0, 0, 0.98),
+        0 0 60px rgba(203, 178, 141, 0.12),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    /* Machined Titanium Badge */
     .badge-machined {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(20, 20, 26, 0.8) 100%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(18, 18, 24, 0.85) 100%);
       border: 1px solid rgba(222, 199, 166, 0.28);
       box-shadow: 
         inset 0 1px 0 rgba(255, 255, 255, 0.15),
         0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
-    /* Deep Radial Ambient Backlighting */
+    /* Ambient Conic Glowing Orbs */
     .glow-conic-radial {
-      background: radial-gradient(circle at 50% 50%, rgba(203, 178, 141, 0.14) 0%, rgba(203, 178, 141, 0.03) 45%, transparent 70%);
+      background: radial-gradient(circle at 50% 50%, rgba(203, 178, 141, 0.15) 0%, rgba(203, 178, 141, 0.03) 45%, transparent 70%);
     }
 
-    /* Ambient Breathing Pulse */
     @keyframes spatialBreath {
-      0%, 100% { opacity: 0.65; transform: scale(1); }
-      50% { opacity: 0.95; transform: scale(1.04); }
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.05); }
     }
     .animate-spatial-glow {
-      animation: spatialBreath 8s ease-in-out infinite;
+      animation: spatialBreath 7s ease-in-out infinite;
     }
 
-    /* Telemetry HUD Segment Styling */
+    /* Telemetry HUD Bars */
     .hud-segment {
       height: 6px;
       border-radius: 1px;
@@ -134,28 +150,51 @@
     .hud-segment.inactive {
       background: rgba(255, 255, 255, 0.07);
     }
+
+    /* 3D Holographic Canvas Canvas Layer */
+    #spatial3dCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.45;
+    }
   </style>
 </head>
-<body class="bg-[#060608] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black">
+<body class="bg-[#050507] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black relative">
+
+  <!-- Interactive 3D Three.js Spatial Background Layer -->
+  <canvas id="spatial3dCanvas"></canvas>
 
   <!-- Top Spatial Advisory Ribbon -->
-  <aside aria-label="Advisory bar" class="border-b border-zinc-900/90 bg-[#08080b]/95 backdrop-blur-md py-2.5 px-6 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2 relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
-    <div class="flex items-center gap-2.5">
+  <aside aria-label="Advisory bar" class="border-b border-zinc-900 bg-[#08080b]/95 backdrop-blur-md py-2.5 px-6 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2 relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+    <div class="flex items-center gap-2.5 flex-wrap">
       <span class="relative flex h-2 w-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#cbb28d] opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-[#dec7a6]"></span>
       </span>
       <span class="text-zinc-300">STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
-      <span id="vipActiveBadge" class="hidden ml-2 px-2 py-0.5 rounded bg-[#cbb28d]/20 text-[#dec7a6] text-[9px] border border-[#cbb28d]/40"></span>
+      <span id="vipActiveBadge" class="hidden px-2 py-0.5 rounded bg-[#cbb28d]/20 text-[#dec7a6] text-[9px] border border-[#cbb28d]/40"></span>
+      <button 
+        onclick="lockPortalManually()" 
+        title="Click to engage 3D passcode lock screen"
+        class="ml-2 text-[9px] text-[#dec7a6] hover:text-white px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700/80 uppercase tracking-widest hover:border-[#dec7a6] transition-colors flex items-center gap-1"
+      >
+        <i data-lucide="lock" class="w-2.5 h-2.5"></i>
+        <span>Lock Vault</span>
+      </button>
     </div>
     <div class="flex items-center gap-6">
-      <span class="text-[#dec7a6] font-semibold tracking-[0.24em]">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS AVAILABLE</span>
+      <span class="text-[#dec7a6] font-semibold tracking-[0.24em]">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS</span>
       <span class="text-zinc-400 font-medium hidden md:inline">HYDERABAD EXCLUSIVE</span>
     </div>
   </aside>
 
   <!-- Navigation Header with Specular Top Edge -->
-  <header id="mainHeader" class="sticky top-0 z-40 transition-all duration-300 bg-[#070709]/90 backdrop-blur-2xl border-b border-zinc-800/60 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.85)]">
+  <header id="mainHeader" class="sticky top-0 z-40 transition-all duration-300 bg-[#060609]/90 backdrop-blur-2xl border-b border-zinc-800/60 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.85)]">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
       <a href="#" class="flex flex-col text-left group">
         <span class="text-xl md:text-2xl font-serif tracking-[0.26em] text-zinc-100 font-light group-hover:text-[#dec7a6] transition-colors">
@@ -214,7 +253,7 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobileMenu" class="hidden lg:hidden border-b border-zinc-800 bg-[#0a0a0d]/95 backdrop-blur-xl p-6 flex flex-col gap-4 text-xs tracking-widest uppercase font-mono shadow-2xl">
+    <div id="mobileMenu" class="hidden lg:hidden border-b border-zinc-800 bg-[#08080a]/95 backdrop-blur-xl p-6 flex flex-col gap-4 text-xs tracking-widest uppercase font-mono shadow-2xl">
       <a href="#publications" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80 text-[#dec7a6]">Published Researches</a>
       <a href="#certificates" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Certifications</a>
       <a href="#rehab" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Rehab Suite</a>
@@ -242,9 +281,8 @@
     </div>
   </header>
 
-  <!-- Hero Section with Volumetric Lighting -->
-  <section class="relative pt-12 pb-24 md:pt-28 md:pb-36 overflow-hidden">
-    <!-- Volumetric Ambient Lightfield -->
+  <!-- Hero Section with Volumetric Lighting & 3D Spatial Canvas -->
+  <section class="relative pt-12 pb-24 md:pt-28 md:pb-36 overflow-hidden z-10">
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] glow-conic-radial rounded-full blur-[130px] pointer-events-none animate-spatial-glow"></div>
 
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -329,7 +367,7 @@
               </span>
             </div>
 
-            <!-- Segmented HUD Gauges (Replacing Flat Bars) -->
+            <!-- Segmented HUD Gauges -->
             <div class="space-y-4 my-6">
               
               <!-- Metric 1: Epigenetic Aging -->
@@ -434,9 +472,7 @@
   </section>
 
   <!-- SECTION: PEER-REVIEWED RESEARCH VAULT -->
-  <section id="publications" class="py-24 bg-[#09090c] border-y border-zinc-900/90 relative">
-    <div class="absolute -top-32 right-1/4 w-[600px] h-[400px] glow-conic-radial rounded-full blur-[120px] pointer-events-none"></div>
-
+  <section id="publications" class="py-24 bg-[#08080a] border-y border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
@@ -459,7 +495,7 @@
         </div>
       </div>
 
-      <!-- Research Cards Grid with 3D Spatial Elevating Planes -->
+      <!-- Research Cards Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 text-left">
         
         <!-- Paper 1 -->
@@ -606,7 +642,7 @@
   </section>
 
   <!-- SECTION: OFFICIAL ACCREDITED CERTIFICATES -->
-  <section id="certificates" class="py-24 border-b border-zinc-900/90 relative">
+  <section id="certificates" class="py-24 border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
@@ -721,9 +757,7 @@
   </section>
 
   <!-- SECTION: ADVANCED REHABILITATION & CELLULAR RESTORATION LAB -->
-  <section id="rehab" class="py-24 bg-[#08080a] border-b border-zinc-900/90 relative">
-    <div class="absolute top-1/3 left-1/3 w-[800px] h-[500px] glow-conic-radial rounded-full blur-[140px] pointer-events-none"></div>
-
+  <section id="rehab" class="py-24 bg-[#08080a] border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -958,7 +992,7 @@
   </section>
 
   <!-- Methodology Pillars -->
-  <section id="methodology" class="py-24 bg-[#060608] border-b border-zinc-900/90">
+  <section id="methodology" class="py-24 bg-[#060608] border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
@@ -1039,7 +1073,7 @@
   </section>
 
   <!-- Engagement Tiers with 3D Center Elevation -->
-  <section id="tiers" class="py-24 border-b border-zinc-900/90 relative">
+  <section id="tiers" class="py-24 border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
@@ -1094,7 +1128,7 @@
           </div>
         </div>
 
-        <!-- Tier 2: Sovereign Concierge (Featured & Physically Raised) -->
+        <!-- Tier 2: Sovereign Concierge -->
         <div class="glass-spatial-card rounded-2xl p-8 flex flex-col justify-between relative shadow-[0_0_55px_rgba(203,178,141,0.22)] text-left border-2 border-[#dec7a6]/70 transform lg:-translate-y-2">
           <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-bold uppercase tracking-[0.2em] text-[10px] px-4 py-1 rounded-full shadow-lg">
             Global Concierge &bull; Strictly Capped
@@ -1189,7 +1223,7 @@
   </section>
 
   <!-- Discretion & Privacy Charter -->
-  <section id="discretion" class="py-20 bg-[#070709] border-b border-zinc-900/90">
+  <section id="discretion" class="py-20 bg-[#070709] border-b border-zinc-900/90 relative z-10">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
       <div class="inline-flex items-center justify-center p-3.5 rounded-full bg-black border border-zinc-800 text-[#dec7a6] shadow-inner">
         <i data-lucide="lock" class="w-6 h-6"></i>
@@ -1224,7 +1258,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 bg-[#050507] text-xs text-zinc-400 border-t border-zinc-900/80">
+  <footer class="py-12 bg-[#050507] text-xs text-zinc-400 border-t border-zinc-900/80 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="text-center md:text-left">
         <div class="font-serif text-white tracking-[0.25em] text-sm uppercase">VITESH DHANKHAR</div>
@@ -1504,8 +1538,204 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT CONTROLLERS -->
+  <!-- MODAL: SECURE VIP 3D ACCESS VAULT GATEKEEPER -->
+  <div id="gatekeeperModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-2xl overflow-y-auto">
+    <div 
+      id="vaultInteractiveCard" 
+      class="vault-3d-card relative w-full max-w-lg rounded-3xl p-8 sm:p-10 text-center space-y-6 my-auto"
+    >
+      
+      <!-- Interactive 3D Canvas inside Gatekeeper Vault -->
+      <div class="relative w-full h-36 mx-auto flex items-center justify-center overflow-hidden rounded-2xl bg-black/80 border border-zinc-800/90 shadow-inner">
+        <canvas id="vault3dCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+        <div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[9px] font-mono tracking-widest text-zinc-500 uppercase pointer-events-none">
+          <span class="flex items-center gap-1 text-[#dec7a6]">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
+            3D BIOMETRIC ENGINE ACTIVE
+          </span>
+          <span>DRAG TO ROTATE HELIX</span>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-center">
+        <span class="text-[10px] uppercase font-mono tracking-[0.28em] text-[#dec7a6]">
+          Restricted Advisory Portal &bull; Clearance Gate
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-serif text-white font-light">
+          Private Client Clearance
+        </h3>
+        <p class="text-xs text-zinc-400 font-light leading-relaxed max-w-sm mx-auto">
+          Access to clinical multi-omic publications, private telemetry, and retainer allocation is restricted. Enter your authorized access key.
+        </p>
+      </div>
+
+      <!-- Access Form -->
+      <form id="gatekeeperForm" onsubmit="handlePasscodeSubmit(event)" class="space-y-4 text-left">
+        <div>
+          <label for="accessPasscodeInput" class="block text-[10px] font-mono uppercase text-zinc-400 mb-1.5 tracking-wider">
+            Client Access Key / Passcode
+          </label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="accessPasscodeInput" 
+              required 
+              autocomplete="off"
+              placeholder="Enter passcode (e.g. SOVEREIGN2026)"
+              class="w-full bg-black/80 border border-zinc-800 rounded-xl px-4 py-3.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#cbb28d] font-mono tracking-widest shadow-inner transition-colors"
+            />
+            <button 
+              type="button" 
+              onclick="togglePasscodeVisibility()" 
+              class="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 p-1"
+              aria-label="Toggle password visibility"
+            >
+              <i data-lucide="eye" id="passcodeEyeIcon" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="gatekeeperError" class="hidden p-3 bg-red-950/60 border border-red-800 text-red-300 text-[11px] font-mono rounded-lg text-center">
+          Invalid Access Key. Clearance Denied.
+        </div>
+
+        <button 
+          type="submit"
+          class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs font-mono uppercase tracking-[0.2em] rounded-lg transition-all shadow-[0_0_25px_rgba(203,178,141,0.3)] flex items-center justify-center gap-2"
+        >
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <span>Authenticate Clearance</span>
+        </button>
+      </form>
+
+      <!-- Quick Preset Keys for Testing -->
+      <div class="pt-2 flex items-center justify-center gap-2 flex-wrap text-[10px] font-mono text-zinc-500">
+        <span>Authorized Keys:</span>
+        <button type="button" onclick="setQuickKey('SOVEREIGN2026')" class="text-zinc-400 hover:text-[#dec7a6] underline">SOVEREIGN2026</button>
+        <span>&bull;</span>
+        <button type="button" onclick="setQuickKey('HYD2026')" class="text-zinc-400 hover:text-[#dec7a6] underline">HYD2026</button>
+        <span>&bull;</span>
+        <button type="button" onclick="setQuickKey('HYD-FOUNDER')" class="text-zinc-400 hover:text-[#dec7a6] underline">HYD-FOUNDER</button>
+      </div>
+
+      <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-500">
+        <span>NO ACCESS KEY?</span>
+        <a 
+          href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20VIP%20clearance%20passcode%20for%20Vitesh%20Dhankhar%20portal." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-[#dec7a6] hover:underline"
+        >
+          Request Passcode on WhatsApp &rarr;
+        </a>
+      </div>
+
+    </div>
+  </div>
+
   <script>
+    // Authorized Access Passcodes (Case-Insensitive)
+    const AUTHORIZED_PASSCODES = [
+      'SOVEREIGN2026',
+      'HYD-FOUNDER',
+      'DUBAI-ROYAL',
+      'VIP2026',
+      'HYD2026',
+      'VITESH2026'
+    ];
+
+    function setQuickKey(val) {
+      const input = document.getElementById('accessPasscodeInput');
+      if (input) {
+        input.value = val;
+        input.focus();
+      }
+    }
+
+    function checkGatekeeperStatus() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlKey = (urlParams.get('access') || urlParams.get('vip') || '').trim().toUpperCase();
+
+        // Check if unlocked via direct VIP URL parameter
+        if (urlKey && AUTHORIZED_PASSCODES.includes(urlKey)) {
+          sessionStorage.setItem('site_authenticated', urlKey);
+          unlockPortal(urlKey);
+          return;
+        }
+
+        // Check existing authenticated session
+        const savedAuth = sessionStorage.getItem('site_authenticated');
+        if (savedAuth && AUTHORIZED_PASSCODES.includes(savedAuth.toUpperCase())) {
+          unlockPortal(savedAuth);
+          return;
+        }
+
+        // Otherwise keep gatekeeper active
+        lockPortalManually(false);
+      } catch (err) {
+        console.warn('Gatekeeper init warning:', err);
+      }
+    }
+
+    function lockPortalManually(clearStorage = true) {
+      if (clearStorage) {
+        sessionStorage.removeItem('site_authenticated');
+      }
+      const gate = document.getElementById('gatekeeperModal');
+      if (gate) {
+        gate.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      const badge = document.getElementById('vipActiveBadge');
+      if (badge) {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function unlockPortal(badgeCode) {
+      const gate = document.getElementById('gatekeeperModal');
+      if (gate) {
+        gate.classList.add('hidden');
+      }
+      document.body.style.overflow = '';
+
+      if (badgeCode) {
+        const badge = document.getElementById('vipActiveBadge');
+        if (badge) {
+          badge.textContent = `CLEARANCE: ${badgeCode}`;
+          badge.classList.remove('hidden');
+        }
+      }
+    }
+
+    function handlePasscodeSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('accessPasscodeInput');
+      const errorBox = document.getElementById('gatekeeperError');
+      if (!input) return;
+
+      const code = input.value.trim().toUpperCase();
+      if (AUTHORIZED_PASSCODES.includes(code)) {
+        sessionStorage.setItem('site_authenticated', code);
+        if (errorBox) errorBox.classList.add('hidden');
+        unlockPortal(code);
+      } else {
+        if (errorBox) {
+          errorBox.classList.remove('hidden');
+        }
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function togglePasscodeVisibility() {
+      const input = document.getElementById('accessPasscodeInput');
+      if (!input) return;
+      input.type = input.type === 'password' ? 'text' : 'password';
+      refreshIcons();
+    }
+
     function refreshIcons() {
       try {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -1621,22 +1851,191 @@
       }
     }
 
+    function initGlobal3DScene() {
+      const canvas = document.getElementById('spatial3dCanvas');
+      if (!canvas || !window.THREE) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 250;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Create Constellation Particle Geometry
+      const particleCount = 200;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 600;
+        positions[i + 1] = (Math.random() - 0.5) * 600;
+        positions[i + 2] = (Math.random() - 0.5) * 400;
+      }
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      // Gold-tinted particle material
+      const material = new THREE.PointsMaterial({
+        color: 0xcbb28d,
+        size: 2.2,
+        transparent: true,
+        opacity: 0.65
+      });
+
+      const particleSystem = new THREE.Points(geometry, material);
+      scene.add(particleSystem);
+
+      // Mouse Tracking
+      let mouseX = 0, mouseY = 0;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        particleSystem.rotation.y += 0.001;
+        particleSystem.rotation.x += 0.0005;
+
+        camera.position.x += (mouseX - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    function initVault3DHelix() {
+      const canvas = document.getElementById('vault3dCanvas');
+      if (!canvas || !window.THREE) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+      camera.position.z = 18;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const helixGroup = new THREE.Group();
+      const nodeCount = 36;
+      const radius = 3.8;
+      const height = 14;
+
+      const nodeMaterialA = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
+      const nodeMaterialB = new THREE.MeshBasicMaterial({ color: 0xb0966e });
+      const lineMaterial = new THREE.LineBasicMaterial({ color: 0x4a4336, transparent: true, opacity: 0.5 });
+      const sphereGeo = new THREE.SphereGeometry(0.24, 12, 12);
+
+      for (let i = 0; i < nodeCount; i++) {
+        const t = (i / nodeCount) * Math.PI * 4;
+        const y = ((i / nodeCount) - 0.5) * height;
+
+        const x1 = Math.cos(t) * radius;
+        const z1 = Math.sin(t) * radius;
+
+        const x2 = Math.cos(t + Math.PI) * radius;
+        const z2 = Math.sin(t + Math.PI) * radius;
+
+        const sphere1 = new THREE.Mesh(sphereGeo, nodeMaterialA);
+        sphere1.position.set(x1, y, z1);
+        helixGroup.add(sphere1);
+
+        const sphere2 = new THREE.Mesh(sphereGeo, nodeMaterialB);
+        sphere2.position.set(x2, y, z2);
+        helixGroup.add(sphere2);
+
+        // Connecting rungs
+        const rungPoints = [new THREE.Vector3(x1, y, z1), new THREE.Vector3(x2, y, z2)];
+        const rungGeo = new THREE.BufferGeometry().setFromPoints(rungPoints);
+        const rungLine = new THREE.Line(rungGeo, lineMaterial);
+        helixGroup.add(rungLine);
+      }
+
+      scene.add(helixGroup);
+
+      let isDragging = false;
+      let prevMouseX = 0;
+      let prevMouseY = 0;
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      });
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - prevMouseX;
+        const deltaY = e.clientY - prevMouseY;
+        helixGroup.rotation.y += deltaX * 0.01;
+        helixGroup.rotation.x += deltaY * 0.01;
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      });
+
+      // Touch interaction
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          isDragging = true;
+          prevMouseX = e.touches[0].clientX;
+          prevMouseY = e.touches[0].clientY;
+        }
+      });
+      window.addEventListener('touchend', () => isDragging = false);
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length === 0) return;
+        const deltaX = e.touches[0].clientX - prevMouseX;
+        const deltaY = e.touches[0].clientY - prevMouseY;
+        helixGroup.rotation.y += deltaX * 0.015;
+        helixGroup.rotation.x += deltaY * 0.015;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!isDragging) {
+          helixGroup.rotation.y += 0.012;
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+    }
+
+    // 3D Tilt Effect on Vault Card
+    function init3DVaultCardPhysics() {
+      const card = document.getElementById('vaultInteractiveCard');
+      if (!card) return;
+
+      window.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) / (window.innerWidth / 2);
+        const deltaY = (e.clientY - centerY) / (window.innerHeight / 2);
+
+        const rotateY = deltaX * 8;
+        const rotateX = -deltaY * 8;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       refreshIcons();
-
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const vipCode = urlParams.get('vip') || urlParams.get('access');
-        if (vipCode) {
-          const badge = document.getElementById('vipActiveBadge');
-          if (badge) {
-            badge.textContent = `CLEARANCE: ${vipCode.toUpperCase()}`;
-            badge.classList.remove('hidden');
-          }
-        }
-      } catch (e) {
-        console.warn('VIP parameter check:', e);
-      }
+      checkGatekeeperStatus();
+      initGlobal3DScene();
+      initVault3DHelix();
+      init3DVaultCardPhysics();
 
       const form = document.getElementById('clientIntakeForm');
       if (form) {
