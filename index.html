@@ -47,15 +47,90 @@
 </head>
 <body class="min-h-screen bg-[#070709] text-[#ecebe8] antialiased selection:bg-[#cbb28d] selection:text-black">
 
+  <!-- ========================================================================= -->
+  <!-- LUXURY PRIVATE CLIENT GATEKEEPER (PASSWORD / VIP LINK PROTECTION) -->
+  <!-- ========================================================================= -->
+  <div id="private-gatekeeper" class="fixed inset-0 z-[100] bg-[#070709] flex items-center justify-center p-6 overflow-hidden transition-opacity duration-500">
+    <!-- Ambient Radial Lighting -->
+    <div class="absolute w-[600px] h-[600px] bg-[#cbb28d]/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="relative w-full max-w-md bg-gradient-to-b from-[#111116] via-[#0c0c0f] to-[#070709] border border-zinc-800/90 rounded-2xl p-8 sm:p-10 shadow-[0_0_80px_rgba(0,0,0,0.95)] text-center">
+      
+      <!-- Monogram Crest -->
+      <div class="h-16 w-16 mx-auto rounded-full bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner mb-6">
+        VD
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#cbb28d]/20 bg-[#cbb28d]/5 text-[#dec7a6] text-[10px] uppercase tracking-[0.25em] font-mono mb-4">
+        <i data-lucide="shield" class="w-3 h-3 text-[#cbb28d]"></i>
+        Restricted Access Portal
+      </div>
+
+      <h1 class="text-2xl font-serif text-white tracking-wide">
+        Vitesh Dhankhar
+      </h1>
+      <p class="text-[11px] font-mono text-zinc-400 uppercase tracking-widest mt-1 mb-6">
+        Private Advisory &bull; Hyderabad &bull; Dubai
+      </p>
+
+      <p class="text-xs text-zinc-400 font-light leading-relaxed mb-6">
+        This platform contains proprietary biological longevity architectures and privileged research data. Please enter your confidential authorization key to proceed.
+      </p>
+
+      <form onsubmit="handlePasscodeSubmit(event)" class="space-y-4">
+        <div class="relative">
+          <input 
+            type="password" 
+            id="gate-passcode" 
+            placeholder="ENTER AUTHORIZATION KEY" 
+            required 
+            autocomplete="current-password"
+            class="w-full bg-black/80 border border-zinc-800 focus:border-[#cbb28d] rounded px-4 py-3.5 text-xs text-white text-center font-mono tracking-[0.3em] placeholder:tracking-widest placeholder:text-zinc-600 focus:outline-none transition-all shadow-inner uppercase"
+          />
+          <div id="gate-error" class="hidden text-[11px] font-mono text-rose-400 mt-2">
+            Invalid authorization key. Contact the private desk.
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-3.5 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-[0.2em] rounded-sm hover:brightness-110 active:scale-98 transition-all shadow-[0_0_25px_rgba(203,178,141,0.2)]"
+        >
+          Verify &amp; Unlock Portal
+        </button>
+      </form>
+
+      <div class="mt-8 pt-6 border-t border-zinc-800/80 space-y-3 text-center">
+        <div class="text-[11px] font-mono text-zinc-400">DO NOT HAVE AN ACCESS KEY?</div>
+        <a 
+          href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20client%20access%20passcode%20for%20Vitesh%20Dhankhar%27s%20portal."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-zinc-900 border border-zinc-800 hover:border-[#cbb28d]/40 rounded text-[11px] font-mono text-zinc-300 hover:text-white uppercase tracking-wider transition-all"
+        >
+          <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>Request Clearance Key on WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="mt-6 text-[10px] font-mono text-zinc-400 tracking-wider">
+        STRICT NDA ENFORCED &bull; HARDWARE ENCRYPTED SESSION
+      </div>
+    </div>
+  </div>
+
   <!-- Advisory Top Ribbon -->
   <aside aria-label="Advisory bar" class="border-b border-zinc-900 bg-[#0a0a0d] py-2.5 px-6 text-[11px] font-mono tracking-[0.2em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2">
     <div class="flex items-center gap-2.5">
       <span class="h-2 w-2 rounded-full bg-[#cbb28d] animate-pulse"></span>
-      <span>STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
+      <span id="advisory-session-status">STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
     </div>
     <div class="flex items-center gap-6">
       <span class="text-[#cbb28d] font-semibold">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS GLOBALLY</span>
       <span class="hidden lg:inline text-[#dec7a6] font-semibold tracking-widest">HYDERABAD &bull; DUBAI EXCLUSIVE</span>
+      <button onclick="lockPortal()" class="text-zinc-400 hover:text-rose-400 transition-colors uppercase flex items-center gap-1 text-[10px]" title="End authenticated session">
+        <i data-lucide="lock" class="w-3 h-3"></i> Lock
+      </button>
     </div>
   </aside>
 
@@ -617,7 +692,7 @@
     </div>
   </section>
 
-  <!-- Execution Standards (Replaced Cinematic Presence with Executive Gravitas) -->
+  <!-- Execution Standards -->
   <section id="methodology" class="py-24 bg-[#0a0a0d] border-b border-zinc-900">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
@@ -634,7 +709,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <!-- Pillar 1: Replaced Cinematic Presence with Executive Gravitas -->
+        <!-- Pillar 1: Executive Gravitas -->
         <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
           <div class="space-y-3">
             <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
@@ -702,7 +777,7 @@
     </div>
   </section>
 
-  <!-- Engagement Tiers (Replaced Cinematic Sprint with Family Office Advisory) -->
+  <!-- Engagement Tiers -->
   <section id="tiers" class="py-24 bg-[#070709] border-t border-zinc-900">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
@@ -809,7 +884,7 @@
           </div>
         </div>
 
-        <!-- Tier 3: Replaced Cinematic Sprint with Family Office Advisory -->
+        <!-- Tier 3: Family Office Advisory -->
         <div class="rounded-2xl border border-zinc-800/90 bg-zinc-900/20 p-8 flex flex-col justify-between">
           <div>
             <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Private Estate Advisory</div>
@@ -1132,9 +1207,9 @@
           Thank you. Your dossier has been routed directly to Vitesh Dhankhar's private desk.
         </p>
         <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg max-w-md mx-auto text-xs text-zinc-400 font-mono text-left space-y-1">
-          <div>DISPATCH STATUS: <span class="text-emerald-400">ENCRYPTED QUEUE</span></div>
-          <div>RESPONSE WINDOW: <span class="text-white">UNDER 12 HOURS</span></div>
-          <div>NDA DIRECTIVE: <span class="text-white">MUTUAL EXECUTION FIRST</span></div>
+          <div>DISPATCH STATUS: <span className="text-emerald-400">ENCRYPTED QUEUE</span></div>
+          <div>RESPONSE WINDOW: <span className="text-white">UNDER 12 HOURS</span></div>
+          <div>NDA DIRECTIVE: <span className="text-white">MUTUAL EXECUTION FIRST</span></div>
         </div>
         <div class="flex justify-center gap-4 pt-2">
           <a href="https://wa.me/917988029459" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 bg-[#cbb28d] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded-sm font-semibold">
@@ -1187,6 +1262,24 @@
   </div>
 
   <script>
+    // =========================================================================
+    // AUTHORIZED PRIVATE CLIENT ACCESS KEYS & VIP PASSCODES
+    // Edit this list directly on GitHub inside index.html to grant or revoke access
+    // =========================================================================
+    const AUTHORIZED_VIP_CODES = [
+      "SOVEREIGN2026",    // Master Access Key
+      "HYD-FOUNDER",      // Personal invite link: ?vip=HYD-FOUNDER
+      "DUBAI-ROYAL",      // Personal invite link: ?vip=DUBAI-ROYAL
+      "CHAIR-OFFICE",     // Personal invite link: ?vip=CHAIR-OFFICE
+      "ESTATE-HEALTH"     // Personal invite link: ?vip=ESTATE-HEALTH
+    ];
+
+    function isCodeAuthorized(inputCode) {
+      if (!inputCode) return false;
+      const clean = inputCode.trim().toUpperCase();
+      return AUTHORIZED_VIP_CODES.includes(clean);
+    }
+
     // Publication Database (All External Outbound Links Revoked)
     const researchDossier = {
       'res-epigenetic-2026': {
@@ -1270,7 +1363,6 @@
       const views = accessTracker[studyId] || 0;
 
       if (views >= 1) {
-        // Already viewed: show locked redirect modal
         document.getElementById('locked-study-title').textContent = `"${study.title}"`;
         document.getElementById('locked-study-details').innerHTML = `
           <div>AUTHOR: <span class="text-white">${study.authors}</span></div>
@@ -1281,10 +1373,8 @@
         document.getElementById('locked-email-link').href = `mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Manuscript%20Request%20-%20${encodeURIComponent(study.title)}`;
         openModal('locked-modal');
       } else {
-        // First view granted
         accessTracker[studyId] = 1;
 
-        // Populate study modal
         document.getElementById('study-modal-title').textContent = study.title;
         document.getElementById('study-modal-authors').innerHTML = `${study.authors} &bull; <strong class="text-zinc-300">${study.leadInstitution}</strong>`;
         document.getElementById('study-modal-meta').textContent = `${study.journal} (${study.year}) • ${study.impactFactor}`;
@@ -1305,14 +1395,12 @@
           <span>DOI: <strong class="text-zinc-300">${study.doi}</strong></span>
         `;
 
-        // Configure direct contact routes instead of external links
         document.getElementById('study-modal-wa-link').href = `https://wa.me/917988029459?text=Confidential%20Request%3A%20Requesting%20full%20verified%20manuscript%20for%20${encodeURIComponent(study.title)}`;
         document.getElementById('study-modal-email-link').href = `mailto:viteshdhankhar27@gmail.com?subject=Private%20Reprint%20Request%20-%20${encodeURIComponent(study.title)}`;
 
         openModal('study-modal');
         lucide.createIcons();
 
-        // Update card button UI to show locked status for future clicks
         const cardBtn = document.getElementById(`btn-${studyId}`);
         if (cardBtn) {
           cardBtn.className = 'w-full px-4 py-2 rounded text-xs font-mono uppercase tracking-wider bg-zinc-900 border border-zinc-800 text-amber-300/80 hover:border-amber-400/50 transition-all inline-flex items-center justify-center gap-1.5';
@@ -1346,13 +1434,86 @@
       }
     }
 
-    // Mobile Drawer Toggle
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
     }
 
-    // Filter Research Cards
+    // =========================================================================
+    // GATEKEEPER & VIP URL AUTO-UNLOCK LOGIC
+    // =========================================================================
+    function checkGatekeeper() {
+      // 1. Check if user arrived via a special VIP link (e.g., ?vip=HYD-FOUNDER or ?access=DUBAI-ROYAL)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlVipCode = urlParams.get('vip') || urlParams.get('access') || urlParams.get('pass');
+
+      if (urlVipCode && isCodeAuthorized(urlVipCode)) {
+        // Automatically authorize via invite link
+        sessionStorage.setItem("vd_portal_auth", "true");
+        sessionStorage.setItem("vd_client_badge", urlVipCode.toUpperCase());
+        
+        // Clean URL parameter without reloading page for clean aesthetics
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({path: cleanUrl}, '', cleanUrl);
+      }
+
+      // 2. Evaluate session authorization
+      const isAuthorized = sessionStorage.getItem("vd_portal_auth") === "true";
+      const gate = document.getElementById("private-gatekeeper");
+      
+      if (isAuthorized) {
+        gate.classList.add("hidden");
+        document.body.style.overflow = "";
+
+        // Display client badge if entered via personal link
+        const badge = sessionStorage.getItem("vd_client_badge");
+        if (badge && badge !== "SOVEREIGN2026") {
+          const ribbon = document.getElementById("advisory-session-status");
+          if (ribbon) {
+            ribbon.innerHTML = `CLEARANCE VERIFIED: <span class="text-[#dec7a6]">${badge}</span> &bull; NDA ENFORCED`;
+          }
+        }
+      } else {
+        gate.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+          const input = document.getElementById("gate-passcode");
+          if (input) input.focus();
+        }, 100);
+      }
+    }
+
+    function handlePasscodeSubmit(e) {
+      e.preventDefault();
+      const enteredCode = document.getElementById("gate-passcode").value.trim();
+      const errorMsg = document.getElementById("gate-error");
+
+      if (isCodeAuthorized(enteredCode)) {
+        sessionStorage.setItem("vd_portal_auth", "true");
+        sessionStorage.setItem("vd_client_badge", enteredCode.toUpperCase());
+        const gate = document.getElementById("private-gatekeeper");
+        gate.classList.add("opacity-0");
+        setTimeout(() => {
+          gate.classList.add("hidden");
+          document.body.style.overflow = "";
+        }, 400);
+      } else {
+        errorMsg.classList.remove("hidden");
+        const input = document.getElementById("gate-passcode");
+        input.classList.add("border-rose-500");
+        input.value = "";
+        setTimeout(() => {
+          input.classList.remove("border-rose-500");
+        }, 1500);
+      }
+    }
+
+    function lockPortal() {
+      sessionStorage.removeItem("vd_portal_auth");
+      sessionStorage.removeItem("vd_client_badge");
+      location.reload();
+    }
+
     function filterResearch(category, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => {
         b.className = 'filter-btn px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white';
@@ -1368,7 +1529,6 @@
       });
     }
 
-    // Form Handling
     function handleIntakeSubmit(e) {
       e.preventDefault();
       document.getElementById('intake-form-container').classList.add('hidden');
@@ -1376,7 +1536,6 @@
       lucide.createIcons();
     }
 
-    // Header Scroll Effect
     window.addEventListener('scroll', () => {
       const header = document.getElementById('main-header');
       if (window.scrollY > 30) {
@@ -1390,10 +1549,10 @@
       }
     });
 
-    // Initialize Lucide Icons on DOM load
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       document.getElementById('current-year').textContent = new Date().getFullYear();
+      checkGatekeeper();
     });
   </script>
 </body>
