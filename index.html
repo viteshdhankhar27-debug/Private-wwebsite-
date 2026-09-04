@@ -367,6 +367,52 @@
               </span>
             </div>
 
+            <!-- INTERACTIVE 3D DNA HELIX VIEWPORT -->
+            <div class="my-5 relative rounded-2xl bg-black/80 border border-zinc-800/90 overflow-hidden shadow-inner group">
+              <div class="h-44 sm:h-48 w-full relative">
+                <canvas id="heroDnaCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                
+                <!-- 3D HUD Overlay -->
+                <div class="absolute top-2.5 left-3 right-3 flex items-center justify-between pointer-events-none text-[9px] font-mono tracking-widest uppercase">
+                  <div class="flex items-center gap-1.5 text-[#dec7a6] bg-black/60 px-2 py-0.5 rounded border border-[#cbb28d]/20 backdrop-blur-sm">
+                    <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
+                    <span>3D BIOMETRIC HELIX &bull; ACTIVE</span>
+                  </div>
+                  <span class="text-zinc-500 hidden sm:inline">DRAG / SWIPE TO ROTATE</span>
+                </div>
+
+                <!-- Interactive DNA Loci Checkpoint Selector -->
+                <div class="absolute bottom-2 inset-x-2 flex items-center justify-center gap-1.5 flex-wrap z-10">
+                  <button 
+                    type="button"
+                    onclick="focusDnaLocus('dunedin')"
+                    class="px-2 py-1 rounded bg-black/80 hover:bg-[#cbb28d] hover:text-zinc-950 border border-[#cbb28d]/40 text-[#dec7a6] text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm"
+                  >
+                    DunedinPACE
+                  </button>
+                  <button 
+                    type="button"
+                    onclick="focusDnaLocus('cad9p21')"
+                    class="px-2 py-1 rounded bg-black/80 hover:bg-[#cbb28d] hover:text-zinc-950 border border-zinc-700/80 text-zinc-300 text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm"
+                  >
+                    9p21 CAD
+                  </button>
+                  <button 
+                    type="button"
+                    onclick="focusDnaLocus('sirt1')"
+                    class="px-2 py-1 rounded bg-black/80 hover:bg-[#cbb28d] hover:text-zinc-950 border border-zinc-700/80 text-zinc-300 text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm"
+                  >
+                    SIRT1 Biogenesis
+                  </button>
+                </div>
+              </div>
+
+              <div id="dnaStatusNotice" class="px-3 py-1.5 bg-zinc-950/90 border-t border-zinc-800/80 text-[10px] font-mono text-zinc-400 flex items-center justify-between">
+                <span>TARGET LOCUS: <strong id="currentLocusName" class="text-[#dec7a6]">EPIGENETIC METHYLATION</strong></span>
+                <span id="currentLocusScore" class="text-emerald-400 font-semibold">0.64 PACE (-36%)</span>
+              </div>
+            </div>
+
             <!-- Segmented HUD Gauges -->
             <div class="space-y-4 my-6">
               
@@ -2011,6 +2057,163 @@
       animate();
     }
 
+    let heroDnaGroup = null;
+    let heroDnaTargetRotationY = 0;
+
+    function initHero3DDNA() {
+      const canvas = document.getElementById('heroDnaCanvas');
+      if (!canvas || !window.THREE) return;
+
+      const scene = new THREE.Scene();
+      const width = canvas.clientWidth || 360;
+      const height = canvas.clientHeight || 190;
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+      camera.position.z = 16;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      heroDnaGroup = new THREE.Group();
+      heroDnaGroup.rotation.z = 0.22; // Organic biological inclination
+
+      const totalNodes = 32;
+      const radius = 2.8;
+      const length = 13.5;
+
+      const sphereGeo = new THREE.SphereGeometry(0.26, 14, 14);
+      const nodeMatGold = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
+      const nodeMatAmber = new THREE.MeshBasicMaterial({ color: 0xb0966e });
+      const nodeMatCore = new THREE.MeshBasicMaterial({ color: 0x5eead4 }); // Cytosine marker
+      const rungMat = new THREE.LineBasicMaterial({ color: 0x4a4133, transparent: true, opacity: 0.65 });
+
+      for (let i = 0; i < totalNodes; i++) {
+        const angle = (i / totalNodes) * Math.PI * 4.2;
+        const y = ((i / totalNodes) - 0.5) * length;
+
+        const x1 = Math.cos(angle) * radius;
+        const z1 = Math.sin(angle) * radius;
+
+        const x2 = Math.cos(angle + Math.PI) * radius;
+        const z2 = Math.sin(angle + Math.PI) * radius;
+
+        // Strand 1
+        const sphere1 = new THREE.Mesh(sphereGeo, i === 16 ? nodeMatCore : nodeMatGold);
+        sphere1.position.set(x1, y, z1);
+        heroDnaGroup.add(sphere1);
+
+        // Strand 2
+        const sphere2 = new THREE.Mesh(sphereGeo, nodeMatAmber);
+        sphere2.position.set(x2, y, z2);
+        heroDnaGroup.add(sphere2);
+
+        // Nucleotide Base-Pair Connecting Rungs
+        const points = [new THREE.Vector3(x1, y, z1), new THREE.Vector3(x2, y, z2)];
+        const rungGeo = new THREE.BufferGeometry().setFromPoints(points);
+        const rungLine = new THREE.Line(rungGeo, rungMat);
+        heroDnaGroup.add(rungLine);
+      }
+
+      // Add gentle floating glowing particle envelope
+      const particleGeo = new THREE.BufferGeometry();
+      const particlePositions = new Float32Array(50 * 3);
+      for (let p = 0; p < 50 * 3; p += 3) {
+        particlePositions[p] = (Math.random() - 0.5) * 8;
+        particlePositions[p + 1] = (Math.random() - 0.5) * 12;
+        particlePositions[p + 2] = (Math.random() - 0.5) * 6;
+      }
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      const particleMat = new THREE.PointsMaterial({ color: 0xcbb28d, size: 0.15, transparent: true, opacity: 0.45 });
+      const particles = new THREE.Points(particleGeo, particleMat);
+      heroDnaGroup.add(particles);
+
+      scene.add(heroDnaGroup);
+
+      // Mouse & Touch Drag Controls
+      let isDragging = false;
+      let prevMouseX = 0;
+      let prevMouseY = 0;
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      });
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging || !heroDnaGroup) return;
+        const deltaX = e.clientX - prevMouseX;
+        const deltaY = e.clientY - prevMouseY;
+        heroDnaGroup.rotation.y += deltaX * 0.015;
+        heroDnaGroup.rotation.x += deltaY * 0.008;
+        heroDnaTargetRotationY = heroDnaGroup.rotation.y;
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      });
+
+      // Mobile Touch Drag
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          isDragging = true;
+          prevMouseX = e.touches[0].clientX;
+          prevMouseY = e.touches[0].clientY;
+        }
+      });
+      window.addEventListener('touchend', () => isDragging = false);
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging || !heroDnaGroup || e.touches.length === 0) return;
+        const deltaX = e.touches[0].clientX - prevMouseX;
+        const deltaY = e.touches[0].clientY - prevMouseY;
+        heroDnaGroup.rotation.y += deltaX * 0.018;
+        heroDnaGroup.rotation.x += deltaY * 0.01;
+        heroDnaTargetRotationY = heroDnaGroup.rotation.y;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!isDragging && heroDnaGroup) {
+          heroDnaGroup.rotation.y += 0.009;
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        if (!canvas) return;
+        const newW = canvas.clientWidth || 360;
+        const newH = canvas.clientHeight || 190;
+        camera.aspect = newW / newH;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newW, newH);
+      });
+    }
+
+    // Interactive Loci Checkpoint Selector
+    function focusDnaLocus(locus) {
+      const nameEl = document.getElementById('currentLocusName');
+      const scoreEl = document.getElementById('currentLocusScore');
+      if (!nameEl || !scoreEl) return;
+
+      if (locus === 'dunedin') {
+        nameEl.textContent = 'EPIGENETIC METHYLATION';
+        scoreEl.textContent = '0.64 PACE (-36%)';
+        scoreEl.className = 'text-emerald-400 font-semibold';
+        if (heroDnaGroup) heroDnaGroup.rotation.y = 0.5;
+      } else if (locus === 'cad9p21') {
+        nameEl.textContent = '9p21 CAD CARDIAC ALLELE';
+        scoreEl.textContent = 'ApoB < 60 mg/dL CLEARANCE';
+        scoreEl.className = 'text-[#dec7a6] font-semibold';
+        if (heroDnaGroup) heroDnaGroup.rotation.y = 2.1;
+      } else if (locus === 'sirt1') {
+        nameEl.textContent = 'SIRT1 MITOCHONDRIAL BIOGENESIS';
+        scoreEl.textContent = '+300% CELLULAR VO2 MAX';
+        scoreEl.className = 'text-teal-300 font-semibold';
+        if (heroDnaGroup) heroDnaGroup.rotation.y = 3.9;
+      }
+    }
+
     // 3D Tilt Effect on Vault Card
     function init3DVaultCardPhysics() {
       const card = document.getElementById('vaultInteractiveCard');
@@ -2035,6 +2238,7 @@
       checkGatekeeperStatus();
       initGlobal3DScene();
       initVault3DHelix();
+      initHero3DDNA();
       init3DVaultCardPhysics();
 
       const form = document.getElementById('clientIntakeForm');
