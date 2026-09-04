@@ -1,1 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitesh Dhankhar | Private Body Architect & Longevity Advisory</title>
+  <meta name="description" content="Private body architecture, longevity science, and cinematic physique engineering by Vitesh Dhankhar for high-net-worth individuals, celebrities, and family offices.">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Cormorant Garamond, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #070709;
+      color: #ecebe8;
+    }
+    .font-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    ::selection {
+      background-color: #cbb28d;
+      color: #000;
+    }
+    /* Custom Luxury Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #cbb28d;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#070709] text-[#ecebe8] antialiased selection:bg-[#cbb28d] selection:text-black">
 
+  <aside aria-label="Advisory bar" class="border-b border-zinc-900 bg-[#0a0a0d] py-2.5 px-6 text-[11px] font-mono tracking-[0.2em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2">
+    <div class="flex items-center gap-2.5">
+      <span class="h-2 w-2 rounded-full bg-[#cbb28d] animate-pulse"></span>
+      <span>STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <span class="text-[#cbb28d] font-semibold">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS GLOBALLY</span>
+      <span class="hidden lg:inline text-zinc-400">LONDON &bull; DUBAI &bull; MONACO &bull; MUMBAI</span>
+    </div>
+  </aside>
+
+  <header id="main-header" class="sticky top-0 z-40 transition-all duration-300 bg-transparent py-5">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <a href="#" class="flex flex-col text-left group">
+        <span class="text-xl md:text-2xl font-serif tracking-[0.25em] text-zinc-100 font-light group-hover:text-[#cbb28d] transition-colors">
+          VITESH DHANKHAR
+        </span>
+        <span class="text-[9px] tracking-[0.35em] text-[#a49175] uppercase font-mono mt-0.5">
+          Celebrity Body Architect &bull; Longevity Advisory
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-zinc-400">
+        <a href="#publications" class="hover:text-[#cbb28d] text-[#cbb28d] transition-colors flex items-center gap-1.5">
+          <i data-lucide="microscope" class="w-3.5 h-3.5"></i>
+          <span>Published Researches</span>
+        </a>
+        <a href="#methodology" class="hover:text-[#cbb28d] transition-colors">Architecture</a>
+        <a href="#tiers" class="hover:text-[#cbb28d] transition-colors">Engagements</a>
+        <a href="#discretion" class="hover:text-[#cbb28d] transition-colors">Discretion Charter</a>
+      </nav>
+
+      <div class="hidden sm:flex items-center gap-3">
+        <a 
+          href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20advisory%20details%20and%20research%20briefing%20for%20Vitesh%20Dhankhar."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 text-[11px] font-mono uppercase tracking-[0.16em] text-zinc-300 border border-zinc-800 hover:border-[#cbb28d]/60 bg-zinc-900/60 rounded-sm hover:text-white transition-all flex items-center gap-2"
+          title="Encrypted WhatsApp Liaison"
+        >
+          <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>WhatsApp Concierge</span>
+        </a>
+
+        <button 
+          onclick="openModal('intake-modal')"
+          class="px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-950 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 active:scale-95 transition-all duration-200 rounded-sm shadow-[0_0_25px_rgba(203,178,141,0.25)]"
+        >
+          Private Intake
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn"
+        onclick="toggleMobileMenu()"
+        class="lg:hidden p-2 text-zinc-400 hover:text-white"
+        aria-label="Toggle Navigation"
+      >
+        <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#0a0a0d] border-b border-zinc-800 px-6 py-5 flex flex-col gap-4 text-xs tracking-widest uppercase shadow-2xl">
+      <a href="#publications" onclick="toggleMobileMenu()" class="py-2 border-b border-zinc-800/80 text-[#cbb28d]">Published Researches</a>
+      <a href="#methodology" onclick="toggleMobileMenu()" class="py-2 border-b border-zinc-800/80">Architecture</a>
+      <a href="#tiers" onclick="toggleMobileMenu()" class="py-2 border-b border-zinc-800/80">Engagement Tiers</a>
+      <a href="#discretion" onclick="toggleMobileMenu()" class="py-2 border-b border-zinc-800/80">Discretion Charter</a>
+      <a 
+        href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20advisory%20details%20for%20Vitesh%20Dhankhar."
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="w-full py-3 bg-zinc-900 border border-zinc-700 text-center font-mono text-[11px] uppercase tracking-wider text-zinc-200 flex items-center justify-center gap-2 rounded-sm"
+      >
+        <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+        WhatsApp Advisory Desk
+      </a>
+      <button 
+        onclick="toggleMobileMenu(); openModal('intake-modal')"
+        class="w-full py-3 bg-[#cbb28d] text-zinc-950 font-semibold tracking-widest text-[11px] uppercase rounded-sm"
+      >
+        Request Private Intake
+      </button>
+    </div>
+  </header>
+
+  <section class="relative pt-10 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-gradient-to-b from-[#cbb28d]/10 via-[#cbb28d]/5 to-transparent rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-7 text-left">
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[#cbb28d]/30 bg-[#cbb28d]/5 text-[#dec7a6] text-[11px] uppercase tracking-[0.2em] font-mono">
+            <i data-lucide="shield" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+            Private Advisory for Public Figures &amp; Family Offices
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-tight leading-[1.05] text-white">
+            Human architecture. <br />
+            <span class="italic font-normal bg-gradient-to-r from-zinc-100 via-[#dec7a6] to-[#b0966e] bg-clip-text text-transparent">
+              Governed by science.
+            </span>
+          </h1>
+
+          <p class="text-base md:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl">
+            I engineer cinematic physique transformations, biological longevity, and cognitive stamina for individuals whose schedules and privacy do not allow for compromise. Led by published peer-reviewed exercise sciences and medical-grade diagnostics.
+          </p>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <button 
+              onclick="openModal('intake-modal')"
+              class="px-8 py-4 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold tracking-[0.18em] text-xs uppercase rounded-sm flex items-center justify-center gap-3 transition-all duration-200 shadow-[0_10px_35px_rgba(203,178,141,0.22)]"
+            >
+              <span>Request Private Placement</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+
+            <a 
+              href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20advisory%20details%20for%20Vitesh%20Dhankhar."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-6 py-4 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/50 text-zinc-300 font-medium tracking-[0.15em] text-xs uppercase rounded-sm flex items-center justify-center gap-2.5 transition-colors"
+            >
+              <i data-lucide="message-square" class="w-4 h-4 text-[#cbb28d]"></i>
+              <span>Confidential WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="pt-8 border-t border-zinc-900 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div>
+              <div class="text-2xl md:text-3xl font-serif text-white">100%</div>
+              <div class="text-[10px] uppercase tracking-wider text-zinc-400 font-mono mt-1">NDA Enforced</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-serif text-[#dec7a6]">14+</div>
+              <div class="text-[10px] uppercase tracking-wider text-zinc-400 font-mono mt-1">Lead Film Preps</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-serif text-white">3 Published</div>
+              <div class="text-[10px] uppercase tracking-wider text-zinc-400 font-mono mt-1">Peer-Reviewed Papers</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-serif text-[#dec7a6]">Strict 8</div>
+              <div class="text-[10px] uppercase tracking-wider text-zinc-400 font-mono mt-1">Max Active Roster</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl border border-zinc-800/90 bg-gradient-to-b from-[#111116] via-[#0b0b0e] to-[#070709] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-md">
+            
+            <div class="flex items-center justify-between pb-5 border-b border-zinc-800/80">
+              <div class="flex items-center gap-3.5">
+                <div class="h-11 w-11 rounded-full bg-black border border-[#cbb28d]/50 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-sm shadow-inner">
+                  VD
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-white tracking-wide">Vitesh Dhankhar</div>
+                  <div class="text-[10px] font-mono text-[#cbb28d]">LNIPE &bull; Published Sports Scientist</div>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 text-[9px] font-mono tracking-widest uppercase bg-emerald-950/60 text-emerald-400 border border-emerald-800/40 rounded">
+                Verified Practice
+              </span>
+            </div>
+
+            <div class="space-y-4 my-6">
+              <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/70">
+                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-1.5">
+                  <span>EPIGENETIC PACE OF AGING</span>
+                  <span class="text-[#dec7a6]">0.64 DUNEDIN PACE MODEL</span>
+                </div>
+                <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
+                  <div class="bg-gradient-to-r from-[#cbb28d] to-[#dec7a6] h-full w-[94%]"></div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/70">
+                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-1.5">
+                  <span>NEUROMUSCULAR RESPONSE SPEED</span>
+                  <span class="text-[#dec7a6]">-19.6MS VELOCITY GAIN</span>
+                </div>
+                <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
+                  <div class="bg-gradient-to-r from-[#cbb28d] to-[#dec7a6] h-full w-[91%]"></div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/70">
+                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-1.5">
+                  <span>PRIVATE CHEF GLYCEMIC MAPPING</span>
+                  <span class="text-[#dec7a6]">FIBER-FIRST SEQUENCING</span>
+                </div>
+                <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
+                  <div class="bg-gradient-to-r from-[#cbb28d] to-[#dec7a6] h-full w-[100%]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs font-mono">
+              <div class="flex items-center gap-2 text-zinc-400">
+                <i data-lucide="building-2" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+                <span>Estate &amp; Flight Readiness</span>
+              </div>
+              <a 
+                href="https://wa.me/917988029459" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-[#dec7a6] hover:underline flex items-center gap-1 uppercase tracking-wider text-[11px]"
+              >
+                Direct Line &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="py-20 bg-[#0a0a0d] border-y border-zinc-900 relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2 text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+            <i data-lucide="microscope" class="w-3.5 h-3.5"></i>
+            Scientific Publications Vault &bull; Single Inspection Clearance
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-serif text-white font-light">
+            Published Peer-Reviewed Researches
+          </h2>
+          <p class="text-zinc-400 text-xs sm:text-sm max-w-2xl font-light leading-relaxed">
+            Authored by <strong>Vitesh Dhankhar</strong>. Indexed clinical research directly powering our longevity, athletic acceleration, and physique recomposition practices. View methodology and clinical data once online.
+          </p>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterResearch('all', this)" class="filter-btn active px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-[#cbb28d] text-zinc-950 font-semibold border-[#cbb28d]">All Publications</button>
+          <button onclick="filterResearch('longevity', this)" class="filter-btn px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white">Longevity &amp; Epigenetics</button>
+          <button onclick="filterResearch('biomechanics', this)" class="filter-btn px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white">Neuromuscular Kinetics</button>
+          <button onclick="filterResearch('olympics', this)" class="filter-btn px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white">Olympic Talent Mapping</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="research-cards-grid">
+        
+        <!-- Paper 1: Longevity -->
+        <div class="research-card p-6 rounded-xl bg-zinc-900/30 border border-zinc-800/90 hover:border-[#cbb28d]/60 transition-all duration-300 flex flex-col justify-between group" data-category="longevity" data-id="res-epigenetic-2026">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-zinc-800/70 text-[10px] font-mono">
+              <span class="text-[#cbb28d] uppercase tracking-wider font-semibold">IJPHPE &bull; 2026</span>
+              <span class="text-emerald-400 uppercase tracking-widest bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40 font-semibold">RJIF 8.16</span>
+            </div>
+
+            <h3 class="text-base font-serif text-white mt-4 mb-2 group-hover:text-[#dec7a6] transition-colors leading-snug">
+              Integrative multi-omic profiling of glycaemic variability and epigenetic aging: A comparative framework for biological age reversal in South Asian Cohorts
+            </h3>
+
+            <div class="text-[11px] text-zinc-400 font-mono mb-1">
+              Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep
+            </div>
+            <div class="text-[10px] text-[#a49175] font-mono mb-3">
+              LNIPE, Gwalior &bull; Dept. of Physical Education
+            </div>
+
+            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/40 p-2.5 rounded border border-zinc-800/80">
+              <span>Vol 8, Issue 8</span>
+              <span>pp. 01-07</span>
+              <span class="text-zinc-300 truncate max-w-[180px]">DOI: 10.33545/26647265.2026.v8.i8a.192</span>
+            </div>
+
+            <p class="text-xs text-zinc-400 leading-relaxed font-light mb-6">
+              Investigates the South Asian "Thin-Fat" phenotype, postprandial glucose spikes, and Advanced Glycation End-products (AGEs) accelerating DNA methylation decay. Formulates the 3-2-1 fitness logic and Fiber-First sequencing for quantifiable biological age reversal.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-zinc-800/80 space-y-3">
+            <div class="bg-black/60 px-3 py-2 rounded border border-zinc-800/80 text-[11px] font-mono">
+              <div class="text-[9px] text-zinc-400 uppercase">Primary Protocol Yield:</div>
+              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">DunedinPACE Pace-of-Aging Reduction &amp; DNAm Calibration</div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <button 
+                id="btn-res-epigenetic-2026"
+                onclick="inspectStudy('res-epigenetic-2026')"
+                class="px-3 py-2 rounded text-xs font-mono uppercase tracking-wider bg-zinc-800 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 transition-all inline-flex items-center gap-1.5"
+              >
+                <i data-lucide="eye" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+                <span>Inspect Study</span>
+              </button>
+
+              <a 
+                href="https://doi.org/10.33545/26647265.2026.v8.i8a.192" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-zinc-400 hover:text-white inline-flex items-center gap-1 uppercase tracking-wider transition-colors"
+              >
+                DOI Index <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-card p-6 rounded-xl bg-zinc-900/30 border border-zinc-800/90 hover:border-[#cbb28d]/60 transition-all duration-300 flex flex-col justify-between group" data-category="biomechanics" data-id="res-badminton-2026">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-zinc-800/70 text-[10px] font-mono">
+              <span class="text-[#cbb28d] uppercase tracking-wider font-semibold">IJPSPE &bull; 2026</span>
+              <span class="text-emerald-400 uppercase tracking-widest bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40 font-semibold">RJIF 8.28</span>
+            </div>
+
+            <h3 class="text-base font-serif text-white mt-4 mb-2 group-hover:text-[#dec7a6] transition-colors leading-snug">
+              Cross-format training in badminton: Effect of weekly doubles practice on singles match performance
+            </h3>
+
+            <div class="text-[11px] text-zinc-400 font-mono mb-1">
+              Yenshi Dhankhar and Vitesh Dhankhar
+            </div>
+            <div class="text-[10px] text-[#a49175] font-mono mb-3">
+              LNIPE Gwalior &amp; University of Lucknow
+            </div>
+
+            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/40 p-2.5 rounded border border-zinc-800/80">
+              <span>Vol 8, Issue 8</span>
+              <span>pp. 06-11</span>
+              <span class="text-zinc-300 truncate max-w-[180px]">DOI: 10.33545/26647710.2026.v8.i8a.288</span>
+            </div>
+
+            <p class="text-xs text-zinc-400 leading-relaxed font-light mb-6">
+              An 8-week paired pre-post clinical study demonstrating the transference of high-velocity neuromuscular reflexes, multidirectional footwork agility, and racket-head acceleration from doubles play into singles dominance.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-zinc-800/80 space-y-3">
+            <div class="bg-black/60 px-3 py-2 rounded border border-zinc-800/80 text-[11px] font-mono">
+              <div class="text-[9px] text-zinc-400 uppercase">Primary Protocol Yield:</div>
+              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">+12.4% Net Responsiveness &amp; -19.6ms Reflexes</div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <button 
+                id="btn-res-badminton-2026"
+                onclick="inspectStudy('res-badminton-2026')"
+                class="px-3 py-2 rounded text-xs font-mono uppercase tracking-wider bg-zinc-800 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 transition-all inline-flex items-center gap-1.5"
+              >
+                <i data-lucide="eye" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+                <span>Inspect Study</span>
+              </button>
+
+              <a 
+                href="https://doi.org/10.33545/26647710.2026.v8.i8a.288" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-zinc-400 hover:text-white inline-flex items-center gap-1 uppercase tracking-wider transition-colors"
+              >
+                DOI Index <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-card p-6 rounded-xl bg-zinc-900/30 border border-zinc-800/90 hover:border-[#cbb28d]/60 transition-all duration-300 flex flex-col justify-between group" data-category="olympics" data-id="res-olympic-2025">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-zinc-800/70 text-[10px] font-mono">
+              <span class="text-[#cbb28d] uppercase tracking-wider font-semibold">IJPSPE &bull; 2025</span>
+              <span class="text-emerald-400 uppercase tracking-widest bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40 font-semibold">RJIF 8.28</span>
+            </div>
+
+            <h3 class="text-base font-serif text-white mt-4 mb-2 group-hover:text-[#dec7a6] transition-colors leading-snug">
+              Basics of selecting the ideal Olympic sport for young Indian athletes
+            </h3>
+
+            <div class="text-[11px] text-zinc-400 font-mono mb-1">
+              Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep
+            </div>
+            <div class="text-[10px] text-[#a49175] font-mono mb-3">
+              LNIPE Gwalior &amp; University of Lucknow
+            </div>
+
+            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/40 p-2.5 rounded border border-zinc-800/80">
+              <span>Vol 7, Issue 2</span>
+              <span>pp. 479-482</span>
+              <span class="text-zinc-300 truncate max-w-[180px]">DOI: 10.33545/26647710.2025.v7.i2f.190</span>
+            </div>
+
+            <p class="text-xs text-zinc-400 leading-relaxed font-light mb-6">
+              Proposes the Smart Selection Matrix for LA 2028, Brisbane 2032, and India 2036. Evaluates somatotype matching, the Ape Index (arm span vs. height), and neuromuscular visual reaction speeds (VRT) for maximum podium probability.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-zinc-800/80 space-y-3">
+            <div class="bg-black/60 px-3 py-2 rounded border border-zinc-800/80 text-[11px] font-mono">
+              <div class="text-[9px] text-zinc-400 uppercase">Primary Protocol Yield:</div>
+              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">Smart Selection Matrix &amp; Biometric Talent Mapping</div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <button 
+                id="btn-res-olympic-2025"
+                onclick="inspectStudy('res-olympic-2025')"
+                class="px-3 py-2 rounded text-xs font-mono uppercase tracking-wider bg-zinc-800 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 transition-all inline-flex items-center gap-1.5"
+              >
+                <i data-lucide="eye" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+                <span>Inspect Study</span>
+              </button>
+
+              <a 
+                href="https://doi.org/10.33545/26647710.2025.v7.i2f.190" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="text-xs font-mono text-zinc-400 hover:text-white inline-flex items-center gap-1 uppercase tracking-wider transition-colors"
+              >
+                DOI Index <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-8 p-5 rounded-lg border border-zinc-800/90 bg-gradient-to-r from-zinc-900/60 to-black flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+        <div class="space-y-0.5">
+          <div class="text-xs font-semibold text-white tracking-wider uppercase font-mono">
+            Direct Coordination with Private Medical &amp; Longevity Clinics
+          </div>
+          <div class="text-xs text-zinc-400 font-light">
+            Vitesh liaises seamlessly with your functional physicians, DEXA radiologists, and personal chefs using published scientific protocols.
+          </div>
+        </div>
+
+        <a 
+          href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Medical%20Desk%20Liaison%20-%20Vitesh%20Dhankhar"
+          class="px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors shrink-0 inline-flex items-center gap-2"
+        >
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>Initiate Medical Desk Liaison</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="methodology" class="py-24">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+          Execution Standards
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
+          Why Elite Clients Retain Vitesh
+        </h2>
+        <p class="text-zinc-400 text-sm font-light leading-relaxed">
+          Standard commercial trainers focus on fatigue. We engineer physical presence, orthopedic preservation, and cognitive stamina around non-negotiable schedules.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-serif text-white">Cinematic Presence</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed font-light">
+              Tailored clavicle-to-waist ratios, postural power, and photographic definition calibrated for film optics, bespoke suiting, and public stages.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+            Aesthetic Engineering
+          </div>
+        </div>
+
+        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+              <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-serif text-white">Biomarker Longevity</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed font-light">
+              Mitochondrial respiration, vascular elasticity, and low-shear joint loading designed to keep leaders operating at peak capacity for decades.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+            Cellular Healthspan
+          </div>
+        </div>
+
+        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+              <i data-lucide="globe" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-serif text-white">Global Mobility</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed font-light">
+              Accompaniment on private aviation, soundstages, and superyachts. Direct culinary execution directives coordinated with your personal chef.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+            Zero Disruption
+          </div>
+        </div>
+
+        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+              <i data-lucide="shield" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-serif text-white">Ironclad Discretion</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed font-light">
+              Strict legal NDA agreements executed prior to first evaluation. No social media exploitation or public leveraging of client identities.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+            Anonymity Guaranteed
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="tiers" class="py-24 bg-[#0a0a0d] border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+          Capacity Architecture
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
+          Engagement Tiers
+        </h2>
+        <p class="text-zinc-400 text-sm font-light leading-relaxed">
+          Capped strictly to preserve absolute personal involvement. Retainer structures based on mobility, frequency, and deployment level.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1 -->
+        <div class="rounded-2xl border border-zinc-800/90 bg-zinc-900/20 p-8 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Executive Retainer</div>
+            <h3 class="text-2xl font-serif text-white mt-2 mb-2">The Leadership Protocol</h3>
+            <p class="text-xs text-zinc-400 mb-6 font-light leading-relaxed">
+              For active CEOs, chairpersons, and investment partners requiring physical vitality and stress minimization within dense schedules.
+            </p>
+
+            <ul class="space-y-3.5 text-xs text-zinc-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>3x Weekly Private Residence or Compound Training</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Quarterly Biomarker &amp; DEXA Body Scan Analysis</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Direct Macro Specifications Sent to Private Chef</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Suite Gym Workout Protocols During Travel</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8 mt-8 border-t border-zinc-800">
+            <button 
+              onclick="openModal('intake-modal')"
+              class="w-full py-3.5 border border-zinc-700 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
+            >
+              Inquire on Availability
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border-2 border-[#cbb28d] bg-gradient-to-b from-[#181612] via-zinc-900/90 to-[#0c0c0e] p-8 flex flex-col justify-between relative shadow-[0_0_45px_rgba(203,178,141,0.18)]">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#cbb28d] text-zinc-950 font-bold uppercase tracking-[0.2em] text-[10px] px-4 py-1 rounded-full shadow">
+            Global Concierge &bull; Strictly Capped
+          </div>
+
+          <div>
+            <div class="text-[11px] font-mono tracking-widest text-[#cbb28d] uppercase mt-2">Unrestricted Access</div>
+            <h3 class="text-2xl font-serif text-white mt-2 mb-2">The Sovereign Concierge</h3>
+            <p class="text-xs text-zinc-300 mb-6 font-light leading-relaxed">
+              Total worldwide on-demand accompaniment. Aircraft, estate gyms, chartered vessels, and multi-continent schedules.
+            </p>
+
+            <ul class="space-y-3.5 text-xs text-zinc-200">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>On-Demand In-Person Training (Residence / Compound)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Worldwide Travel Accompaniment (Upon Advance Notice)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Direct Encrypted WhatsApp Line with Vitesh</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Coordination with Family Office &amp; Security Personnel</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8 mt-8 border-t border-[#cbb28d]/30 flex flex-col gap-2.5">
+            <button 
+              onclick="openModal('intake-modal')"
+              class="w-full py-3.5 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs uppercase tracking-wider transition-all rounded-sm shadow-md"
+            >
+              Apply for Sovereign Placement
+            </button>
+            <a 
+              href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Inquiring%20specifically%20about%20the%20Sovereign%20Concierge%20Placement."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full py-2.5 text-center text-zinc-400 hover:text-white text-[11px] font-mono uppercase tracking-wider"
+            >
+              Direct WhatsApp Liaison &rarr;
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-800/90 bg-zinc-900/20 p-8 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Production Intensive</div>
+            <h3 class="text-2xl font-serif text-white mt-2 mb-2">Cinematic Sprint</h3>
+            <p class="text-xs text-zinc-400 mb-6 font-light leading-relaxed">
+              Tailored specifically for lead film roles, high-stakes public tours, and camera deadlines requiring rapid body recomposition.
+            </p>
+
+            <ul class="space-y-3.5 text-xs text-zinc-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Strict 12 to 16-Week Intensive Camera-Prep Protocol</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Location Support to Soundstages &amp; Overseas Sets</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Daily Visual Definition Conditioning Protocols</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <span>Coordination with Production Coordinators</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8 mt-8 border-t border-zinc-800">
+            <button 
+              onclick="openModal('intake-modal')"
+              class="w-full py-3.5 border border-zinc-700 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
+            >
+              Request Production Intake
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="discretion" class="py-20 bg-[#08080a] border-t border-zinc-900">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+      <div class="inline-flex items-center justify-center p-3 rounded-full bg-zinc-900 border border-zinc-800 text-[#cbb28d]">
+        <i data-lucide="lock" class="w-6 h-6"></i>
+      </div>
+
+      <h2 class="text-3xl font-serif text-white">
+        Client Confidentiality Charter
+      </h2>
+
+      <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto">
+        Our practice operates in complete isolation from social media marketing. Client identities, physical residences, travel manifests, and health metrics are protected by binding reciprocal non-disclosure agreements before initial consultation.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <button 
+          onclick="openModal('nda-modal')"
+          class="px-6 py-3 border border-zinc-700 hover:border-[#cbb28d] text-zinc-200 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors"
+        >
+          Review Full NDA Charter
+        </button>
+        <a 
+          href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Client%20Intake%20-%20Vitesh%20Dhankhar"
+          class="px-6 py-3 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors inline-flex items-center gap-2"
+        >
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>Contact via Email</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 border-t border-zinc-900 bg-[#050507] text-xs text-zinc-400">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <div class="font-serif text-white tracking-[0.25em] text-sm uppercase">VITESH DHANKHAR</div>
+        <div class="text-[10px] font-mono text-[#a49175] tracking-widest mt-1">RESEARCHER &bull; CELEBRITY BODY ARCHITECT</div>
+      </div>
+
+      <div class="flex flex-wrap justify-center items-center gap-6 text-[11px] uppercase font-mono text-zinc-400">
+        <a 
+          href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20advisory%20details%20for%20Vitesh%20Dhankhar."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[#cbb28d] hover:text-[#dec7a6] transition-colors flex items-center gap-1"
+        >
+          <i data-lucide="message-square" class="w-3 h-3"></i> WhatsApp Liaison
+        </a>
+        <a 
+          href="mailto:viteshdhankhar27@gmail.com" 
+          class="hover:text-white transition-colors flex items-center gap-1"
+        >
+          <i data-lucide="mail" class="w-3 h-3"></i> Private Email
+        </a>
+        <button onclick="openModal('nda-modal')" class="hover:text-white transition-colors">Discretion NDA</button>
+        <button onclick="openModal('intake-modal')" class="hover:text-white transition-colors">Client Intake</button>
+      </div>
+
+      <div class="text-center md:text-right font-mono text-[10px]">
+        &copy; <span id="current-year">2026</span> VITESH DHANKHAR. ALL RIGHTS RESERVED.
+      </div>
+    </div>
+  </footer>
+
+  <div id="study-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-[#0b0b0e] border border-zinc-800 rounded-xl shadow-2xl p-6 sm:p-9 my-8 text-left">
+      <button 
+        onclick="closeStudyModal()"
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
+        aria-label="Close study modal"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-5 px-3.5 py-2 bg-[#cbb28d]/10 border border-[#cbb28d]/30 rounded flex items-center justify-between text-[11px] font-mono text-[#dec7a6]">
+        <div class="flex items-center gap-2">
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <span>SINGLE-INSPECTION CLEARANCE: ACTIVE SESSION</span>
+        </div>
+        <span class="text-zinc-400 text-[10px]">SESSION EXPIRES UPON CLOSING</span>
+      </div>
+
+      <div class="space-y-1.5 pb-4 border-b border-zinc-800">
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#cbb28d]">
+          Peer-Reviewed Clinical Publication
+        </span>
+        <h3 id="study-modal-title" class="text-xl sm:text-2xl font-serif text-white leading-snug"></h3>
+        <div id="study-modal-authors" class="text-xs text-zinc-400 font-mono pt-1"></div>
+        <div id="study-modal-meta" class="text-[11px] text-[#cbb28d] font-mono"></div>
+      </div>
+
+      <div class="py-4 space-y-4 max-h-[50vh] overflow-y-auto pr-2 text-xs">
+        <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-lg">
+          <div class="text-[10px] font-mono uppercase text-[#cbb28d] mb-1">Executive Summary &amp; Scope:</div>
+          <p id="study-modal-summary" class="text-zinc-300 font-light leading-relaxed"></p>
+        </div>
+
+        <div class="p-4 bg-zinc-900/40 border border-zinc-800/80 rounded-lg space-y-2">
+          <div class="text-[10px] font-mono uppercase text-zinc-400">Core Findings &amp; Protocol Takeaways:</div>
+          <ul id="study-modal-findings" class="space-y-2 text-zinc-300 font-light"></ul>
+        </div>
+
+        <div class="p-3 bg-black/40 border border-zinc-800 rounded text-[11px] font-mono text-zinc-400 flex flex-wrap justify-between gap-2" id="study-modal-identifiers"></div>
+      </div>
+
+      <div class="pt-5 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-4">
+        <a 
+          id="study-modal-doi-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 border border-zinc-700 hover:border-white text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors inline-flex items-center gap-2"
+        >
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Official DOI Registry
+        </a>
+
+        <a 
+          id="study-modal-pdf-link"
+          href="#"
+          class="px-5 py-2.5 bg-[#cbb28d] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm hover:bg-[#dec7a6] transition-colors inline-flex items-center gap-2"
+        >
+          <i data-lucide="download" class="w-3.5 h-3.5"></i> Request Verified Manuscript PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="locked-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-lg bg-[#0e0e12] border border-zinc-800 rounded-xl shadow-2xl p-7 sm:p-9 text-left">
+      <button 
+        onclick="closeModal('locked-modal')"
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
+        aria-label="Close locked modal"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="h-12 w-12 rounded-full bg-zinc-900 border border-amber-500/40 flex items-center justify-center text-amber-400 mb-5">
+        <i data-lucide="lock" class="w-6 h-6"></i>
+      </div>
+
+      <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+        Confidentiality Protocol &bull; Single-Use Clearance
+      </span>
+
+      <h3 class="text-xl sm:text-2xl font-serif text-white mt-1 mb-3">
+        Direct Advisory Verification Required
+      </h3>
+
+      <p class="text-xs text-zinc-300 leading-relaxed font-light mb-3">
+        Your one-time web inspection clearance for <strong id="locked-study-title" class="text-white"></strong> has been consumed.
+      </p>
+
+      <p class="text-xs text-zinc-400 leading-relaxed font-light mb-6">
+        To protect proprietary kinematic formulas, glycemic variability sequences, and confidential training matrices, full reprints and recurring access are issued exclusively via private liaison to verified clients, family offices, and medical teams.
+      </p>
+
+      <div class="p-3.5 bg-black/60 border border-zinc-800 rounded-lg space-y-1 text-xs font-mono text-zinc-400 mb-6" id="locked-study-details"></div>
+
+      <div class="space-y-3">
+        <a 
+          id="locked-wa-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full py-3.5 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm flex items-center justify-center gap-2 shadow-md transition-all"
+        >
+          <i data-lucide="message-square" class="w-4 h-4"></i>
+          <span>Contact Vitesh Privately on WhatsApp</span>
+        </a>
+
+        <a 
+          id="locked-email-link"
+          href="#"
+          class="w-full py-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded-sm flex items-center justify-center gap-2 transition-colors"
+        >
+          <i data-lucide="mail" class="w-4 h-4 text-[#cbb28d]"></i>
+          <span>Request Direct Email Dispatch</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="intake-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-2xl bg-[#0d0d10] border border-zinc-800 rounded-xl shadow-2xl p-6 sm:p-10 my-8">
+      <button 
+        onclick="closeModal('intake-modal')"
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
+        aria-label="Close modal"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="intake-form-container">
+        <div class="space-y-1.5 mb-8 text-left">
+          <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+            Confidential Engagement
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-serif text-white">
+            Private Client Intake
+          </h3>
+          <p class="text-xs text-zinc-400 font-light leading-relaxed">
+            Direct routing to Vitesh Dhankhar’s private advisory. All details are handled with strict family office confidentiality.
+          </p>
+        </div>
+
+        <form id="client-intake-form" onsubmit="handleIntakeSubmit(event)" class="space-y-5 text-left">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Principal Name</label>
+              <input type="text" required placeholder="Name or Confidential Alias" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Primary Base / Operating City</label>
+              <input type="text" required placeholder="e.g., London / Dubai / Mumbai / LA" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Application Submitted By</label>
+              <select class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+                <option value="principal">Principal Personally</option>
+                <option value="chief_of_staff">Chief of Staff / Executive Office</option>
+                <option value="family_office">Family Office Representative</option>
+                <option value="talent_agent">Talent Manager / Production Rep</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Contact Channel Preference</label>
+              <select class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+                <option value="whatsapp">Confidential WhatsApp</option>
+                <option value="signal">Signal Messenger</option>
+                <option value="private_email">Private Email</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Confidential Coordinates (Phone / Email)</label>
+            <input type="text" required placeholder="Enter contact details for encrypted response" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Primary Objective</label>
+            <select class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+              <option value="full_architecture">Full Cinematic Architecture &amp; Longevity</option>
+              <option value="sovereign_travel">Global Travel Accompaniment &amp; On-Demand Coaching</option>
+              <option value="camera_sprint">12 to 16-Week Production Deadline Sprint</option>
+              <option value="physician_collab">Biomechanical &amp; Physician Protocol Integration</option>
+            </select>
+          </div>
+
+          <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-lg flex items-start gap-3">
+            <input type="checkbox" id="ndaCheck" checked class="mt-1 accent-[#cbb28d] cursor-pointer">
+            <label for="ndaCheck" class="text-xs text-zinc-300 leading-relaxed cursor-pointer">
+              <strong>Execute Reciprocal NDA prior to first consultation.</strong> Our office will furnish countersigned non-disclosure documentation immediately upon initial dispatch.
+            </label>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs uppercase tracking-[0.2em] rounded-sm transition-all shadow-md">
+            Transmit Confidential Intake
+          </button>
+        </form>
+      </div>
+
+      <div id="intake-success-container" class="hidden text-center py-10 space-y-5">
+        <div class="h-16 w-16 bg-emerald-950/60 border border-emerald-500/50 rounded-full mx-auto flex items-center justify-center text-emerald-400">
+          <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+        </div>
+        <h4 class="text-2xl font-serif text-white">Application Received Confidentially</h4>
+        <p class="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed font-light">
+          Thank you. Your dossier has been routed directly to Vitesh Dhankhar's private desk.
+        </p>
+        <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg max-w-md mx-auto text-xs text-zinc-400 font-mono text-left space-y-1">
+          <div>DISPATCH STATUS: <span class="text-emerald-400">ENCRYPTED QUEUE</span></div>
+          <div>RESPONSE WINDOW: <span class="text-white">UNDER 12 HOURS</span></div>
+          <div>NDA DIRECTIVE: <span class="text-white">MUTUAL EXECUTION FIRST</span></div>
+        </div>
+        <div class="flex justify-center gap-4 pt-2">
+          <a href="https://wa.me/917988029459" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 bg-[#cbb28d] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded-sm font-semibold">
+            Open Direct WhatsApp
+          </a>
+          <button onclick="closeModal('intake-modal')" class="px-6 py-2.5 border border-zinc-700 hover:border-white text-white text-xs font-mono uppercase tracking-wider transition-colors rounded-sm">
+            Close Window
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="nda-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-[#0e0e12] border border-zinc-800 rounded-xl shadow-2xl p-6 sm:p-8 my-8 text-left">
+      <button 
+        onclick="closeModal('nda-modal')"
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white"
+        aria-label="Close modal"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <i data-lucide="shield" class="w-6 h-6 text-[#cbb28d]"></i>
+        <div>
+          <h3 class="text-xl font-serif text-white">Client Discretion Charter</h3>
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Form 104-NDA Strict Protocol</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs text-zinc-300 font-light leading-relaxed border-y border-zinc-800 py-4 max-h-[60vh] overflow-y-auto pr-2">
+        <p><strong>1. Absolute Identity Protection:</strong> Vitesh Dhankhar and his advisory team contractually commit to non-disclosure of all client names, flight manifests, estate addresses, medical biomarkers, or commercial terms.</p>
+        <p><strong>2. Zero Promotional Exploitation:</strong> Your physical transformation, workout sessions, and private compound workouts will NEVER be published on social media or marketing channels without studio-authorized release.</p>
+        <p><strong>3. Family Office &amp; Staff Coordination:</strong> Direct compatibility with your Chief of Staff, private flight operators, and executive security personnel.</p>
+        <p><strong>4. Encrypted Data Management:</strong> All DEXA scans, blood diagnostics, and circadian logs are isolated on hardware-encrypted partitions.</p>
+      </div>
+
+      <div class="pt-6 flex justify-between items-center">
+        <span class="text-[11px] font-mono text-[#cbb28d]">Binding Under International Law</span>
+        <button 
+          onclick="closeModal('nda-modal'); openModal('intake-modal')"
+          class="px-5 py-2.5 bg-[#cbb28d] text-zinc-950 font-semibold text-xs uppercase tracking-wider rounded-sm"
+        >
+          Proceed with Intake
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Publication Database
+    const researchDossier = {
+      'res-epigenetic-2026': {
+        id: 'res-epigenetic-2026',
+        category: 'longevity',
+        title: 'Integrative multi-omic profiling of glycaemic variability and epigenetic aging: A comparative framework for biological age reversal in South Asian Cohorts',
+        authors: 'Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep',
+        leadInstitution: 'Lakshmibai National Institute of Physical Education (LNIPE), Gwalior',
+        journal: 'International Journal of Physiology, Health and Physical Education (IJPHPE)',
+        pIssn: '2664-7265',
+        eIssn: '2664-7273',
+        impactFactor: 'RJIF 8.16',
+        volume: '8',
+        issue: '8',
+        year: '2026',
+        pages: '01-07',
+        doi: '10.33545/26647265.2026.v8.i8a.192',
+        doiUrl: 'https://doi.org/10.33545/26647265.2026.v8.i8a.192',
+        summary: 'Investigates the South Asian "Thin-Fat" phenotype, postprandial glucose spikes, and Advanced Glycation End-products (AGEs) accelerating DNA methylation decay. Formulates the 3-2-1 fitness logic (PRT + Zone 2 + HIIT) and Fiber-First nutritional sequencing for quantifiable biological age reversal.',
+        findings: [
+          'Postprandial glycaemic spikes directly induce epigenetic noise through p300 histone acetylation and SIRT1 suppression.',
+          'South Asian cohorts show elevated cardiovascular CAD vulnerability connected to the 9p21 locus, requiring aggressive ApoB targets (<60 mg/dL).',
+          'Implementing the "Fiber-First" sequence (Salad/Greens → Proteins/Fats → Carbs) blunts insulin surges by up to 30%.',
+          'Integration of the 3-2-1 training protocol: 3 days PRT (hypertrophy & bone density), 2 days Zone 2 (mitochondrial biogenesis), and 1 day HIIT for peak VO2 max.'
+        ]
+      },
+      'res-badminton-2026': {
+        id: 'res-badminton-2026',
+        category: 'biomechanics',
+        title: 'Cross-format training in badminton: Effect of weekly doubles practice on singles match performance',
+        authors: 'Yenshi Dhankhar and Vitesh Dhankhar',
+        leadInstitution: 'LNIPE Gwalior & University of Lucknow',
+        journal: 'International Journal of Physiology, Sports and Physical Education (IJPSPE)',
+        pIssn: '2664-7710',
+        eIssn: '2664-7729',
+        impactFactor: 'RJIF 8.28',
+        volume: '8',
+        issue: '8',
+        year: '2026',
+        pages: '06-11',
+        doi: '10.33545/26647710.2026.v8.i8a.288',
+        doiUrl: 'https://doi.org/10.33545/26647710.2026.v8.i8a.288',
+        summary: 'An 8-week paired pre-post clinical study demonstrating the transference of high-velocity neuromuscular reflexes, multidirectional footwork, and racket head acceleration from doubles play into singles dominance.',
+        findings: [
+          'Reaction Time: Statistically significant -19.6 ms (-6.4%) reduction (d = 7.77, p < .001).',
+          'Net Play Score: Dramatic +12.4% elevation in footwork agility and front-court responsiveness (d = 12.33, p < .001).',
+          'Racket & Shuttle Velocity: +5.5 km/h increase in peak smash velocity (d = 7.23, p < .001).',
+          'Point-Winning Shots: +10.8% increase in converted winners per competitive frame (d = 2.92, p < .001).'
+        ]
+      },
+      'res-olympic-2025': {
+        id: 'res-olympic-2025',
+        category: 'olympics',
+        title: 'Basics of selecting the ideal Olympic sport for young Indian athletes',
+        authors: 'Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep',
+        leadInstitution: 'LNIPE Gwalior & University of Lucknow',
+        journal: 'International Journal of Physiology, Sports and Physical Education (IJPSPE)',
+        pIssn: '2664-7710',
+        eIssn: '2664-7729',
+        impactFactor: 'RJIF 8.28',
+        volume: '7',
+        issue: '2',
+        year: '2025',
+        pages: '479-482',
+        doi: '10.33545/26647710.2025.v7.i2f.190',
+        doiUrl: 'https://doi.org/10.33545/26647710.2025.v7.i2f.190',
+        summary: 'Proposes the Smart Selection Matrix for LA 2028, Brisbane 2032, and India 2036. Evaluates somatotype matching, the Ape Index (arm span vs. height), and neuromuscular visual reaction speeds (VRT) for maximum podium probability.',
+        findings: [
+          'Junior Indian athletes exhibit a pronounced left-skewed neuromuscular VRT mode (210 ms), demonstrating natural readiness for high-speed precision sports.',
+          'Limb-to-torso analysis: Lower center of gravity yields 15% superior stability in skill-based and precision sports.',
+          'Socio-economic tiered athlete mapping: Directing talent into technical, weight-category, and emerging niche Olympic events.',
+          'Eliminates lost developmental years by matching somatic structure (ectomorph, endomorph, mesomorph) directly to competitive sport demands.'
+        ]
+      }
+    };
+
+    // Single-access tracker: stores visit counts
+    const accessTracker = {};
+    let currentOpenStudy = null;
+
+    function inspectStudy(studyId) {
+      const study = researchDossier[studyId];
+      if (!study) return;
+
+      const views = accessTracker[studyId] || 0;
+
+      if (views >= 1) {
+        // Already viewed: show locked redirect modal
+        document.getElementById('locked-study-title').textContent = `"${study.title}"`;
+        document.getElementById('locked-study-details').innerHTML = `
+          <div>AUTHOR: <span class="text-white">${study.authors}</span></div>
+          <div>JOURNAL: <span class="text-white">${study.journal}</span></div>
+          <div>DOI REF: <span class="text-[#dec7a6]">${study.doi}</span></div>
+        `;
+        document.getElementById('locked-wa-link').href = `https://wa.me/917988029459?text=Confidential%20Request%3A%20Requesting%20private%20manuscript%20verification%20for%20DOI%20${encodeURIComponent(study.doi)}%20(${encodeURIComponent(study.title)})`;
+        document.getElementById('locked-email-link').href = `mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Manuscript%20Request%20-%20${encodeURIComponent(study.title)}`;
+        openModal('locked-modal');
+      } else {
+        // First view granted
+        accessTracker[studyId] = 1;
+        currentOpenStudy = study;
+
+        // Populate study modal
+        document.getElementById('study-modal-title').textContent = study.title;
+        document.getElementById('study-modal-authors').innerHTML = `${study.authors} &bull; <strong class="text-zinc-300">${study.leadInstitution}</strong>`;
+        document.getElementById('study-modal-meta').textContent = `${study.journal} (${study.year}) • ${study.impactFactor}`;
+        document.getElementById('study-modal-summary').textContent = study.summary;
+        
+        const findingsList = document.getElementById('study-modal-findings');
+        findingsList.innerHTML = '';
+        study.findings.forEach(f => {
+          const li = document.createElement('li');
+          li.className = 'flex items-start gap-2';
+          li.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-[#cbb28d] shrink-0 mt-0.5"></i><span>${f}</span>`;
+          findingsList.appendChild(li);
+        });
+
+        document.getElementById('study-modal-identifiers').innerHTML = `
+          <span>P-ISSN: <strong class="text-zinc-300">${study.pIssn}</strong></span>
+          <span>E-ISSN: <strong class="text-zinc-300">${study.eIssn}</strong></span>
+          <span>DOI: <strong class="text-zinc-300">${study.doi}</strong></span>
+        `;
+
+        document.getElementById('study-modal-doi-link').href = study.doiUrl;
+        document.getElementById('study-modal-pdf-link').href = `mailto:viteshdhankhar27@gmail.com?subject=Private%20Reprint%20Request%20-%20${encodeURIComponent(study.title)}`;
+
+        openModal('study-modal');
+        lucide.createIcons();
+
+        // Update card button UI to show locked status for future clicks
+        const cardBtn = document.getElementById(`btn-${studyId}`);
+        if (cardBtn) {
+          cardBtn.className = 'px-3 py-2 rounded text-xs font-mono uppercase tracking-wider bg-zinc-900 border border-zinc-800 text-amber-300/80 hover:border-amber-400/50 transition-all inline-flex items-center gap-1.5';
+          cardBtn.innerHTML = '<i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i><span>Access Locked</span>';
+          lucide.createIcons();
+        }
+      }
+    }
+
+    function closeStudyModal() {
+      closeModal('study-modal');
+    }
+
+    // Modal Control Functions
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons();
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Mobile Drawer Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Filter Research Cards
+    function filterResearch(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'filter-btn px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:text-white';
+      });
+      btn.className = 'filter-btn active px-3.5 py-1.5 text-xs font-mono tracking-wider rounded border bg-[#cbb28d] text-zinc-950 font-semibold border-[#cbb28d]';
+
+      document.querySelectorAll('.research-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Form Handling
+    function handleIntakeSubmit(e) {
+      e.preventDefault();
+      document.getElementById('intake-form-container').classList.add('hidden');
+      document.getElementById('intake-success-container').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 30) {
+        header.classList.add('bg-[#070709]/95', 'backdrop-blur-xl', 'border-b', 'border-zinc-900/90', 'shadow-[0_10px_30px_rgba(0,0,0,0.8)]');
+        header.classList.remove('bg-transparent', 'py-5');
+        header.classList.add('py-4');
+      } else {
+        header.classList.remove('bg-[#070709]/95', 'backdrop-blur-xl', 'border-b', 'border-zinc-900/90', 'shadow-[0_10px_30px_rgba(0,0,0,0.8)]');
+        header.classList.add('bg-transparent', 'py-5');
+        header.classList.remove('py-4');
+      }
+    });
+
+    // Initialize Lucide Icons on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
