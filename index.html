@@ -1138,62 +1138,64 @@
           </p>
         </div>
 
-        <form id="client-intake-form" onsubmit="handleIntakeSubmit(event)" class="space-y-5 text-left">
+        <form id="client-intake-form" action="https://formspree.io/f/xyeypeob" method="POST" onsubmit="handleIntakeSubmit(event)" class="space-y-5 text-left">
+          <div id="intake-submit-error" class="hidden p-3 rounded bg-rose-950/60 border border-rose-800/80 text-rose-300 text-xs font-mono"></div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Principal Name</label>
-              <input type="text" required placeholder="Name or Confidential Alias" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+              <input type="text" name="principal_name" required placeholder="Name or Confidential Alias" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
             </div>
             <div>
               <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Primary Base / Operating City</label>
-              <input type="text" required placeholder="Hyderabad / Dubai / London / Other" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+              <input type="text" name="operating_city" required placeholder="Hyderabad / Dubai / London / Other" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Application Submitted By</label>
-              <select class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
-                <option value="principal">Principal Personally</option>
-                <option value="chief_of_staff">Chief of Staff / Executive Office</option>
-                <option value="family_office">Family Office Representative</option>
-                <option value="advisory_team">Private Advisory / Representative</option>
+              <select name="submitted_by" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+                <option value="Principal Personally">Principal Personally</option>
+                <option value="Chief of Staff / Executive Office">Chief of Staff / Executive Office</option>
+                <option value="Family Office Representative">Family Office Representative</option>
+                <option value="Private Advisory / Representative">Private Advisory / Representative</option>
               </select>
             </div>
             <div>
               <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Contact Channel Preference</label>
-              <select class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
-                <option value="whatsapp">Confidential WhatsApp</option>
-                <option value="signal">Signal Messenger</option>
-                <option value="private_email">Private Email</option>
+              <select name="preferred_channel" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+                <option value="Confidential WhatsApp">Confidential WhatsApp</option>
+                <option value="Signal Messenger">Signal Messenger</option>
+                <option value="Private Email">Private Email</option>
               </select>
             </div>
           </div>
 
           <div>
             <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Confidential Coordinates (Phone / Email)</label>
-            <input type="text" required placeholder="Enter contact details for encrypted response" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+            <input type="text" name="contact_coordinate" required placeholder="Enter contact details for encrypted response" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
           </div>
 
           <div>
             <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Primary Objective</label>
-            <select class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
-              <option value="full_architecture">Full Physical Architecture &amp; Longevity</option>
-              <option value="sovereign_travel">Global Travel Accompaniment &amp; On-Demand Coaching</option>
-              <option value="estate_advisory">Family Office &amp; Multi-Generational Estate Protocol</option>
-              <option value="physician_collab">Biomechanical &amp; Physician Protocol Integration</option>
+            <select name="primary_objective" class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]">
+              <option value="Full Physical Architecture & Longevity">Full Physical Architecture &amp; Longevity</option>
+              <option value="Global Travel Accompaniment & On-Demand Coaching">Global Travel Accompaniment &amp; On-Demand Coaching</option>
+              <option value="Family Office & Multi-Generational Estate Protocol">Family Office &amp; Multi-Generational Estate Protocol</option>
+              <option value="Biomechanical & Physician Protocol Integration">Biomechanical &amp; Physician Protocol Integration</option>
             </select>
           </div>
 
           <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-lg flex items-start gap-3">
-            <input type="checkbox" id="ndaCheck" checked class="mt-1 accent-[#cbb28d] cursor-pointer">
+            <input type="checkbox" id="ndaCheck" name="reciprocal_nda" value="Enforce Reciprocal NDA Prior To Consultation" checked class="mt-1 accent-[#cbb28d] cursor-pointer">
             <label for="ndaCheck" class="text-xs text-zinc-300 leading-relaxed cursor-pointer">
               <strong>Execute Reciprocal NDA prior to first consultation.</strong> Our office will furnish countersigned non-disclosure documentation immediately upon initial dispatch.
             </label>
           </div>
 
-          <button type="submit" class="w-full py-4 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs uppercase tracking-[0.2em] rounded-sm transition-all shadow-md">
-            Transmit Confidential Intake
+          <button id="intake-submit-btn" type="submit" class="w-full py-4 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs uppercase tracking-[0.2em] rounded-sm transition-all shadow-md flex items-center justify-center gap-2">
+            <span>Transmit Confidential Intake</span>
           </button>
         </form>
       </div>
@@ -1529,11 +1531,64 @@
       });
     }
 
-    function handleIntakeSubmit(e) {
+    async function handleIntakeSubmit(e) {
       e.preventDefault();
-      document.getElementById('intake-form-container').classList.add('hidden');
-      document.getElementById('intake-success-container').classList.remove('hidden');
-      lucide.createIcons();
+      const form = e.target;
+      const submitBtn = document.getElementById('intake-submit-btn');
+      const errorAlert = document.getElementById('intake-submit-error');
+
+      if (errorAlert) errorAlert.classList.add('hidden');
+
+      // Visual loading state
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+      submitBtn.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-zinc-950 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Transmitting Encrypted Intake...</span>
+      `;
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch("https://formspree.io/f/xyeypeob", {
+          method: "POST",
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          document.getElementById('intake-form-container').classList.add('hidden');
+          document.getElementById('intake-success-container').classList.remove('hidden');
+          form.reset();
+          lucide.createIcons();
+        } else {
+          const data = await response.json();
+          let errorMessage = "Transmission could not be completed. Please contact directly via WhatsApp.";
+          if (data && data.errors && data.errors.length > 0) {
+            errorMessage = data.errors.map(err => err.message).join(", ");
+          }
+          if (errorAlert) {
+            errorAlert.textContent = errorMessage;
+            errorAlert.classList.remove('hidden');
+          }
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+          submitBtn.innerHTML = originalBtnText;
+        }
+      } catch (error) {
+        if (errorAlert) {
+          errorAlert.textContent = "Network error. Please verify your connection or use the direct WhatsApp link.";
+          errorAlert.classList.remove('hidden');
+        }
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+        submitBtn.innerHTML = originalBtnText;
+      }
     }
 
     window.addEventListener('scroll', () => {
