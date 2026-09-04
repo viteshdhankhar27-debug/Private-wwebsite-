@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#070709] text-[#ecebe8]">
+<html lang="en" class="scroll-smooth bg-[#060608] text-[#ecebe8]">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ2G5PQ130"></script>
@@ -22,7 +22,7 @@
   <!-- Premium Fonts: Playfair Display + JetBrains Mono + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -35,10 +35,12 @@
           },
           colors: {
             gold: {
+              200: '#eee0cb',
               300: '#dec7a6',
               400: '#cbb28d',
               500: '#b0966e',
               600: '#8c7553',
+              900: '#2b2316'
             }
           }
         }
@@ -47,11 +49,12 @@
   </script>
   <style>
     html, body {
-      background-color: #070709 !important;
+      background-color: #060608 !important;
       color: #ecebe8 !important;
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      overflow-x: hidden;
     }
     ::selection {
       background-color: #cbb28d;
@@ -62,55 +65,121 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #070709;
+      background: #060608;
     }
     ::-webkit-scrollbar-thumb {
-      background: #27272a;
+      background: #1f1f26;
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #cbb28d;
     }
+
+    /* Spatial 3D Lighting & Glassmorphic Elevation Engine */
+    .glass-spatial-card {
+      background: linear-gradient(145deg, rgba(24, 24, 30, 0.65) 0%, rgba(10, 10, 13, 0.85) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-top: 1px solid rgba(222, 199, 166, 0.32);
+      box-shadow: 
+        0 24px 60px -15px rgba(0, 0, 0, 0.95),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+        0 0 25px rgba(203, 178, 141, 0.03);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: perspective(1000px) translateZ(0);
+    }
+    .glass-spatial-card:hover {
+      transform: perspective(1000px) translateY(-5px) translateZ(8px);
+      border-top: 1px solid rgba(222, 199, 166, 0.65);
+      box-shadow: 
+        0 35px 80px -20px rgba(0, 0, 0, 0.98),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+        0 0 40px rgba(203, 178, 141, 0.12);
+    }
+
+    /* Machined Titanium & Frosted Glass Badge */
+    .badge-machined {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(20, 20, 26, 0.8) 100%);
+      border: 1px solid rgba(222, 199, 166, 0.28);
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Deep Radial Ambient Backlighting */
+    .glow-conic-radial {
+      background: radial-gradient(circle at 50% 50%, rgba(203, 178, 141, 0.14) 0%, rgba(203, 178, 141, 0.03) 45%, transparent 70%);
+    }
+
+    /* Ambient Breathing Pulse */
+    @keyframes spatialBreath {
+      0%, 100% { opacity: 0.65; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.04); }
+    }
+    .animate-spatial-glow {
+      animation: spatialBreath 8s ease-in-out infinite;
+    }
+
+    /* Telemetry HUD Segment Styling */
+    .hud-segment {
+      height: 6px;
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+    .hud-segment.active-gold {
+      background: linear-gradient(90deg, #cbb28d, #dec7a6);
+      box-shadow: 0 0 8px rgba(222, 199, 166, 0.6);
+    }
+    .hud-segment.inactive {
+      background: rgba(255, 255, 255, 0.07);
+    }
   </style>
 </head>
-<body class="bg-[#070709] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black">
+<body class="bg-[#060608] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black">
 
-  <!-- Top Private Advisory Ribbon -->
-  <aside aria-label="Advisory bar" class="border-b border-zinc-900 bg-[#0a0a0d] py-2.5 px-6 text-[11px] font-mono tracking-[0.2em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2 relative z-30">
+  <!-- Top Spatial Advisory Ribbon -->
+  <aside aria-label="Advisory bar" class="border-b border-zinc-900/90 bg-[#08080b]/95 backdrop-blur-md py-2.5 px-6 text-[10px] sm:text-[11px] font-mono tracking-[0.22em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2 relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
     <div class="flex items-center gap-2.5">
-      <span class="h-2 w-2 rounded-full bg-[#cbb28d] animate-pulse"></span>
-      <span>STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#cbb28d] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#dec7a6]"></span>
+      </span>
+      <span class="text-zinc-300">STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
       <span id="vipActiveBadge" class="hidden ml-2 px-2 py-0.5 rounded bg-[#cbb28d]/20 text-[#dec7a6] text-[9px] border border-[#cbb28d]/40"></span>
     </div>
     <div class="flex items-center gap-6">
-      <span class="text-[#cbb28d] font-semibold">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS AVAILABLE</span>
-      <span class="text-zinc-400 font-medium">HYDERABAD EXCLUSIVE</span>
+      <span class="text-[#dec7a6] font-semibold tracking-[0.24em]">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS AVAILABLE</span>
+      <span class="text-zinc-400 font-medium hidden md:inline">HYDERABAD EXCLUSIVE</span>
     </div>
   </aside>
 
-  <!-- Navigation Header -->
-  <header id="mainHeader" class="sticky top-0 z-40 transition-all duration-300 bg-[#070709]/95 backdrop-blur-xl border-b border-zinc-900/90 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+  <!-- Navigation Header with Specular Top Edge -->
+  <header id="mainHeader" class="sticky top-0 z-40 transition-all duration-300 bg-[#070709]/90 backdrop-blur-2xl border-b border-zinc-800/60 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.85)]">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
       <a href="#" class="flex flex-col text-left group">
-        <span class="text-xl md:text-2xl font-serif tracking-[0.25em] text-zinc-100 font-light group-hover:text-[#cbb28d] transition-colors">
+        <span class="text-xl md:text-2xl font-serif tracking-[0.26em] text-zinc-100 font-light group-hover:text-[#dec7a6] transition-colors">
           VITESH DHANKHAR
         </span>
-        <span class="text-[9px] tracking-[0.35em] text-[#a49175] uppercase font-mono mt-0.5">
+        <span class="text-[9px] tracking-[0.38em] text-[#b0966e] uppercase font-mono mt-0.5">
           Celebrity Body Architect &bull; Longevity Advisory
         </span>
       </a>
 
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-zinc-400 font-mono">
-        <a href="#publications" class="hover:text-[#cbb28d] text-[#cbb28d] transition-colors flex items-center gap-1.5">
+        <a href="#publications" class="hover:text-[#dec7a6] text-[#dec7a6] transition-colors flex items-center gap-1.5">
           <i data-lucide="microscope" class="w-3.5 h-3.5"></i>
           <span>Published Researches</span>
         </a>
-        <a href="#certificates" class="hover:text-[#cbb28d] transition-colors">Certifications</a>
-        <a href="#rehab" class="hover:text-[#cbb28d] transition-colors">Rehab Suite</a>
-        <a href="#methodology" class="hover:text-[#cbb28d] transition-colors">Architecture</a>
-        <a href="#tiers" class="hover:text-[#cbb28d] transition-colors">Engagements</a>
-        <a href="#discretion" class="hover:text-[#cbb28d] transition-colors">Discretion Charter</a>
+        <a href="#certificates" class="hover:text-[#dec7a6] transition-colors">Certifications</a>
+        <a href="#rehab" class="hover:text-[#dec7a6] transition-colors flex items-center gap-1.5">
+          <i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>Rehab Suite</span>
+        </a>
+        <a href="#methodology" class="hover:text-[#dec7a6] transition-colors">Architecture</a>
+        <a href="#tiers" class="hover:text-[#dec7a6] transition-colors">Engagements</a>
+        <a href="#discretion" class="hover:text-[#dec7a6] transition-colors">Discretion Charter</a>
       </nav>
 
       <!-- Action Links -->
@@ -119,16 +188,16 @@
           href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20advisory%20details%20and%20research%20briefing%20for%20Vitesh%20Dhankhar."
           target="_blank"
           rel="noopener noreferrer"
-          class="px-4 py-2 text-[11px] font-mono uppercase tracking-[0.16em] text-zinc-300 border border-zinc-800 hover:border-[#cbb28d]/60 bg-zinc-900/60 rounded-sm hover:text-white transition-all flex items-center gap-2"
+          class="badge-machined px-4 py-2 text-[11px] font-mono uppercase tracking-[0.16em] text-zinc-300 hover:text-white rounded-sm transition-all flex items-center gap-2 hover:border-[#dec7a6]/60"
           title="Encrypted WhatsApp Liaison"
         >
-          <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
           <span>WhatsApp Concierge</span>
         </a>
 
         <button 
           onclick="openIntakeModal()"
-          class="px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-950 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 active:scale-95 transition-all duration-200 rounded-sm shadow-[0_0_25px_rgba(203,178,141,0.25)]"
+          class="px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-950 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 active:scale-95 transition-all duration-200 rounded-sm shadow-[0_0_30px_rgba(203,178,141,0.35)]"
         >
           Private Intake
         </button>
@@ -145,8 +214,8 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobileMenu" class="hidden lg:hidden border-b border-zinc-800 bg-[#0a0a0d] p-6 flex flex-col gap-4 text-xs tracking-widest uppercase font-mono shadow-2xl">
-      <a href="#publications" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80 text-[#cbb28d]">Published Researches</a>
+    <div id="mobileMenu" class="hidden lg:hidden border-b border-zinc-800 bg-[#0a0a0d]/95 backdrop-blur-xl p-6 flex flex-col gap-4 text-xs tracking-widest uppercase font-mono shadow-2xl">
+      <a href="#publications" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80 text-[#dec7a6]">Published Researches</a>
       <a href="#certificates" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Certifications</a>
       <a href="#rehab" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Rehab Suite</a>
       <a href="#methodology" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Architecture</a>
@@ -173,20 +242,21 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative pt-12 pb-24 md:pt-24 md:pb-36 overflow-hidden">
-    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#cbb28d]/10 via-[#cbb28d]/5 to-transparent rounded-full blur-[140px] pointer-events-none"></div>
+  <!-- Hero Section with Volumetric Lighting -->
+  <section class="relative pt-12 pb-24 md:pt-28 md:pb-36 overflow-hidden">
+    <!-- Volumetric Ambient Lightfield -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] glow-conic-radial rounded-full blur-[130px] pointer-events-none animate-spatial-glow"></div>
 
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
         
-        <div class="lg:col-span-7 space-y-7 text-left">
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[#cbb28d]/30 bg-[#cbb28d]/5 text-[#dec7a6] text-[11px] uppercase tracking-[0.2em] font-mono">
+        <div class="lg:col-span-7 space-y-8 text-left">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full badge-machined text-[#dec7a6] text-[11px] uppercase tracking-[0.22em] font-mono">
             <i data-lucide="shield" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
             Private Advisory for Public Figures &amp; Family Offices
           </div>
 
-          <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-tight leading-[1.05] text-white">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-tight leading-[1.04] text-white">
             Human architecture. <br />
             <span class="italic font-normal bg-gradient-to-r from-zinc-100 via-[#dec7a6] to-[#b0966e] bg-clip-text text-transparent">
               Governed by science.
@@ -198,10 +268,10 @@
           </p>
 
           <!-- Action Buttons -->
-          <div class="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <button 
               onclick="openIntakeModal()"
-              class="px-8 py-4 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold tracking-[0.18em] text-xs uppercase rounded-sm flex items-center justify-center gap-3 transition-all duration-200 shadow-[0_10px_35px_rgba(203,178,141,0.22)]"
+              class="px-8 py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold tracking-[0.18em] text-xs uppercase rounded-sm flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_12px_40px_rgba(203,178,141,0.28)]"
             >
               <span>Request Private Placement</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -211,15 +281,15 @@
               href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20advisory%20briefing%20for%20Vitesh%20Dhankhar."
               target="_blank"
               rel="noopener noreferrer"
-              class="px-6 py-4 border border-zinc-800 hover:border-zinc-600 bg-zinc-900/50 text-zinc-300 font-medium tracking-[0.15em] text-xs uppercase rounded-sm flex items-center justify-center gap-2.5 transition-colors"
+              class="px-6 py-4 badge-machined text-zinc-300 hover:text-white font-medium tracking-[0.15em] text-xs uppercase rounded-sm flex items-center justify-center gap-2.5 transition-all hover:border-[#dec7a6]/60"
             >
-              <i data-lucide="message-square" class="w-4 h-4 text-[#cbb28d]"></i>
+              <i data-lucide="message-square" class="w-4 h-4 text-[#dec7a6]"></i>
               <span>Confidential WhatsApp</span>
             </a>
           </div>
 
           <!-- Trust Metric Bar -->
-          <div class="pt-8 border-t border-zinc-900 grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div class="pt-8 border-t border-zinc-900/90 grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <div class="text-2xl md:text-3xl font-serif text-white">100%</div>
               <div class="text-[10px] uppercase tracking-wider text-zinc-400 font-mono mt-1">NDA Enforced</div>
@@ -239,13 +309,13 @@
           </div>
         </div>
 
-        <!-- Decision Card -->
+        <!-- 3D Dimensional Decision & Telemetry Card -->
         <div class="lg:col-span-5 relative">
-          <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl border border-zinc-800/90 bg-gradient-to-b from-[#111116] via-[#0b0b0e] to-[#070709] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-md">
+          <div class="glass-spatial-card relative mx-auto max-w-md lg:max-w-none rounded-2xl p-7 text-left">
             
             <div class="flex items-center justify-between pb-5 border-b border-zinc-800/80">
               <div class="flex items-center gap-3.5">
-                <div class="h-11 w-11 rounded-full bg-black border border-[#cbb28d]/50 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-sm shadow-inner">
+                <div class="h-12 w-12 rounded-full bg-gradient-to-b from-black to-zinc-900 border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-sm shadow-[0_0_15px_rgba(203,178,141,0.2)]">
                   VD
                 </div>
                 <div>
@@ -253,41 +323,93 @@
                   <div class="text-[10px] font-mono text-[#cbb28d]">LNIPE &bull; Published Sports Scientist</div>
                 </div>
               </div>
-              <span class="px-2.5 py-1 text-[9px] font-mono tracking-widest uppercase bg-emerald-950/60 text-emerald-400 border border-emerald-800/40 rounded font-semibold">
-                Verified Practice
+              <span class="badge-machined px-3 py-1 text-[9px] font-mono tracking-widest uppercase text-emerald-400 border border-emerald-500/30 rounded font-semibold flex items-center gap-1.5 shadow-sm">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                VERIFIED PRACTICE
               </span>
             </div>
 
+            <!-- Segmented HUD Gauges (Replacing Flat Bars) -->
             <div class="space-y-4 my-6">
-              <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/70">
-                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-1.5">
-                  <span>EPIGENETIC PACE OF AGING</span>
-                  <span class="text-[#dec7a6]">0.64 DUNEDIN PACE MODEL</span>
+              
+              <!-- Metric 1: Epigenetic Aging -->
+              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner">
+                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-2">
+                  <span class="tracking-wider">EPIGENETIC PACE OF AGING</span>
+                  <span class="text-[#dec7a6] font-semibold">0.64 DUNEDIN PACE</span>
                 </div>
-                <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
-                  <div class="bg-gradient-to-r from-[#cbb28d] to-[#dec7a6] h-full w-[94%]"></div>
+                <div class="grid grid-cols-12 gap-1.5 py-1">
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment inactive"></div>
+                </div>
+                <div class="flex justify-between text-[9px] font-mono text-zinc-400 mt-1">
+                  <span>SCALE: ACCELERATED (1.0+)</span>
+                  <span class="text-[#dec7a6]">TOP 2% REVERSAL RATE</span>
                 </div>
               </div>
 
-              <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/70">
-                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-1.5">
-                  <span>NEUROMUSCULAR RESPONSE SPEED</span>
-                  <span class="text-[#dec7a6]">-19.6MS VELOCITY GAIN</span>
+              <!-- Metric 2: Neuromuscular Speed -->
+              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner">
+                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-2">
+                  <span class="tracking-wider">NEUROMUSCULAR REACTION SPEED</span>
+                  <span class="text-[#dec7a6] font-semibold">-19.6MS VELOCITY</span>
                 </div>
-                <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
-                  <div class="bg-gradient-to-r from-[#cbb28d] to-[#dec7a6] h-full w-[91%]"></div>
+                <div class="grid grid-cols-12 gap-1.5 py-1">
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment inactive"></div>
+                  <div class="hud-segment inactive"></div>
+                </div>
+                <div class="flex justify-between text-[9px] font-mono text-zinc-400 mt-1">
+                  <span>COGNITIVE DELAY RECOVERY</span>
+                  <span class="text-[#dec7a6]">CLINICAL PAIR STUDY (p &lt; .001)</span>
                 </div>
               </div>
 
-              <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/70">
-                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-1.5">
-                  <span>PRIVATE CHEF GLYCEMIC MAPPING</span>
-                  <span class="text-[#dec7a6]">FIBER-FIRST SEQUENCING</span>
+              <!-- Metric 3: Fiber-First Glycemic Telemetry -->
+              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner">
+                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-2">
+                  <span class="tracking-wider">PRIVATE CHEF GLYCEMIC MAPPING</span>
+                  <span class="text-[#dec7a6] font-semibold">FIBER-FIRST SEQUENCING</span>
                 </div>
-                <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
-                  <div class="bg-gradient-to-r from-[#cbb28d] to-[#dec7a6] h-full w-[100%]"></div>
+                <div class="grid grid-cols-12 gap-1.5 py-1">
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                  <div class="hud-segment active-gold"></div>
+                </div>
+                <div class="flex justify-between text-[9px] font-mono text-zinc-400 mt-1">
+                  <span>POSTPRANDIAL GLYCATION BLUNT</span>
+                  <span class="text-[#dec7a6]">-30% INSULIN SURGE</span>
                 </div>
               </div>
+
             </div>
 
             <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs font-mono">
@@ -299,7 +421,7 @@
                 href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20telemetry%20review%20with%20Vitesh%20Dhankhar." 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="text-[#dec7a6] hover:underline flex items-center gap-1 uppercase tracking-wider text-[11px]"
+                class="text-[#dec7a6] hover:underline flex items-center gap-1 uppercase tracking-wider text-[11px] font-semibold"
               >
                 Direct Line &rarr;
               </a>
@@ -312,13 +434,15 @@
   </section>
 
   <!-- SECTION: PEER-REVIEWED RESEARCH VAULT -->
-  <section id="publications" class="py-24 bg-[#0a0a0d] border-y border-zinc-900 relative">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
+  <section id="publications" class="py-24 bg-[#09090c] border-y border-zinc-900/90 relative">
+    <div class="absolute -top-32 right-1/4 w-[600px] h-[400px] glow-conic-radial rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
         <div class="space-y-2 text-left">
-          <div class="inline-flex items-center gap-2 text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
-            <i data-lucide="microscope" class="w-3.5 h-3.5"></i>
+          <div class="inline-flex items-center gap-2 text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
+            <i data-lucide="microscope" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
             Scientific Publications Vault &bull; Single-Inspection Protocol
           </div>
           <h2 class="text-3xl sm:text-4xl font-serif text-white font-light">
@@ -329,34 +453,35 @@
           </p>
         </div>
 
-        <div class="text-xs font-mono text-zinc-400 bg-zinc-900/60 px-4 py-2 rounded border border-zinc-800">
-          ALL DOIs ON FILE &bull; VERIFIABLE
+        <div class="badge-machined text-xs font-mono text-zinc-300 px-4 py-2.5 rounded border border-zinc-800 self-start md:self-auto flex items-center gap-2">
+          <i data-lucide="file-check-2" class="w-4 h-4 text-[#dec7a6]"></i>
+          <span>ALL DOIs ON FILE &bull; VERIFIABLE</span>
         </div>
       </div>
 
-      <!-- Research Cards Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
+      <!-- Research Cards Grid with 3D Spatial Elevating Planes -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 text-left">
         
         <!-- Paper 1 -->
-        <div class="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800/90 hover:border-[#cbb28d]/60 transition-all flex flex-col justify-between">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between pb-3 border-b border-zinc-800/70 text-[10px] font-mono">
-              <span class="text-[#cbb28d] uppercase tracking-wider font-semibold">IJPHPE &bull; 2026</span>
-              <span class="text-emerald-400 uppercase tracking-widest bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40 font-semibold">RJIF 8.16</span>
+            <div class="flex items-center justify-between pb-3.5 border-b border-zinc-800/80 text-[10px] font-mono">
+              <span class="text-[#dec7a6] uppercase tracking-wider font-semibold">IJPHPE &bull; 2026</span>
+              <span class="badge-machined text-emerald-400 uppercase tracking-widest px-2.5 py-1 rounded font-semibold border-emerald-500/30">RJIF 8.16</span>
             </div>
 
-            <h3 class="text-base font-serif text-white mt-4 mb-2 leading-snug">
+            <h3 class="text-base font-serif text-white mt-4 mb-2.5 leading-snug">
               Integrative multi-omic profiling of glycaemic variability and epigenetic aging: A comparative framework for biological age reversal in South Asian Cohorts
             </h3>
 
             <div class="text-[11px] text-zinc-400 font-mono mb-1">
               Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep
             </div>
-            <div class="text-[10px] text-[#a49175] font-mono mb-3">
+            <div class="text-[10px] text-[#a49175] font-mono mb-3.5">
               Lakshmibai National Institute of Physical Education (LNIPE), Gwalior
             </div>
 
-            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/40 p-2.5 rounded border border-zinc-800/80">
+            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/60 p-3 rounded-lg border border-zinc-800/80 shadow-inner">
               <span>Vol 8, Issue 8</span>
               <span>pp. 01-07</span>
               <span>DOI: 10.33545/26647265.2026.v8.i8a.192</span>
@@ -367,15 +492,15 @@
             </p>
           </div>
 
-          <div class="pt-4 border-t border-zinc-800/80 space-y-3">
-            <div class="bg-black/60 px-3 py-2 rounded border border-zinc-800/80 text-[11px] font-mono">
-              <div class="text-[9px] text-zinc-400 uppercase">Primary Protocol Yield:</div>
+          <div class="pt-4 border-t border-zinc-800/80 space-y-3.5">
+            <div class="bg-black/60 px-3.5 py-2.5 rounded-lg border border-zinc-800/80 text-[11px] font-mono shadow-inner">
+              <div class="text-[9px] text-zinc-400 uppercase tracking-wider">Primary Protocol Yield:</div>
               <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">DunedinPACE Pace-of-Aging Reduction & DNAm Calibration</div>
             </div>
 
             <button
               onclick="inspectPaper('paper-1')"
-              class="w-full py-2.5 bg-zinc-800 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2"
+              class="w-full py-3 bg-zinc-900/90 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2 border border-zinc-700/80 shadow-sm"
             >
               <i data-lucide="eye" class="w-3.5 h-3.5"></i>
               <span>Inspect Research Brief</span>
@@ -384,25 +509,25 @@
         </div>
 
         <!-- Paper 2 -->
-        <div class="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800/90 hover:border-[#cbb28d]/60 transition-all flex flex-col justify-between">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between pb-3 border-b border-zinc-800/70 text-[10px] font-mono">
-              <span class="text-[#cbb28d] uppercase tracking-wider font-semibold">IJPSPE &bull; 2026</span>
-              <span class="text-emerald-400 uppercase tracking-widest bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40 font-semibold">RJIF 8.28</span>
+            <div class="flex items-center justify-between pb-3.5 border-b border-zinc-800/80 text-[10px] font-mono">
+              <span class="text-[#dec7a6] uppercase tracking-wider font-semibold">IJPSPE &bull; 2026</span>
+              <span class="badge-machined text-emerald-400 uppercase tracking-widest px-2.5 py-1 rounded font-semibold border-emerald-500/30">RJIF 8.28</span>
             </div>
 
-            <h3 class="text-base font-serif text-white mt-4 mb-2 leading-snug">
+            <h3 class="text-base font-serif text-white mt-4 mb-2.5 leading-snug">
               Cross-format training in badminton: Effect of weekly doubles practice on singles match performance
             </h3>
 
             <div class="text-[11px] text-zinc-400 font-mono mb-1">
               Yenshi Dhankhar and Vitesh Dhankhar
             </div>
-            <div class="text-[10px] text-[#a49175] font-mono mb-3">
-              LNIPE Gwalior & University of Lucknow
+            <div class="text-[10px] text-[#a49175] font-mono mb-3.5">
+              LNIPE Gwalior &amp; University of Lucknow
             </div>
 
-            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/40 p-2.5 rounded border border-zinc-800/80">
+            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/60 p-3 rounded-lg border border-zinc-800/80 shadow-inner">
               <span>Vol 8, Issue 8</span>
               <span>pp. 06-11</span>
               <span>DOI: 10.33545/26647710.2026.v8.i8a.288</span>
@@ -413,15 +538,15 @@
             </p>
           </div>
 
-          <div class="pt-4 border-t border-zinc-800/80 space-y-3">
-            <div class="bg-black/60 px-3 py-2 rounded border border-zinc-800/80 text-[11px] font-mono">
-              <div class="text-[9px] text-zinc-400 uppercase">Primary Protocol Yield:</div>
+          <div class="pt-4 border-t border-zinc-800/80 space-y-3.5">
+            <div class="bg-black/60 px-3.5 py-2.5 rounded-lg border border-zinc-800/80 text-[11px] font-mono shadow-inner">
+              <div class="text-[9px] text-zinc-400 uppercase tracking-wider">Primary Protocol Yield:</div>
               <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">+12.4% Agility & 19.6ms Faster Neuromuscular Reflexes</div>
             </div>
 
             <button
               onclick="inspectPaper('paper-2')"
-              class="w-full py-2.5 bg-zinc-800 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2"
+              class="w-full py-3 bg-zinc-900/90 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2 border border-zinc-700/80 shadow-sm"
             >
               <i data-lucide="eye" class="w-3.5 h-3.5"></i>
               <span>Inspect Research Brief</span>
@@ -430,25 +555,25 @@
         </div>
 
         <!-- Paper 3 -->
-        <div class="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800/90 hover:border-[#cbb28d]/60 transition-all flex flex-col justify-between">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between pb-3 border-b border-zinc-800/70 text-[10px] font-mono">
-              <span class="text-[#cbb28d] uppercase tracking-wider font-semibold">IJPSPE &bull; 2025</span>
-              <span class="text-emerald-400 uppercase tracking-widest bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-800/40 font-semibold">RJIF 8.28</span>
+            <div class="flex items-center justify-between pb-3.5 border-b border-zinc-800/80 text-[10px] font-mono">
+              <span class="text-[#dec7a6] uppercase tracking-wider font-semibold">IJPSPE &bull; 2025</span>
+              <span class="badge-machined text-emerald-400 uppercase tracking-widest px-2.5 py-1 rounded font-semibold border-emerald-500/30">RJIF 8.28</span>
             </div>
 
-            <h3 class="text-base font-serif text-white mt-4 mb-2 leading-snug">
+            <h3 class="text-base font-serif text-white mt-4 mb-2.5 leading-snug">
               Basics of selecting the ideal Olympic sport for young Indian athletes
             </h3>
 
             <div class="text-[11px] text-zinc-400 font-mono mb-1">
               Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep
             </div>
-            <div class="text-[10px] text-[#a49175] font-mono mb-3">
-              LNIPE Gwalior & University of Lucknow
+            <div class="text-[10px] text-[#a49175] font-mono mb-3.5">
+              LNIPE Gwalior &amp; University of Lucknow
             </div>
 
-            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/40 p-2.5 rounded border border-zinc-800/80">
+            <div class="text-[10px] text-zinc-400 font-mono mb-4 flex flex-wrap gap-x-3 bg-black/60 p-3 rounded-lg border border-zinc-800/80 shadow-inner">
               <span>Vol 7, Issue 2</span>
               <span>pp. 479-482</span>
               <span>DOI: 10.33545/26647710.2025.v7.i2f.190</span>
@@ -459,15 +584,15 @@
             </p>
           </div>
 
-          <div class="pt-4 border-t border-zinc-800/80 space-y-3">
-            <div class="bg-black/60 px-3 py-2 rounded border border-zinc-800/80 text-[11px] font-mono">
-              <div class="text-[9px] text-zinc-400 uppercase">Primary Protocol Yield:</div>
+          <div class="pt-4 border-t border-zinc-800/80 space-y-3.5">
+            <div class="bg-black/60 px-3.5 py-2.5 rounded-lg border border-zinc-800/80 text-[11px] font-mono shadow-inner">
+              <div class="text-[9px] text-zinc-400 uppercase tracking-wider">Primary Protocol Yield:</div>
               <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">Biometric Somatotype Matching & Talent Mapping Matrix</div>
             </div>
 
             <button
               onclick="inspectPaper('paper-3')"
-              class="w-full py-2.5 bg-zinc-800 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2"
+              class="w-full py-3 bg-zinc-900/90 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2 border border-zinc-700/80 shadow-sm"
             >
               <i data-lucide="eye" class="w-3.5 h-3.5"></i>
               <span>Inspect Research Brief</span>
@@ -481,12 +606,12 @@
   </section>
 
   <!-- SECTION: OFFICIAL ACCREDITED CERTIFICATES -->
-  <section id="certificates" class="py-24 border-b border-zinc-900 relative">
+  <section id="certificates" class="py-24 border-b border-zinc-900/90 relative">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
-          Official Accreditation & Editorial Records
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
+          Official Accreditation &amp; Editorial Records
         </span>
         <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
           Editorial Publication Certificates
@@ -499,14 +624,14 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         <!-- Certificate Preview 1 -->
-        <div class="rounded-2xl border border-zinc-800 bg-[#0d0d12] p-6 relative overflow-hidden flex flex-col justify-between">
+        <div class="glass-spatial-card rounded-2xl p-7 relative overflow-hidden flex flex-col justify-between">
           <div class="relative">
-            <div class="w-full h-56 bg-gradient-to-br from-zinc-900 to-black rounded-lg border border-zinc-800 p-5 relative overflow-hidden">
+            <div class="w-full h-60 bg-gradient-to-br from-zinc-900 to-black rounded-xl border border-zinc-800/90 p-5 relative overflow-hidden shadow-inner">
               <div class="flex justify-between items-start">
-                <div class="text-[10px] font-mono text-[#cbb28d] uppercase tracking-widest">
+                <div class="text-[10px] font-mono text-[#dec7a6] uppercase tracking-widest font-semibold">
                   INTERNATIONAL JOURNAL OF PHYSIOLOGY
                 </div>
-                <span class="px-2 py-0.5 text-[9px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-800 rounded">
+                <span class="badge-machined px-2.5 py-0.5 text-[9px] font-mono text-emerald-400 border border-emerald-500/30 rounded font-semibold">
                   AUTHENTICATED
                 </span>
               </div>
@@ -517,8 +642,8 @@
                 <div class="text-[10px] font-mono text-zinc-400">Paper ID: <span class="text-white">IJPHPE-2026-192</span></div>
               </div>
 
-              <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0d0d12] via-[#0d0d12]/90 to-transparent flex items-end justify-center pb-4">
-                <div class="flex items-center gap-2 text-xs font-mono text-[#dec7a6] bg-black/80 px-3 py-1.5 rounded border border-[#cbb28d]/40">
+              <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/90 to-transparent flex items-end justify-center pb-4">
+                <div class="badge-machined flex items-center gap-2 text-xs font-mono text-[#dec7a6] px-4 py-1.5 rounded border border-[#cbb28d]/40">
                   <i data-lucide="lock" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
                   <span>SECURITY WATERMARK &bull; RESTRICTED VIEW</span>
                 </div>
@@ -526,18 +651,18 @@
             </div>
 
             <div class="mt-5 space-y-1 text-left">
-              <h4 class="text-base font-serif text-white">Epigenetic Aging & Glycemic Variability Certification</h4>
+              <h4 class="text-base font-serif text-white">Epigenetic Aging &amp; Glycemic Variability Certification</h4>
               <p class="text-xs text-zinc-400 font-mono">Issued by AkiNik Publications &bull; RJIF 8.16</p>
             </div>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between">
             <span class="text-xs font-mono text-zinc-400">Clearance Required</span>
             <a 
               href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20verified%20editorial%20certificate%20clearance%20for%20IJPHPE-2026-192."
               target="_blank"
               rel="noopener noreferrer"
-              class="px-4 py-2 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded font-semibold transition-all"
+              class="px-4 py-2.5 bg-gradient-to-r from-[#dec7a6] to-[#b0966e] hover:brightness-110 text-zinc-950 text-xs font-mono uppercase tracking-wider rounded font-semibold transition-all shadow-sm"
             >
               Request Verification &rarr;
             </a>
@@ -545,14 +670,14 @@
         </div>
 
         <!-- Certificate Preview 2 -->
-        <div class="rounded-2xl border border-zinc-800 bg-[#0d0d12] p-6 relative overflow-hidden flex flex-col justify-between">
+        <div class="glass-spatial-card rounded-2xl p-7 relative overflow-hidden flex flex-col justify-between">
           <div class="relative">
-            <div class="w-full h-56 bg-gradient-to-br from-zinc-900 to-black rounded-lg border border-zinc-800 p-5 relative overflow-hidden">
+            <div class="w-full h-60 bg-gradient-to-br from-zinc-900 to-black rounded-xl border border-zinc-800/90 p-5 relative overflow-hidden shadow-inner">
               <div class="flex justify-between items-start">
-                <div class="text-[10px] font-mono text-[#cbb28d] uppercase tracking-widest">
-                  SPORTS & PHYSICAL EDUCATION JOURNAL
+                <div class="text-[10px] font-mono text-[#dec7a6] uppercase tracking-widest font-semibold">
+                  SPORTS &amp; PHYSICAL EDUCATION JOURNAL
                 </div>
-                <span class="px-2 py-0.5 text-[9px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-800 rounded">
+                <span class="badge-machined px-2.5 py-0.5 text-[9px] font-mono text-emerald-400 border border-emerald-500/30 rounded font-semibold">
                   AUTHENTICATED
                 </span>
               </div>
@@ -563,8 +688,8 @@
                 <div class="text-[10px] font-mono text-zinc-400">Paper ID: <span class="text-white">IJPSPE-2026-288</span></div>
               </div>
 
-              <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0d0d12] via-[#0d0d12]/90 to-transparent flex items-end justify-center pb-4">
-                <div class="flex items-center gap-2 text-xs font-mono text-[#dec7a6] bg-black/80 px-3 py-1.5 rounded border border-[#cbb28d]/40">
+              <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/90 to-transparent flex items-end justify-center pb-4">
+                <div class="badge-machined flex items-center gap-2 text-xs font-mono text-[#dec7a6] px-4 py-1.5 rounded border border-[#cbb28d]/40">
                   <i data-lucide="lock" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
                   <span>SECURITY WATERMARK &bull; RESTRICTED VIEW</span>
                 </div>
@@ -577,13 +702,13 @@
             </div>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between">
             <span class="text-xs font-mono text-zinc-400">Clearance Required</span>
             <a 
               href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20verified%20editorial%20certificate%20clearance%20for%20IJPSPE-2026-288."
               target="_blank"
               rel="noopener noreferrer"
-              class="px-4 py-2 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded font-semibold transition-all"
+              class="px-4 py-2.5 bg-gradient-to-r from-[#dec7a6] to-[#b0966e] hover:brightness-110 text-zinc-950 text-xs font-mono uppercase tracking-wider rounded font-semibold transition-all shadow-sm"
             >
               Request Verification &rarr;
             </a>
@@ -596,13 +721,15 @@
   </section>
 
   <!-- SECTION: ADVANCED REHABILITATION & CELLULAR RESTORATION LAB -->
-  <section id="rehab" class="py-24 bg-[#08080b] border-b border-zinc-900 relative">
-    <div class="max-w-7xl mx-auto px-6 md:px-12">
+  <section id="rehab" class="py-24 bg-[#08080a] border-b border-zinc-900/90 relative">
+    <div class="absolute top-1/3 left-1/3 w-[800px] h-[500px] glow-conic-radial rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div class="space-y-3 text-left">
-          <div class="inline-flex items-center gap-2 text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
-            <i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i>
+          <div class="inline-flex items-center gap-2 text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
+            <i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
             Cellular Restoration &bull; Orthopedic Regeneration Lab
           </div>
           <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
@@ -613,23 +740,23 @@
           </p>
         </div>
 
-        <div class="text-xs font-mono text-[#dec7a6] bg-zinc-900/80 px-4 py-2.5 rounded border border-[#cbb28d]/30 flex items-center gap-2 self-start md:self-auto">
+        <div class="badge-machined text-xs font-mono text-[#dec7a6] px-4 py-2.5 rounded flex items-center gap-2 self-start md:self-auto border border-[#cbb28d]/40 shadow-sm">
           <i data-lucide="shield-check" class="w-4 h-4 text-[#cbb28d]"></i>
           ESTATE &amp; PRIVATE FACILITY DEPLOYMENT
         </div>
       </div>
 
       <!-- Rehabilitation Modalities Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 text-left">
         
         <!-- Modality 1: Hyperbaric Oxygen Therapy -->
-        <div class="p-7 rounded-xl bg-zinc-900/25 border border-zinc-800/90 hover:border-[#cbb28d]/50 transition-all flex flex-col justify-between group">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
           <div class="space-y-4">
             <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#cbb28d] group-hover:border-[#cbb28d]/50 transition-colors">
+              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
                 <i data-lucide="wind" class="w-6 h-6"></i>
               </div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] bg-[#cbb28d]/10 px-2.5 py-1 rounded border border-[#cbb28d]/20">
+              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
                 Tissue Oxygenation
               </span>
             </div>
@@ -652,14 +779,14 @@
           </div>
         </div>
 
-        <!-- Modality 2: Photobiomodulation / Light Therapy -->
-        <div class="p-7 rounded-xl bg-zinc-900/25 border border-zinc-800/90 hover:border-[#cbb28d]/50 transition-all flex flex-col justify-between group">
+        <!-- Modality 2: Photobiomodulation -->
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
           <div class="space-y-4">
             <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#cbb28d] group-hover:border-[#cbb28d]/50 transition-colors">
+              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
                 <i data-lucide="sun" class="w-6 h-6"></i>
               </div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] bg-[#cbb28d]/10 px-2.5 py-1 rounded border border-[#cbb28d]/20">
+              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
                 Cellular Repair
               </span>
             </div>
@@ -682,14 +809,14 @@
           </div>
         </div>
 
-        <!-- Modality 3: Thermal Shock & Vasodilation -->
-        <div class="p-7 rounded-xl bg-zinc-900/25 border border-zinc-800/90 hover:border-[#cbb28d]/50 transition-all flex flex-col justify-between group">
+        <!-- Modality 3: Contrast Thermal Vasodilation -->
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
           <div class="space-y-4">
             <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#cbb28d] group-hover:border-[#cbb28d]/50 transition-colors">
+              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
                 <i data-lucide="flame" class="w-6 h-6"></i>
               </div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] bg-[#cbb28d]/10 px-2.5 py-1 rounded border border-[#cbb28d]/20">
+              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
                 Thermal Shock
               </span>
             </div>
@@ -712,14 +839,14 @@
           </div>
         </div>
 
-        <!-- Modality 4: IV Micronutrient & Hydration Support -->
-        <div class="p-7 rounded-xl bg-zinc-900/25 border border-zinc-800/90 hover:border-[#cbb28d]/50 transition-all flex flex-col justify-between group">
+        <!-- Modality 4: Cellular IV & NAD+ -->
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
           <div class="space-y-4">
             <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#cbb28d] group-hover:border-[#cbb28d]/50 transition-colors">
+              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
                 <i data-lucide="droplet" class="w-6 h-6"></i>
               </div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] bg-[#cbb28d]/10 px-2.5 py-1 rounded border border-[#cbb28d]/20">
+              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
                 Biochemical
               </span>
             </div>
@@ -742,14 +869,14 @@
           </div>
         </div>
 
-        <!-- Modality 5: Orthopedic Decompression & Postural Realignment -->
-        <div class="p-7 rounded-xl bg-zinc-900/25 border border-zinc-800/90 hover:border-[#cbb28d]/50 transition-all flex flex-col justify-between group">
+        <!-- Modality 5: Biomechanical Joint Decompression -->
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
           <div class="space-y-4">
             <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#cbb28d] group-hover:border-[#cbb28d]/50 transition-colors">
+              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
                 <i data-lucide="activity" class="w-6 h-6"></i>
               </div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] bg-[#cbb28d]/10 px-2.5 py-1 rounded border border-[#cbb28d]/20">
+              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
                 Orthopedic
               </span>
             </div>
@@ -772,14 +899,14 @@
           </div>
         </div>
 
-        <!-- Modality 6: Circadian & Deep Sleep Architecture -->
-        <div class="p-7 rounded-xl bg-zinc-900/25 border border-zinc-800/90 hover:border-[#cbb28d]/50 transition-all flex flex-col justify-between group">
+        <!-- Modality 6: Circadian & Deep Sleep Mapping -->
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
           <div class="space-y-4">
             <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#cbb28d] group-hover:border-[#cbb28d]/50 transition-colors">
+              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
                 <i data-lucide="moon" class="w-6 h-6"></i>
               </div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] bg-[#cbb28d]/10 px-2.5 py-1 rounded border border-[#cbb28d]/20">
+              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
                 Neuro-Recovery
               </span>
             </div>
@@ -805,13 +932,13 @@
       </div>
 
       <!-- Estate Suite Consultation Strip -->
-      <div class="mt-10 p-6 rounded-xl border border-zinc-800 bg-gradient-to-r from-black via-zinc-900/60 to-black flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-        <div class="space-y-1">
+      <div class="mt-12 glass-spatial-card p-7 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+        <div class="space-y-1.5">
           <div class="text-xs font-semibold uppercase font-mono text-white flex items-center gap-2">
-            <i data-lucide="wrench" class="w-4 h-4 text-[#cbb28d]"></i>
+            <i data-lucide="wrench" class="w-4 h-4 text-[#dec7a6]"></i>
             Private Residence &amp; Estate Recovery Suite Buildout
           </div>
-          <p class="text-xs text-zinc-400 font-light max-w-2xl">
+          <p class="text-xs text-zinc-400 font-light max-w-2xl leading-relaxed">
             Vitesh consults directly with your architects and contractors in Jubilee Hills and Banjara Hills to procure, calibrate, and install private hyperbaric chambers, infrared saunas, and plunge suites.
           </p>
         </div>
@@ -820,7 +947,7 @@
           href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20estate%20rehab%20suite%20and%20longevity%20buildout%20consultation."
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-3 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm shrink-0 flex items-center gap-2 transition-all shadow-md"
+          class="px-6 py-3.5 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm shrink-0 flex items-center gap-2 transition-all shadow-[0_4px_20px_rgba(203,178,141,0.25)]"
         >
           <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
           <span>Inquire on Estate Buildout</span>
@@ -831,10 +958,10 @@
   </section>
 
   <!-- Methodology Pillars -->
-  <section id="methodology" class="py-24 bg-[#0a0a0d] border-b border-zinc-900">
+  <section id="methodology" class="py-24 bg-[#060608] border-b border-zinc-900/90">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
           Execution Standards
         </span>
         <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
@@ -847,9 +974,9 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-3.5">
+            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
               <i data-lucide="sparkles" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Executive Gravitas</h3>
@@ -857,14 +984,14 @@
               Tailored clavicle-to-waist ratios, postural power, and photographic definition calibrated for executive presence, boardroom authority, and public stages.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
             Aesthetic Engineering
           </div>
         </div>
 
-        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-3.5">
+            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
               <i data-lucide="activity" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Biomarker Longevity</h3>
@@ -872,14 +999,14 @@
               Mitochondrial respiration, vascular elasticity, and low-shear joint loading designed to keep leaders operating at peak capacity for decades.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
             Cellular Healthspan
           </div>
         </div>
 
-        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-3.5">
+            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
               <i data-lucide="globe" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Global Mobility</h3>
@@ -887,14 +1014,14 @@
               Accompaniment on private aviation and international estates. Direct culinary execution directives coordinated with your personal chef.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
             Zero Disruption
           </div>
         </div>
 
-        <div class="p-7 rounded-xl bg-zinc-900/20 border border-zinc-800 hover:border-[#cbb28d]/40 transition-all flex flex-col justify-between">
-          <div class="space-y-3">
-            <div class="h-11 w-11 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[#cbb28d]">
+        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-3.5">
+            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
               <i data-lucide="shield" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Ironclad Discretion</h3>
@@ -902,7 +1029,7 @@
               Strict legal NDA agreements executed prior to first evaluation. No social media exploitation or public leveraging of client identities.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#cbb28d] uppercase">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
             Anonymity Guaranteed
           </div>
         </div>
@@ -911,11 +1038,11 @@
     </div>
   </section>
 
-  <!-- Engagement Tiers -->
-  <section id="tiers" class="py-24 border-b border-zinc-900">
+  <!-- Engagement Tiers with 3D Center Elevation -->
+  <section id="tiers" class="py-24 border-b border-zinc-900/90 relative">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
           Capacity Architecture
         </span>
         <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
@@ -929,7 +1056,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
         
         <!-- Tier 1 -->
-        <div class="rounded-2xl border border-zinc-800/90 bg-zinc-900/20 p-8 flex flex-col justify-between text-left">
+        <div class="glass-spatial-card rounded-2xl p-8 flex flex-col justify-between text-left">
           <div>
             <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Executive Retainer</div>
             <h3 class="text-2xl font-serif text-white mt-2 mb-2">The Leadership Protocol</h3>
@@ -939,19 +1066,19 @@
 
             <ul class="space-y-3.5 text-xs text-zinc-300">
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>3x Weekly Private Residence or Compound Training</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Quarterly Biomarker &amp; DEXA Body Scan Analysis</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Direct Macro Specifications Sent to Private Chef</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Suite Gym Workout Protocols During Travel</span>
               </li>
             </ul>
@@ -960,21 +1087,21 @@
           <div class="pt-8 mt-8 border-t border-zinc-800">
             <button 
               onclick="openIntakeModal()"
-              class="w-full py-3.5 border border-zinc-700 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
+              class="w-full py-3.5 border border-zinc-700/90 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
             >
               Inquire on Availability
             </button>
           </div>
         </div>
 
-        <!-- Tier 2: Sovereign Concierge (Featured) -->
-        <div class="rounded-2xl border-2 border-[#cbb28d] bg-gradient-to-b from-[#181612] via-zinc-900/90 to-[#0c0c0e] p-8 flex flex-col justify-between relative shadow-[0_0_45px_rgba(203,178,141,0.18)] text-left">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#cbb28d] text-zinc-950 font-bold uppercase tracking-[0.2em] text-[10px] px-4 py-1 rounded-full shadow">
+        <!-- Tier 2: Sovereign Concierge (Featured & Physically Raised) -->
+        <div class="glass-spatial-card rounded-2xl p-8 flex flex-col justify-between relative shadow-[0_0_55px_rgba(203,178,141,0.22)] text-left border-2 border-[#dec7a6]/70 transform lg:-translate-y-2">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-bold uppercase tracking-[0.2em] text-[10px] px-4 py-1 rounded-full shadow-lg">
             Global Concierge &bull; Strictly Capped
           </div>
 
           <div>
-            <div class="text-[11px] font-mono tracking-widest text-[#cbb28d] uppercase mt-2">Unrestricted Access</div>
+            <div class="text-[11px] font-mono tracking-widest text-[#dec7a6] uppercase mt-2">Unrestricted Access</div>
             <h3 class="text-2xl font-serif text-white mt-2 mb-2">The Sovereign Concierge</h3>
             <p class="text-xs text-zinc-300 mb-6 font-light leading-relaxed">
               Total worldwide on-demand accompaniment. Aircraft, estate gyms, chartered vessels, and multi-continent schedules.
@@ -982,28 +1109,28 @@
 
             <ul class="space-y-3.5 text-xs text-zinc-200">
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>On-Demand In-Person Training (Residence / Compound)</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Worldwide Travel Accompaniment (Upon Advance Notice)</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Direct Encrypted WhatsApp Line with Vitesh Personally</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Coordination with Family Office &amp; Security Personnel</span>
               </li>
             </ul>
           </div>
 
-          <div class="pt-8 mt-8 border-t border-[#cbb28d]/30 flex flex-col gap-2.5">
+          <div class="pt-8 mt-8 border-t border-[#cbb28d]/40 flex flex-col gap-2.5">
             <button 
               onclick="openIntakeModal()"
-              class="w-full py-3.5 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs uppercase tracking-wider transition-all rounded-sm shadow-md"
+              class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs uppercase tracking-wider transition-all rounded-sm shadow-md"
             >
               Apply for Sovereign Placement
             </button>
@@ -1011,7 +1138,7 @@
               href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20intake%20for%20the%20Sovereign%20Concierge."
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full py-2.5 text-center text-zinc-400 hover:text-white text-[11px] font-mono uppercase tracking-wider"
+              class="w-full py-2.5 text-center text-zinc-400 hover:text-[#dec7a6] text-[11px] font-mono uppercase tracking-wider transition-colors"
             >
               Direct WhatsApp Liaison &rarr;
             </a>
@@ -1019,7 +1146,7 @@
         </div>
 
         <!-- Tier 3 -->
-        <div class="rounded-2xl border border-zinc-800/90 bg-zinc-900/20 p-8 flex flex-col justify-between text-left">
+        <div class="glass-spatial-card rounded-2xl p-8 flex flex-col justify-between text-left">
           <div>
             <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Institutional</div>
             <h3 class="text-2xl font-serif text-white mt-2 mb-2">Family Office Protocol</h3>
@@ -1029,19 +1156,19 @@
 
             <ul class="space-y-3.5 text-xs text-zinc-300">
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Multi-Principal Comprehensive Biometric Architecture</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Private Estate Gym Biomechanical Audit &amp; Buildout</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Kitchen Staff Sourcing &amp; Glycemic Auditing Protocols</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#cbb28d] shrink-0 mt-0.5"></i>
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
                 <span>Direct Liaison with Private Physicians &amp; Imaging Clinics</span>
               </li>
             </ul>
@@ -1050,7 +1177,7 @@
           <div class="pt-8 mt-8 border-t border-zinc-800">
             <button 
               onclick="openIntakeModal()"
-              class="w-full py-3.5 border border-zinc-700 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
+              class="w-full py-3.5 border border-zinc-700/90 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
             >
               Request Family Office Placement
             </button>
@@ -1062,9 +1189,9 @@
   </section>
 
   <!-- Discretion & Privacy Charter -->
-  <section id="discretion" class="py-20 bg-[#08080a] border-b border-zinc-900">
+  <section id="discretion" class="py-20 bg-[#070709] border-b border-zinc-900/90">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
-      <div class="inline-flex items-center justify-center p-3 rounded-full bg-zinc-900 border border-zinc-800 text-[#cbb28d]">
+      <div class="inline-flex items-center justify-center p-3.5 rounded-full bg-black border border-zinc-800 text-[#dec7a6] shadow-inner">
         <i data-lucide="lock" class="w-6 h-6"></i>
       </div>
 
@@ -1081,14 +1208,14 @@
           href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20reciprocal%20NDA%20documentation%20for%20Vitesh%20Dhankhar."
           target="_blank"
           rel="noopener noreferrer"
-          class="px-6 py-3 border border-zinc-700 hover:border-[#cbb28d] text-zinc-200 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2"
+          class="badge-machined px-6 py-3.5 text-zinc-200 hover:text-white text-xs font-mono uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 hover:border-[#dec7a6]/60"
         >
-          <i data-lucide="shield" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <i data-lucide="shield" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
           <span>Request Reciprocal NDA Draft</span>
         </a>
         <button 
           onclick="openIntakeModal()"
-          class="px-6 py-3 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors"
+          class="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors border border-zinc-800"
         >
           Proceed to Intake
         </button>
@@ -1097,7 +1224,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 bg-[#050507] text-xs text-zinc-400">
+  <footer class="py-12 bg-[#050507] text-xs text-zinc-400 border-t border-zinc-900/80">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="text-center md:text-left">
         <div class="font-serif text-white tracking-[0.25em] text-sm uppercase">VITESH DHANKHAR</div>
@@ -1109,15 +1236,15 @@
           href="https://wa.me/917988029459?text=Confidential%20Inquiry%3A%20Requesting%20private%20desk%20liaison."
           target="_blank"
           rel="noopener noreferrer"
-          class="text-[#cbb28d] hover:text-[#dec7a6] transition-colors flex items-center gap-1"
+          class="text-[#dec7a6] hover:text-white transition-colors flex items-center gap-1.5"
         >
-          <i data-lucide="message-square" class="w-3 h-3"></i> WhatsApp Desk
+          <i data-lucide="message-square" class="w-3.5 h-3.5"></i> WhatsApp Desk
         </a>
         <a 
           href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Advisory%20Inquiry" 
-          class="hover:text-white transition-colors flex items-center gap-1"
+          class="hover:text-white transition-colors flex items-center gap-1.5"
         >
-          <i data-lucide="mail" class="w-3 h-3"></i> Private Email
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i> Private Email
         </a>
         <button onclick="openIntakeModal()" class="hover:text-white transition-colors">Client Intake</button>
       </div>
@@ -1128,9 +1255,9 @@
     </div>
   </footer>
 
-  <!-- MODAL: CLIENT INTAKE (Connected to Formspree AJAX) -->
+  <!-- MODAL: CLIENT INTAKE -->
   <div id="intakeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
-    <div class="relative w-full max-w-2xl bg-[#0d0d10] border border-zinc-800 rounded-xl shadow-2xl p-6 sm:p-10 my-8 text-left">
+    <div class="glass-spatial-card relative w-full max-w-2xl bg-[#0d0d10] border border-zinc-800 rounded-2xl shadow-2xl p-6 sm:p-10 my-8 text-left">
       <button 
         onclick="closeIntakeModal()"
         class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
@@ -1142,7 +1269,7 @@
       <!-- Intake Form View -->
       <div id="intakeFormView">
         <div class="space-y-1.5 mb-8">
-          <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-[#cbb28d]">
+          <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
             Confidential Engagement
           </span>
           <h3 class="text-2xl sm:text-3xl font-serif text-white">
@@ -1165,7 +1292,7 @@
                 name="principal_name" 
                 required 
                 placeholder="Name or Confidential Alias"
-                class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]"
+                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
               />
             </div>
 
@@ -1178,7 +1305,7 @@
                 name="operating_city" 
                 required 
                 placeholder="Hyderabad / Jubilee Hills / Global"
-                class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]"
+                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
               />
             </div>
           </div>
@@ -1193,7 +1320,7 @@
                 name="email" 
                 required 
                 placeholder="office@yourdomain.com"
-                class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]"
+                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
               />
             </div>
 
@@ -1206,7 +1333,7 @@
                 name="phone_or_whatsapp" 
                 required 
                 placeholder="+91 / +971 ..."
-                class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]"
+                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
               />
             </div>
           </div>
@@ -1218,7 +1345,7 @@
               </label>
               <select 
                 name="submitted_by"
-                class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]"
+                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
               >
                 <option value="principal">Principal Personally</option>
                 <option value="chief_of_staff">Chief of Staff / Executive Office</option>
@@ -1233,7 +1360,7 @@
               </label>
               <select 
                 name="target_retainer"
-                class="w-full bg-black/60 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d]"
+                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
               >
                 <option value="leadership_protocol">The Leadership Protocol (Executive Retainer)</option>
                 <option value="sovereign_concierge">The Sovereign Concierge (Worldwide Access)</option>
@@ -1242,7 +1369,7 @@
             </div>
           </div>
 
-          <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-lg flex items-start gap-3">
+          <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-xl flex items-start gap-3 shadow-inner">
             <input 
               type="checkbox" 
               id="ndaCheck"
@@ -1262,23 +1389,23 @@
           <button 
             type="submit"
             id="intakeSubmitBtn"
-            class="w-full py-4 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs uppercase tracking-[0.2em] rounded-sm transition-all shadow-md flex items-center justify-center gap-2"
+            class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs uppercase tracking-[0.2em] rounded-sm transition-all shadow-[0_4px_25px_rgba(203,178,141,0.3)] flex items-center justify-center gap-2"
           >
             <span>Transmit Confidential Intake</span>
           </button>
         </form>
       </div>
 
-      <!-- Success View (Shown after AJAX submit) -->
+      <!-- Success View -->
       <div id="intakeSuccessView" class="hidden text-center py-10 space-y-5">
-        <div class="h-16 w-16 bg-emerald-950/60 border border-emerald-500/50 rounded-full mx-auto flex items-center justify-center text-emerald-400">
+        <div class="h-16 w-16 bg-emerald-950/60 border border-emerald-500/50 rounded-full mx-auto flex items-center justify-center text-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.2)]">
           <i data-lucide="check-circle-2" class="w-8 h-8"></i>
         </div>
         <h4 class="text-2xl font-serif text-white">Intake Transmitted Confidentially</h4>
         <p class="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed font-light">
           Thank you. Your dossier has been routed directly to Vitesh Dhankhar's private advisory desk.
         </p>
-        <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg max-w-md mx-auto text-xs text-zinc-400 font-mono text-left space-y-1">
+        <div class="p-4 bg-black/60 border border-zinc-800 rounded-xl max-w-md mx-auto text-xs text-zinc-400 font-mono text-left space-y-1 shadow-inner">
           <div>DISPATCH STATUS: <span class="text-emerald-400">ENCRYPTED QUEUE</span></div>
           <div>RESPONSE WINDOW: <span class="text-white">UNDER 12 HOURS</span></div>
           <div>ROUTING BASE: <span class="text-[#dec7a6]">HYDERABAD EXCLUSIVE</span></div>
@@ -1288,7 +1415,7 @@
             href="https://wa.me/917988029459?text=Confidential%20Follow-up%3A%20I%20have%20transmitted%20my%20client%20intake%20dossier."
             target="_blank"
             rel="noopener noreferrer"
-            class="px-6 py-2.5 bg-[#cbb28d] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded-sm font-semibold"
+            class="px-6 py-2.5 bg-[#cbb28d] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded-sm font-semibold shadow-md"
           >
             Direct WhatsApp Desk
           </a>
@@ -1306,7 +1433,7 @@
 
   <!-- MODAL: RESEARCH INSPECTION DOSSIER -->
   <div id="researchModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
-    <div class="relative w-full max-w-3xl bg-[#0b0b0e] border border-zinc-800 rounded-xl shadow-2xl p-6 sm:p-9 my-8 text-left">
+    <div class="glass-spatial-card relative w-full max-w-3xl bg-[#0b0b0e] border border-zinc-800 rounded-2xl shadow-2xl p-6 sm:p-9 my-8 text-left">
       <button 
         onclick="closeResearchModal()"
         class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
@@ -1315,16 +1442,16 @@
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="mb-5 px-3.5 py-2 bg-[#cbb28d]/10 border border-[#cbb28d]/30 rounded flex items-center justify-between text-[11px] font-mono text-[#dec7a6]">
+      <div class="mb-5 px-3.5 py-2 badge-machined rounded-lg flex items-center justify-between text-[11px] font-mono text-[#dec7a6]">
         <div class="flex items-center gap-2">
-          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <i data-lucide="lock" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
           <span>PEER-REVIEWED SCIENTIFIC RESEARCH DOSSIER</span>
         </div>
         <span class="text-zinc-400 text-[10px]">LNIPE &bull; AKINIK PUBLICATIONS</span>
       </div>
 
       <div class="space-y-1.5 pb-4 border-b border-zinc-800">
-        <span id="modalPaperJournal" class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#cbb28d]">
+        <span id="modalPaperJournal" class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#dec7a6]">
           Journal Publication
         </span>
         <h3 id="modalPaperTitle" class="text-xl sm:text-2xl font-serif text-white leading-snug">
@@ -1336,21 +1463,21 @@
       </div>
 
       <div class="py-4 space-y-4 max-h-[50vh] overflow-y-auto pr-2 text-xs">
-        <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-lg">
-          <div class="text-[10px] font-mono uppercase text-[#cbb28d] mb-1">Executive Summary & Scope:</div>
+        <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-xl shadow-inner">
+          <div class="text-[10px] font-mono uppercase text-[#dec7a6] mb-1">Executive Summary &amp; Scope:</div>
           <p id="modalPaperSummary" class="text-zinc-300 font-light leading-relaxed">
             Summary
           </p>
         </div>
 
-        <div class="p-4 bg-zinc-900/40 border border-zinc-800/80 rounded-lg space-y-2">
-          <div class="text-[10px] font-mono uppercase text-zinc-400">Core Findings & Protocol Yield:</div>
+        <div class="p-4 bg-zinc-900/40 border border-zinc-800/80 rounded-xl space-y-2">
+          <div class="text-[10px] font-mono uppercase text-zinc-400">Core Findings &amp; Protocol Yield:</div>
           <ul id="modalPaperFindings" class="space-y-2 text-zinc-300 font-light">
             <!-- Populated dynamically -->
           </ul>
         </div>
 
-        <div id="modalPaperMeta" class="p-3 bg-black/40 border border-zinc-800 rounded text-[11px] font-mono text-zinc-400 flex flex-wrap justify-between gap-2">
+        <div id="modalPaperMeta" class="p-3 bg-black/40 border border-zinc-800 rounded-lg text-[11px] font-mono text-zinc-400 flex flex-wrap justify-between gap-2 shadow-inner">
           <!-- Populated dynamically -->
         </div>
       </div>
@@ -1361,7 +1488,7 @@
           href="#"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2.5 bg-[#cbb28d] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm hover:bg-[#dec7a6] transition-colors inline-flex items-center gap-2"
+          class="px-5 py-2.5 bg-gradient-to-r from-[#dec7a6] to-[#b0966e] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm hover:brightness-110 transition-all inline-flex items-center gap-2 shadow-md"
         >
           <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
           <span>Request Full Verified Manuscript</span>
@@ -1469,7 +1596,7 @@
       data.findings.forEach(f => {
         const li = document.createElement('li');
         li.className = 'flex items-start gap-2';
-        li.innerHTML = `<span class="text-[#cbb28d] font-bold">✓</span><span>${f}</span>`;
+        li.innerHTML = `<span class="text-[#dec7a6] font-bold">✓</span><span>${f}</span>`;
         findingsList.appendChild(li);
       });
 
