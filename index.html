@@ -92,7 +92,7 @@
       transform: perspective(1200px) translateZ(0);
     }
     .glass-spatial-card:hover {
-      transform: perspective(1200px) translateY(-5px) translateZ(10px);
+      transform: perspective(1200px) translateY(-4px) translateZ(8px);
       border-top: 1px solid rgba(222, 199, 166, 0.7);
       box-shadow: 
         0 35px 80px -20px rgba(0, 0, 0, 0.98),
@@ -151,7 +151,7 @@
       background: rgba(255, 255, 255, 0.07);
     }
 
-    /* 3D Holographic Canvas Canvas Layer */
+    /* 3D Holographic Canvas Layer */
     #spatial3dCanvas {
       position: fixed;
       top: 0;
@@ -162,6 +162,13 @@
       z-index: 1;
       opacity: 0.72;
       transition: opacity 0.5s ease;
+    }
+
+    /* Obfuscated / Masked Security Text */
+    .security-blur {
+      filter: blur(4px);
+      user-select: none;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -177,7 +184,7 @@
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#cbb28d] opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-[#dec7a6]"></span>
       </span>
-      <span class="text-zinc-300">STRICT PRIVATE CLIENT PRACTICE &bull; NDA ENFORCED</span>
+      <span class="text-zinc-300">STRICT PRIVATE CLIENT PRACTICE &bull; RECIPROCAL NDA ENFORCED</span>
       <span id="vipActiveBadge" class="hidden px-2 py-0.5 rounded bg-[#cbb28d]/20 text-[#dec7a6] text-[9px] border border-[#cbb28d]/40"></span>
       <button 
         onclick="lockPortalManually()" 
@@ -202,7 +209,7 @@
           VITESH DHANKHAR
         </span>
         <span class="text-[9px] tracking-[0.38em] text-[#b0966e] uppercase font-mono mt-0.5">
-          Celebrity Body Architect &bull; Longevity Advisory
+          Body Architect &bull; Longevity Advisory
         </span>
       </a>
 
@@ -286,9 +293,10 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
         
         <div class="lg:col-span-7 space-y-8 text-left">
+          <!-- Refined Institutional Header Badge (Replaced old wording) -->
           <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full badge-machined text-[#dec7a6] text-[11px] uppercase tracking-[0.22em] font-mono">
             <i data-lucide="shield" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
-            Private Advisory for Public Figures &amp; Family Offices
+            Private Biomechanical &amp; Longevity Advisory &bull; High-Performance Human Architecture
           </div>
 
           <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-light tracking-tight leading-[1.04] text-white">
@@ -408,14 +416,21 @@
               </div>
             </div>
 
-            <!-- Segmented HUD Gauges -->
+            <!-- Segmented HUD Gauges with Inline Interactive Expansion (No extra space) -->
             <div class="space-y-4 my-6">
               
-              <!-- Metric 1: Epigenetic Aging -->
-              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner">
-                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-2">
+              <!-- Metric 1: Epigenetic Aging (Expandable in-place) -->
+              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner transition-all duration-300">
+                <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-2">
                   <span class="tracking-wider">EPIGENETIC PACE OF AGING</span>
-                  <span class="text-[#dec7a6] font-semibold">0.64 DUNEDIN PACE</span>
+                  <button 
+                    type="button" 
+                    onclick="toggleTelemetryDetail('telemetryDetail1')"
+                    class="text-[#dec7a6] hover:text-white font-semibold flex items-center gap-1 group/btn"
+                  >
+                    <span>0.64 DUNEDIN PACE</span>
+                    <i data-lucide="chevron-down" id="telemetryDetail1Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+                  </button>
                 </div>
                 <div class="grid grid-cols-12 gap-1.5 py-1">
                   <div class="hud-segment active-gold"></div>
@@ -431,17 +446,41 @@
                   <div class="hud-segment active-gold"></div>
                   <div class="hud-segment inactive"></div>
                 </div>
-                <div class="flex justify-between text-[9px] font-mono text-zinc-400 mt-1">
+                <div class="flex justify-between items-center text-[9px] font-mono text-zinc-400 mt-1">
                   <span>SCALE: ACCELERATED (1.0+)</span>
-                  <span class="text-[#dec7a6]">TOP 2% REVERSAL RATE</span>
+                  <button 
+                    type="button" 
+                    onclick="toggleTelemetryDetail('telemetryDetail1')"
+                    class="text-[#dec7a6] hover:underline uppercase"
+                  >
+                    Inspect Clinical Method &rarr;
+                  </button>
+                </div>
+
+                <!-- Hidden Inline Accordion Panel 1 -->
+                <div id="telemetryDetail1" class="hidden mt-3 pt-3 border-t border-zinc-800/90 text-xs text-zinc-300 font-light space-y-2">
+                  <p class="leading-relaxed">
+                    DunedinPACE tracks single-year biological aging velocity through DNA methylation profiling across 19 blood biomarkers. A score of 0.64 indicates the principal is aging at <strong>0.64 biological years per calendar year</strong> (&sim;36% deceleration).
+                  </p>
+                  <div class="bg-black/70 p-2.5 rounded border border-zinc-800 text-[10px] font-mono text-zinc-400 flex justify-between">
+                    <span>Clinical Basis: LNIPE Multi-Omic Cohort</span>
+                    <span class="text-[#dec7a6]">DOI: 10.33545/26647265...</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- Metric 2: Neuromuscular Speed -->
-              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner">
-                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-2">
+              <!-- Metric 2: Neuromuscular Speed (Expandable in-place) -->
+              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner transition-all duration-300">
+                <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-2">
                   <span class="tracking-wider">NEUROMUSCULAR REACTION SPEED</span>
-                  <span class="text-[#dec7a6] font-semibold">-19.6MS VELOCITY</span>
+                  <button 
+                    type="button" 
+                    onclick="toggleTelemetryDetail('telemetryDetail2')"
+                    class="text-[#dec7a6] hover:text-white font-semibold flex items-center gap-1 group/btn"
+                  >
+                    <span>-19.6MS VELOCITY</span>
+                    <i data-lucide="chevron-down" id="telemetryDetail2Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+                  </button>
                 </div>
                 <div class="grid grid-cols-12 gap-1.5 py-1">
                   <div class="hud-segment active-gold"></div>
@@ -457,17 +496,41 @@
                   <div class="hud-segment inactive"></div>
                   <div class="hud-segment inactive"></div>
                 </div>
-                <div class="flex justify-between text-[9px] font-mono text-zinc-400 mt-1">
+                <div class="flex justify-between items-center text-[9px] font-mono text-zinc-400 mt-1">
                   <span>COGNITIVE DELAY RECOVERY</span>
-                  <span class="text-[#dec7a6]">CLINICAL PAIR STUDY (p &lt; .001)</span>
+                  <button 
+                    type="button" 
+                    onclick="toggleTelemetryDetail('telemetryDetail2')"
+                    class="text-[#dec7a6] hover:underline uppercase"
+                  >
+                    Inspect Clinical Method &rarr;
+                  </button>
+                </div>
+
+                <!-- Hidden Inline Accordion Panel 2 -->
+                <div id="telemetryDetail2" class="hidden mt-3 pt-3 border-t border-zinc-800/90 text-xs text-zinc-300 font-light space-y-2">
+                  <p class="leading-relaxed">
+                    Evaluates ocular afferent transmission and corticospinal motor unit recruitment velocity. An 8-week cross-format protocol reduced latency by <strong>19.6 milliseconds (p &lt; .001, d = 7.77)</strong>, restoring reaction acuity to elite athletic benchmarks.
+                  </p>
+                  <div class="bg-black/70 p-2.5 rounded border border-zinc-800 text-[10px] font-mono text-zinc-400 flex justify-between">
+                    <span>Clinical Basis: IJPSPE Paired Study</span>
+                    <span class="text-[#dec7a6]">d = 7.77 Effect Size</span>
+                  </div>
                 </div>
               </div>
 
-              <!-- Metric 3: Fiber-First Glycemic Telemetry -->
-              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner">
-                <div class="flex justify-between text-[11px] font-mono text-zinc-400 mb-2">
+              <!-- Metric 3: Fiber-First Glycemic Telemetry (Expandable in-place) -->
+              <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner transition-all duration-300">
+                <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-2">
                   <span class="tracking-wider">PRIVATE CHEF GLYCEMIC MAPPING</span>
-                  <span class="text-[#dec7a6] font-semibold">FIBER-FIRST SEQUENCING</span>
+                  <button 
+                    type="button" 
+                    onclick="toggleTelemetryDetail('telemetryDetail3')"
+                    class="text-[#dec7a6] hover:text-white font-semibold flex items-center gap-1 group/btn"
+                  >
+                    <span>FIBER-FIRST SEQUENCING</span>
+                    <i data-lucide="chevron-down" id="telemetryDetail3Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+                  </button>
                 </div>
                 <div class="grid grid-cols-12 gap-1.5 py-1">
                   <div class="hud-segment active-gold"></div>
@@ -483,9 +546,26 @@
                   <div class="hud-segment active-gold"></div>
                   <div class="hud-segment active-gold"></div>
                 </div>
-                <div class="flex justify-between text-[9px] font-mono text-zinc-400 mt-1">
+                <div class="flex justify-between items-center text-[9px] font-mono text-zinc-400 mt-1">
                   <span>POSTPRANDIAL GLYCATION BLUNT</span>
-                  <span class="text-[#dec7a6]">-30% INSULIN SURGE</span>
+                  <button 
+                    type="button" 
+                    onclick="toggleTelemetryDetail('telemetryDetail3')"
+                    class="text-[#dec7a6] hover:underline uppercase"
+                  >
+                    Inspect Clinical Method &rarr;
+                  </button>
+                </div>
+
+                <!-- Hidden Inline Accordion Panel 3 -->
+                <div id="telemetryDetail3" class="hidden mt-3 pt-3 border-t border-zinc-800/90 text-xs text-zinc-300 font-light space-y-2">
+                  <p class="leading-relaxed">
+                    Meal-order sequencing formulated for private estates: Soluble fiber preload precedes complex lipids and proteins, consuming carbohydrates last. This blunts postprandial glucose AUC by <strong>up to 30%</strong> and eliminates toxic Advanced Glycation End-products (AGEs).
+                  </p>
+                  <div class="bg-black/70 p-2.5 rounded border border-zinc-800 text-[10px] font-mono text-zinc-400 flex justify-between">
+                    <span>Clinical Basis: Continuous CGM Audits</span>
+                    <span class="text-[#dec7a6]">-30% Insulin Excursion</span>
+                  </div>
                 </div>
               </div>
 
@@ -680,7 +760,7 @@
     </div>
   </section>
 
-  <!-- SECTION: OFFICIAL ACCREDITED CERTIFICATES -->
+  <!-- SECTION: OFFICIAL ACCREDITED CERTIFICATES (With Masked/Blurred Registration Numbers) -->
   <section id="certificates" class="py-24 border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       
@@ -692,7 +772,7 @@
           Editorial Publication Certificates
         </h2>
         <p class="text-zinc-400 text-sm font-light leading-relaxed">
-          Official peer-reviewed acceptance and publication credentials. Under strict advisory security protocols, preview certificates are partially masked. Verified high-resolution reprints are furnished upon direct liaison.
+          Official peer-reviewed acceptance and publication credentials. Under strict advisory security protocols, certificate registration codes are masked. Verified high-resolution reprints are furnished upon direct liaison.
         </p>
       </div>
 
@@ -711,10 +791,15 @@
                 </span>
               </div>
 
-              <div class="mt-4">
+              <div class="mt-4 space-y-1">
                 <div class="text-xs font-serif text-zinc-300">CERTIFICATE OF SCIENTIFIC PUBLICATION</div>
-                <div class="text-[10px] font-mono text-zinc-400 mt-1">Presented to author: <span class="text-white">VITESH DHANKHAR</span></div>
-                <div class="text-[10px] font-mono text-zinc-400">Paper ID: <span class="text-white">IJPHPE-2026-192</span></div>
+                <div class="text-[10px] font-mono text-zinc-400">Presented to author: <span class="text-white">VITESH DHANKHAR</span></div>
+                <!-- Blurred Certificate & Paper Identifier -->
+                <div class="text-[10px] font-mono text-zinc-400 flex items-center gap-2">
+                  <span>Certificate ID:</span>
+                  <span class="security-blur text-white bg-zinc-800/80 px-2 py-0.5 rounded">IJPHPE-REG-981240-X</span>
+                  <span class="text-[9px] text-[#dec7a6] font-mono">[MASKED]</span>
+                </div>
               </div>
 
               <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/90 to-transparent flex items-end justify-center pb-4">
@@ -755,10 +840,15 @@
                 </span>
               </div>
 
-              <div class="mt-4">
+              <div class="mt-4 space-y-1">
                 <div class="text-xs font-serif text-zinc-300">CERTIFICATE OF PEER-REVIEW PUBLICATION</div>
-                <div class="text-[10px] font-mono text-zinc-400 mt-1">Presented to author: <span class="text-white">VITESH DHANKHAR</span></div>
-                <div class="text-[10px] font-mono text-zinc-400">Paper ID: <span class="text-white">IJPSPE-2026-288</span></div>
+                <div class="text-[10px] font-mono text-zinc-400">Presented to author: <span class="text-white">VITESH DHANKHAR</span></div>
+                <!-- Blurred Certificate & Paper Identifier -->
+                <div class="text-[10px] font-mono text-zinc-400 flex items-center gap-2">
+                  <span>Certificate ID:</span>
+                  <span class="security-blur text-white bg-zinc-800/80 px-2 py-0.5 rounded">IJPSPE-REG-774391-B</span>
+                  <span class="text-[9px] text-[#dec7a6] font-mono">[MASKED]</span>
+                </div>
               </div>
 
               <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/90 to-transparent flex items-end justify-center pb-4">
@@ -791,7 +881,7 @@
     </div>
   </section>
 
-  <!-- SECTION: ADVANCED REHABILITATION & CELLULAR RESTORATION LAB -->
+  <!-- SECTION: ADVANCED REHABILITATION & CELLULAR RESTORATION LAB (Fully Expandable with Clinical Depth) -->
   <section id="rehab" class="py-24 bg-[#08080a] border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
       
@@ -805,7 +895,7 @@
             Clinical Rehabilitation Protocols
           </h2>
           <p class="text-zinc-400 text-xs sm:text-sm max-w-2xl font-light leading-relaxed">
-            Eliminating chronic inflammation, rebuilding connective tissue elasticity, and rapidly down-regulating executive stress cascades through integrated clinical recovery modalities.
+            Eliminating chronic inflammation, rebuilding connective tissue elasticity, and rapidly down-regulating executive stress cascades through integrated clinical recovery modalities. Tap any protocol to inspect clinical parameters.
           </p>
         </div>
 
@@ -815,7 +905,7 @@
         </div>
       </div>
 
-      <!-- Rehabilitation Modalities Grid -->
+      <!-- Rehabilitation Modalities Grid (With Interactive Detailed Drawers) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 text-left">
         
         <!-- Modality 1: Hyperbaric Oxygen Therapy -->
@@ -838,8 +928,32 @@
             </div>
 
             <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              1.5 to 2.0 ATA pressure cycles to saturate blood plasma with dissolved oxygen. Accelerates collagen cross-linking, neuro-cognitive recovery, and systemic stem cell mobilization for orthopedic joint preservation.
+              1.5 to 2.0 ATA pressure cycles to saturate blood plasma with dissolved oxygen. Accelerates collagen cross-linking, neuro-cognitive recovery, and systemic stem cell mobilization.
             </p>
+
+            <!-- Interactive Click to Expand Full Clinical Info -->
+            <button 
+              type="button" 
+              onclick="toggleRehabExpansion('rehabInfo1')"
+              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span id="rehabInfo1BtnText">Inspect Full Clinical Protocol &darr;</span>
+            </button>
+
+            <!-- Expanded Info Section 1 -->
+            <div id="rehabInfo1" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
+              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
+                <div class="text-[#dec7a6] uppercase font-semibold">Clinical Parameters:</div>
+                <div class="text-zinc-400">&bull; Chamber Depth: 1.5 - 2.0 ATA (Pure 100% Medical Grade O₂)</div>
+                <div class="text-zinc-400">&bull; Duration: 60 - 90 minute pressurized saturation profiles</div>
+                <div class="text-zinc-400">&bull; Circulatory Mechanism: Henry's Law 15-fold plasma O₂ dissolution</div>
+              </div>
+              <p class="leading-relaxed">
+                Upregulates Hypoxia-Inducible Factor 1-alpha (HIF-1&alpha;) down-stream cascades, stimulating de-novo VEGF capillary neoangiogenesis in ischemic connective tissue beds, accelerates tendon elasticity, and clears neurological brain fog post-international travel.
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400">Estate Integration: Modular monoplace hard-shell chamber installations supervised in Hyderabad private compounds.</div>
+            </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
@@ -868,8 +982,32 @@
             </div>
 
             <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Targeted photonic wavelengths directly stimulate mitochondrial Cytochrome c oxidase, upregulating ATP bio-synthesis, eliminating dermatological inflammation, and clearing cellular senescent debris across deep muscle beds.
+              Targeted photonic wavelengths directly stimulate mitochondrial Cytochrome c oxidase, upregulating ATP bio-synthesis, eliminating dermatological inflammation, and clearing senescent debris.
             </p>
+
+            <!-- Interactive Click to Expand Full Clinical Info -->
+            <button 
+              type="button" 
+              onclick="toggleRehabExpansion('rehabInfo2')"
+              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span id="rehabInfo2BtnText">Inspect Full Clinical Protocol &darr;</span>
+            </button>
+
+            <!-- Expanded Info Section 2 -->
+            <div id="rehabInfo2" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
+              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
+                <div class="text-[#dec7a6] uppercase font-semibold">Photonic Parameters:</div>
+                <div class="text-zinc-400">&bull; Dual Spectral Tuning: 660nm (Dermal) &bull; 850nm (Deep Musculoskeletal)</div>
+                <div class="text-zinc-400">&bull; Irradiance Dosage: &gt;100 mW/cm&sup2; at 6-inch axial clearance</div>
+                <div class="text-zinc-400">&bull; Frequency: 15-minute daily sessions integrated pre/post training</div>
+              </div>
+              <p class="leading-relaxed">
+                Photons photochemically dissociate inhibitory nitric oxide (NO) from Cytochrome c oxidase, instantly restoring mitochondrial electron transport and driving ATP synthesis. Drastically speeds delayed onset muscle soreness (DOMS) clearance and enhances skin collagen density.
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400">Deployment: Full-body vertical LED medical panels integrated into private master suites.</div>
+            </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
@@ -898,8 +1036,32 @@
             </div>
 
             <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Alternating extreme hyperthermic and hypothermic shock. Triggers Heat Shock Proteins (HSP70) to repair misfolded cellular proteins and cold shock RNA-binding protein (RBM3) to safeguard neural synaptogenesis and vascular flexibility.
+              Alternating extreme hyperthermic and hypothermic shock. Triggers Heat Shock Proteins (HSP70) to repair misfolded cellular proteins and cold shock protein (RBM3) for neuro-synaptogenesis.
             </p>
+
+            <!-- Interactive Click to Expand Full Clinical Info -->
+            <button 
+              type="button" 
+              onclick="toggleRehabExpansion('rehabInfo3')"
+              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span id="rehabInfo3BtnText">Inspect Full Clinical Protocol &darr;</span>
+            </button>
+
+            <!-- Expanded Info Section 3 -->
+            <div id="rehabInfo3" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
+              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
+                <div class="text-[#dec7a6] uppercase font-semibold">Contrast Architecture:</div>
+                <div class="text-zinc-400">&bull; Hyperthermic Phase: 20 mins Infrared / Finnish 80°C - 90°C</div>
+                <div class="text-zinc-400">&bull; Hypothermic Plunge: 3 mins 3°C - 5°C with continuous water agitation</div>
+                <div class="text-zinc-400">&bull; Vascular Cycling: 3 full cycles for maximal arterial compliance</div>
+              </div>
+              <p class="leading-relaxed">
+                Forces full-body vascular pumping (massive vasodilation followed by peripheral vasoconstriction). Induces a 250% surge in plasma norepinephrine, suppressing systemic inflammation, boosting brown adipose tissue (BAT) mitochondrial uncoupling, and clearing muscle lactate.
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400">Compound Buildout: High-filtration chilling plunge units paired with custom cedar infrared saunas.</div>
+            </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
@@ -928,8 +1090,32 @@
             </div>
 
             <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Bypassing gastrointestinal absorption barriers through calibrated intravenous micronutrient cascades: high-dose Glutathione for hepatic detoxification, magnesium glycinate for nervous system recalibration, and NAD+ cofactors.
+              Bypassing gastrointestinal absorption barriers through calibrated intravenous cascades: high-dose Glutathione for hepatic detox, magnesium glycinate for nervous system reset, and NAD+ cofactors.
             </p>
+
+            <!-- Interactive Click to Expand Full Clinical Info -->
+            <button 
+              type="button" 
+              onclick="toggleRehabExpansion('rehabInfo4')"
+              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span id="rehabInfo4BtnText">Inspect Full Clinical Protocol &darr;</span>
+            </button>
+
+            <!-- Expanded Info Section 4 -->
+            <div id="rehabInfo4" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
+              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
+                <div class="text-[#dec7a6] uppercase font-semibold">Infusion Cascades:</div>
+                <div class="text-zinc-400">&bull; NAD+ Loading: 500mg - 750mg slow infusion for PARP-1 DNA repair</div>
+                <div class="text-zinc-400">&bull; Hepatic Push: 2400mg Glutathione + Alpha-Lipoic Acid</div>
+                <div class="text-zinc-400">&bull; Neuro-Calm: Intravenous Magnesium Sulphate + Methyl-B Complex</div>
+              </div>
+              <p class="leading-relaxed">
+                Replenishes the intracellular NAD+/NADH ratio, activating SIRT1 and SIRT3 longevity genes. Protects nuclear DNA integrity, accelerates ATP synthase rotational velocity, and rapidly neutralizes reactive oxygen species (ROS) from trans-meridian flights.
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400">Clinical Protocol: Administered exclusively by licensed concierge nursing and medical partners.</div>
+            </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
@@ -960,6 +1146,30 @@
             <p class="text-xs text-zinc-400 font-light leading-relaxed">
               Low-shear spinal re-alignment and myofascial decompression engineered specifically for executives suffering from prolonged sedentary load, international jet lag, and spinal disc compression.
             </p>
+
+            <!-- Interactive Click to Expand Full Clinical Info -->
+            <button 
+              type="button" 
+              onclick="toggleRehabExpansion('rehabInfo5')"
+              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span id="rehabInfo5BtnText">Inspect Full Clinical Protocol &darr;</span>
+            </button>
+
+            <!-- Expanded Info Section 5 -->
+            <div id="rehabInfo5" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
+              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
+                <div class="text-[#dec7a6] uppercase font-semibold">Biomechanical Matrix:</div>
+                <div class="text-zinc-400">&bull; Spinal Traction: Targeted L4-L5 &amp; L5-S1 disc re-imbibition</div>
+                <div class="text-zinc-400">&bull; Scapular Recalibration: Lower trapezius &amp; serratus anterior activation</div>
+                <div class="text-zinc-400">&bull; Hip Joint Capsule: Psoas and piriformis reciprocal inhibition release</div>
+              </div>
+              <p class="leading-relaxed">
+                Relieves intra-discal pressure, rehydrating fibrocartilage nucleus pulposus cushions. Restores neutral pelvic tilt, removes compressive loads from lumbar vertebrae, and opens thoracic expansion for deeper tidal respiratory volume during boardroom presentations.
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400">Implementation: Dedicated in-person manual release &amp; proprietary postural traction apparatus.</div>
+            </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
@@ -988,8 +1198,32 @@
             </div>
 
             <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Nightly sleep architecture calibration optimizing Slow-Wave Sleep (SWS) and glymphatic brain detoxification. Custom thermal sleep environments, blue-light blockers, and evening cortisol suppression directives.
+              Nightly sleep architecture calibration optimizing Slow-Wave Sleep (SWS) and glymphatic brain detoxification. Custom thermal sleep environments, blue-light blockers, and evening cortisol suppression.
             </p>
+
+            <!-- Interactive Click to Expand Full Clinical Info -->
+            <button 
+              type="button" 
+              onclick="toggleRehabExpansion('rehabInfo6')"
+              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span id="rehabInfo6BtnText">Inspect Full Clinical Protocol &darr;</span>
+            </button>
+
+            <!-- Expanded Info Section 6 -->
+            <div id="rehabInfo6" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
+              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
+                <div class="text-[#dec7a6] uppercase font-semibold">Sleep Architecture Targets:</div>
+                <div class="text-zinc-400">&bull; Slow-Wave Sleep (SWS): Minimum 100+ minutes nightly target</div>
+                <div class="text-zinc-400">&bull; Core Thermal Drop: 1.2°C ambient reduction via hydro-regulated bedding</div>
+                <div class="text-zinc-400">&bull; Glymphatic Clearance: Evening posture protocols to flush beta-amyloid</div>
+              </div>
+              <p class="leading-relaxed">
+                Coordinates nocturnal autonomic tone balance via real-time Root Mean Square of Successive Differences (RMSSD) Heart Rate Variability telemetry. Regulates evening pineal melatonin surge and dampens adrenal cortisol release for restorative neuro-cognitive consolidation.
+              </p>
+              <div class="text-[10px] font-mono text-zinc-400">Suite Audit: Direct consultation on bedroom lighting spectrum, air particulate filtration, and acoustics.</div>
+            </div>
           </div>
 
           <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
@@ -1093,7 +1327,7 @@
             </div>
             <h3 class="text-lg font-serif text-white">Ironclad Discretion</h3>
             <p class="text-xs text-zinc-400 leading-relaxed font-light">
-              Strict legal NDA agreements executed prior to first evaluation. No social media exploitation or public leveraging of client identities.
+              Strict legal reciprocal NDA agreements executed prior to first evaluation. No social media exploitation or leveraging of client identities.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
@@ -1655,21 +1889,18 @@
         const urlParams = new URLSearchParams(window.location.search);
         const urlKey = (urlParams.get('access') || urlParams.get('vip') || '').trim().toUpperCase();
 
-        // Check if unlocked via direct VIP URL parameter
         if (urlKey && AUTHORIZED_PASSCODES.includes(urlKey)) {
           sessionStorage.setItem('site_authenticated', urlKey);
           unlockPortal(urlKey);
           return;
         }
 
-        // Check existing authenticated session
         const savedAuth = sessionStorage.getItem('site_authenticated');
         if (savedAuth && AUTHORIZED_PASSCODES.includes(savedAuth.toUpperCase())) {
           unlockPortal(savedAuth);
           return;
         }
 
-        // Otherwise keep gatekeeper active
         lockPortalManually(false);
       } catch (err) {
         console.warn('Gatekeeper init warning:', err);
@@ -1767,6 +1998,37 @@
       }
     }
 
+    // Toggle In-Place Telemetry Accordion Detail (Item 4)
+    function toggleTelemetryDetail(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + 'Icon');
+      if (!el) return;
+
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        el.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Toggle In-Place Rehab Modality Deep-Dive (Item 1)
+    function toggleRehabExpansion(id) {
+      const el = document.getElementById(id);
+      const btnText = document.getElementById(id + 'BtnText');
+      if (!el) return;
+
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        if (btnText) btnText.innerHTML = 'Collapse Clinical Protocol &uarr;';
+      } else {
+        el.classList.add('hidden');
+        if (btnText) btnText.innerHTML = 'Inspect Full Clinical Protocol &darr;';
+      }
+      refreshIcons();
+    }
+
     const RESEARCH_DATABASE = {
       'paper-1': {
         journal: 'IJPHPE (2026) • Impact Factor: RJIF 8.16',
@@ -1862,7 +2124,6 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
 
-      // 1. Kinetic 3D Biometric Wave Lattice
       const cols = 55;
       const rows = 55;
       const separation = 16;
@@ -1884,7 +2145,6 @@
           wavePositions[idx * 3 + 1] = -60;
           wavePositions[idx * 3 + 2] = z;
 
-          // Radial gradient coloration from center outward
           const distFromCenter = Math.sqrt(x * x + z * z) / 380;
           const pointColor = distFromCenter < 0.4 ? lightChampagne : (distFromCenter < 0.75 ? baseGold : darkAmber);
           waveColors[idx * 3] = pointColor.r;
@@ -1908,7 +2168,6 @@
       const waveParticles = new THREE.Points(waveGeo, waveMaterial);
       scene.add(waveParticles);
 
-      // 2. Ambient Floating 3D Cellular Micro-Orbs
       const orbCount = 140;
       const orbGeo = new THREE.BufferGeometry();
       const orbPositions = new Float32Array(orbCount * 3);
@@ -1936,7 +2195,6 @@
       const orbField = new THREE.Points(orbGeo, orbMat);
       scene.add(orbField);
 
-      // 3. Subtle 3D Depth Rings (Kinetic Orbital Rings)
       const ringGroup = new THREE.Group();
       const ringMat = new THREE.LineBasicMaterial({ color: 0xcbb28d, transparent: true, opacity: 0.18 });
       const ring1 = new THREE.LineLoop(new THREE.RingGeometry(180, 180.5, 64), ringMat);
@@ -1945,7 +2203,6 @@
       ringGroup.add(ring1);
       scene.add(ringGroup);
 
-      // Mouse & Scroll Parallax Tracking
       let targetMouseX = 0;
       let targetMouseY = 0;
       let curMouseX = 0;
@@ -1961,23 +2218,19 @@
         scrollOffset = window.scrollY || window.pageYOffset;
       }, { passive: true });
 
-      // Animation Loop
       let step = 0;
       function animate() {
         requestAnimationFrame(animate);
         step += 0.025;
 
-        // Smooth Mouse Easing
         curMouseX += (targetMouseX - curMouseX) * 0.04;
         curMouseY += (targetMouseY - curMouseY) * 0.04;
 
-        // Dynamic 3D Camera Glide Linked to Scroll
         camera.position.x = curMouseX * 0.6;
         camera.position.y = 70 - (scrollOffset * 0.09) - (curMouseY * 0.5);
         camera.position.z = 240 + Math.sin(step * 0.5) * 8;
         camera.lookAt(0, -20 - (scrollOffset * 0.09), 0);
 
-        // Undulate the 3D Biometric Wave Mesh
         const positions = waveGeo.attributes.position.array;
         let pIndex = 0;
         for (let ix = 0; ix < cols; ix++) {
@@ -1985,7 +2238,6 @@
             const posX = positions[pIndex * 3];
             const posZ = positions[pIndex * 3 + 2];
             
-            // Harmonic multi-frequency waves
             const waveY = (Math.sin((ix * 0.24) + step) * 12) +
                           (Math.cos((iz * 0.22) + step * 0.8) * 12) +
                           (Math.sin((posX + posZ) * 0.01 + step * 1.2) * 6);
@@ -1996,7 +2248,6 @@
         }
         waveGeo.attributes.position.needsUpdate = true;
 
-        // Drift Floating Orbs Upward
         const orbPos = orbGeo.attributes.position.array;
         for (let o = 0; o < orbCount; o++) {
           const idx3 = o * 3;
@@ -2004,14 +2255,12 @@
           orbPos[idx3 + 1] += orbVelocities[o].y;
           orbPos[idx3 + 2] += orbVelocities[o].z;
 
-          // Recycle floating particles
           if (orbPos[idx3 + 1] > 300) {
             orbPos[idx3 + 1] = -300;
           }
         }
         orbGeo.attributes.position.needsUpdate = true;
 
-        // Slowly rotate orbital ring
         ringGroup.rotation.y += 0.0015;
         ringGroup.rotation.z += 0.0006;
 
@@ -2066,7 +2315,6 @@
         sphere2.position.set(x2, y, z2);
         helixGroup.add(sphere2);
 
-        // Connecting rungs
         const rungPoints = [new THREE.Vector3(x1, y, z1), new THREE.Vector3(x2, y, z2)];
         const rungGeo = new THREE.BufferGeometry().setFromPoints(rungPoints);
         const rungLine = new THREE.Line(rungGeo, lineMaterial);
@@ -2095,7 +2343,6 @@
         prevMouseY = e.clientY;
       });
 
-      // Touch interaction
       canvas.addEventListener('touchstart', (e) => {
         if (e.touches.length > 0) {
           isDragging = true;
@@ -2142,7 +2389,7 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       heroDnaGroup = new THREE.Group();
-      heroDnaGroup.rotation.z = 0.22; // Organic biological inclination
+      heroDnaGroup.rotation.z = 0.22;
 
       const totalNodes = 32;
       const radius = 2.8;
@@ -2151,7 +2398,7 @@
       const sphereGeo = new THREE.SphereGeometry(0.26, 14, 14);
       const nodeMatGold = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
       const nodeMatAmber = new THREE.MeshBasicMaterial({ color: 0xb0966e });
-      const nodeMatCore = new THREE.MeshBasicMaterial({ color: 0x5eead4 }); // Cytosine marker
+      const nodeMatCore = new THREE.MeshBasicMaterial({ color: 0x5eead4 });
       const rungMat = new THREE.LineBasicMaterial({ color: 0x4a4133, transparent: true, opacity: 0.65 });
 
       for (let i = 0; i < totalNodes; i++) {
@@ -2164,24 +2411,20 @@
         const x2 = Math.cos(angle + Math.PI) * radius;
         const z2 = Math.sin(angle + Math.PI) * radius;
 
-        // Strand 1
         const sphere1 = new THREE.Mesh(sphereGeo, i === 16 ? nodeMatCore : nodeMatGold);
         sphere1.position.set(x1, y, z1);
         heroDnaGroup.add(sphere1);
 
-        // Strand 2
         const sphere2 = new THREE.Mesh(sphereGeo, nodeMatAmber);
         sphere2.position.set(x2, y, z2);
         heroDnaGroup.add(sphere2);
 
-        // Nucleotide Base-Pair Connecting Rungs
         const points = [new THREE.Vector3(x1, y, z1), new THREE.Vector3(x2, y, z2)];
         const rungGeo = new THREE.BufferGeometry().setFromPoints(points);
         const rungLine = new THREE.Line(rungGeo, rungMat);
         heroDnaGroup.add(rungLine);
       }
 
-      // Add gentle floating glowing particle envelope
       const particleGeo = new THREE.BufferGeometry();
       const particlePositions = new Float32Array(50 * 3);
       for (let p = 0; p < 50 * 3; p += 3) {
@@ -2196,7 +2439,6 @@
 
       scene.add(heroDnaGroup);
 
-      // Mouse & Touch Drag Controls
       let isDragging = false;
       let prevMouseX = 0;
       let prevMouseY = 0;
@@ -2218,7 +2460,6 @@
         prevMouseY = e.clientY;
       });
 
-      // Mobile Touch Drag
       canvas.addEventListener('touchstart', (e) => {
         if (e.touches.length > 0) {
           isDragging = true;
@@ -2257,7 +2498,6 @@
       });
     }
 
-    // Interactive Loci Checkpoint Selector
     function focusDnaLocus(locus) {
       const nameEl = document.getElementById('currentLocusName');
       const scoreEl = document.getElementById('currentLocusScore');
@@ -2281,7 +2521,6 @@
       }
     }
 
-    // 3D Tilt Effect on Vault Card
     function init3DVaultCardPhysics() {
       const card = document.getElementById('vaultInteractiveCard');
       if (!card) return;
