@@ -1599,7 +1599,7 @@
               id="accessPasscodeInput" 
               required 
               autocomplete="off"
-              placeholder="Enter passcode (e.g. SOVEREIGN2026)"
+              placeholder="Enter authorization passcode"
               class="w-full bg-black/80 border border-zinc-800 rounded-xl px-4 py-3.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#cbb28d] font-mono tracking-widest shadow-inner transition-colors"
             />
             <button 
@@ -1626,16 +1626,6 @@
         </button>
       </form>
 
-      <!-- Quick Preset Keys for Testing -->
-      <div class="pt-2 flex items-center justify-center gap-2 flex-wrap text-[10px] font-mono text-zinc-500">
-        <span>Authorized Keys:</span>
-        <button type="button" onclick="setQuickKey('SOVEREIGN2026')" class="text-zinc-400 hover:text-[#dec7a6] underline">SOVEREIGN2026</button>
-        <span>&bull;</span>
-        <button type="button" onclick="setQuickKey('HYD2026')" class="text-zinc-400 hover:text-[#dec7a6] underline">HYD2026</button>
-        <span>&bull;</span>
-        <button type="button" onclick="setQuickKey('HYD-FOUNDER')" class="text-zinc-400 hover:text-[#dec7a6] underline">HYD-FOUNDER</button>
-      </div>
-
       <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-500">
         <span>NO ACCESS KEY?</span>
         <a 
@@ -1659,14 +1649,6 @@
       'HYD2026',
       'VITESH2026'
     ];
-
-    function setQuickKey(val) {
-      const input = document.getElementById('accessPasscodeInput');
-      if (input) {
-        input.value = val;
-        input.focus();
-      }
-    }
 
     function checkGatekeeperStatus() {
       try {
