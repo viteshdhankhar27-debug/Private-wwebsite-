@@ -145,6 +145,9 @@
 </head>
 <body class="bg-[#070709] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black relative">
 
+  <!-- 3D Spatial Kinetic Background Canvas -->
+  <canvas id="spatialBgCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
   <!-- Top Spatial Advisory Ribbon -->
   <aside aria-label="Advisory bar" class="border-b border-zinc-900 bg-[#0a0a0d]/90 backdrop-blur-md py-2.5 px-6 text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2 relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
     <div class="flex items-center gap-2.5 flex-wrap">
@@ -1775,6 +1778,7 @@
       lucide.createIcons();
       initHeroDnaCanvas();
       initGatekeeperDnaCanvas();
+      initSpatialBgCanvas();
       checkPasscodeClearance();
     });
 
@@ -1967,6 +1971,170 @@
       gkDnaCamera.aspect = canvas.clientWidth / canvas.clientHeight;
       gkDnaCamera.updateProjectionMatrix();
       gkDnaRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    }
+
+    // ----------------------------------------------------
+    // GLOBAL 3D KINETIC HARMONIC BACKGROUND ENGINE
+    // ----------------------------------------------------
+    let bgScene, bgCamera, bgRenderer, bgWavePoints, bgFloatingParticles;
+    let bgMouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let bgScrollY = 0;
+    let bgWavePositions, bgInitialY;
+    const GRID_X = 60;
+    const GRID_Z = 60;
+    const TOTAL_POINTS = GRID_X * GRID_Z;
+
+    function initSpatialBgCanvas() {
+      const canvas = document.getElementById('spatialBgCanvas');
+      if (!canvas) return;
+
+      bgScene = new THREE.Scene();
+      bgCamera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+      bgCamera.position.set(0, 35, 70);
+      bgCamera.lookAt(0, 0, 0);
+
+      bgRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      bgRenderer.setSize(window.innerWidth, window.innerHeight);
+      bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+      // 1. Generate 3D Undulating Harmonic Wave Particle Grid
+      const waveGeo = new THREE.BufferGeometry();
+      bgWavePositions = new Float32Array(TOTAL_POINTS * 3);
+      bgInitialY = new Float32Array(TOTAL_POINTS);
+      const colors = new Float32Array(TOTAL_POINTS * 3);
+
+      const colorGold = new THREE.Color(0xcbb28d);
+      const colorChampagne = new THREE.Color(0xdec7a6);
+      const colorMuted = new THREE.Color(0x5a4a35);
+
+      let idx = 0;
+      for (let ix = 0; ix < GRID_X; ix++) {
+        for (let iz = 0; iz < GRID_Z; iz++) {
+          const x = (ix - GRID_X / 2) * 3.8;
+          const z = (iz - GRID_Z / 2) * 3.8;
+          const y = 0;
+
+          bgWavePositions[idx * 3] = x;
+          bgWavePositions[idx * 3 + 1] = y;
+          bgWavePositions[idx * 3 + 2] = z;
+
+          bgInitialY[idx] = y;
+
+          // Radial color attenuation from center outward
+          const distFromCenter = Math.sqrt(x * x + z * z);
+          const ratio = Math.min(distFromCenter / 90, 1);
+          const pointColor = colorGold.clone().lerp(ratio > 0.5 ? colorMuted : colorChampagne, ratio);
+
+          colors[idx * 3] = pointColor.r;
+          colors[idx * 3 + 1] = pointColor.g;
+          colors[idx * 3 + 2] = pointColor.b;
+
+          idx++;
+        }
+      }
+
+      waveGeo.setAttribute('position', new THREE.BufferAttribute(bgWavePositions, 3));
+      waveGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+      const waveMat = new THREE.PointsMaterial({
+        size: 1.35,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.52,
+        blending: THREE.AdditiveBlending
+      });
+
+      bgWavePoints = new THREE.Points(waveGeo, waveMat);
+      bgWavePoints.position.y = -18;
+      bgScene.add(bgWavePoints);
+
+      // 2. Generate Ambient Floating Cellular Particles
+      const particleCount = 180;
+      const floatGeo = new THREE.BufferGeometry();
+      const floatPositions = new Float32Array(particleCount * 3);
+
+      for (let p = 0; p < particleCount * 3; p += 3) {
+        floatPositions[p] = (Math.random() - 0.5) * 160;
+        floatPositions[p + 1] = (Math.random() - 0.5) * 80;
+        floatPositions[p + 2] = (Math.random() - 0.5) * 160;
+      }
+
+      floatGeo.setAttribute('position', new THREE.BufferAttribute(floatPositions, 3));
+      const floatMat = new THREE.PointsMaterial({
+        color: 0xdec7a6,
+        size: 1.8,
+        transparent: true,
+        opacity: 0.28,
+        blending: THREE.AdditiveBlending
+      });
+
+      bgFloatingParticles = new THREE.Points(floatGeo, floatMat);
+      bgScene.add(bgFloatingParticles);
+
+      // Mouse Parallax Trackers
+      window.addEventListener('mousemove', (e) => {
+        bgMouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+        bgMouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
+
+      window.addEventListener('scroll', () => {
+        bgScrollY = window.scrollY;
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        if (!bgCamera || !bgRenderer) return;
+        bgCamera.aspect = window.innerWidth / window.innerHeight;
+        bgCamera.updateProjectionMatrix();
+        bgRenderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      let clock = 0;
+      function animateBgLoop() {
+        requestAnimationFrame(animateBgLoop);
+        clock += 0.016;
+
+        // Smooth Damped Mouse Lerp
+        bgMouse.x += (bgMouse.targetX - bgMouse.x) * 0.04;
+        bgMouse.y += (bgMouse.targetY - bgMouse.y) * 0.04;
+
+        // Dynamic Camera Glide with Scroll Parallax
+        const scrollFactor = Math.min(bgScrollY * 0.015, 45);
+        bgCamera.position.x = bgMouse.x * 9;
+        bgCamera.position.y = 35 - scrollFactor * 0.35 - bgMouse.y * 5;
+        bgCamera.position.z = 70 + scrollFactor * 0.45;
+        bgCamera.lookAt(0, -5 - scrollFactor * 0.2, 0);
+
+        // Undulate Harmonic Wave Surface
+        if (bgWavePoints) {
+          const positions = bgWavePoints.geometry.attributes.position.array;
+          let pIdx = 0;
+          for (let ix = 0; ix < GRID_X; ix++) {
+            for (let iz = 0; iz < GRID_Z; iz++) {
+              const u = ix * 0.18 + clock * 0.8;
+              const v = iz * 0.18 + clock * 0.6;
+              const waveHeight = (Math.sin(u) * Math.cos(v) * 4.2) + (Math.sin(u * 0.5 + v * 0.5) * 2.8);
+              positions[pIdx * 3 + 1] = waveHeight;
+              pIdx++;
+            }
+          }
+          bgWavePoints.geometry.attributes.position.needsUpdate = true;
+          bgWavePoints.rotation.y = clock * 0.02 + bgMouse.x * 0.1;
+        }
+
+        // Drift Floating Cellular Particles Upward
+        if (bgFloatingParticles) {
+          const fPositions = bgFloatingParticles.geometry.attributes.position.array;
+          for (let i = 1; i < particleCount * 3; i += 3) {
+            fPositions[i] += 0.06;
+            if (fPositions[i] > 45) fPositions[i] = -45;
+          }
+          bgFloatingParticles.geometry.attributes.position.needsUpdate = true;
+          bgFloatingParticles.rotation.y = clock * 0.012;
+        }
+
+        bgRenderer.render(bgScene, bgCamera);
+      }
+      animateBgLoop();
     }
 
     // ----------------------------------------------------
