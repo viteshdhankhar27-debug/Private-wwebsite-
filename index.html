@@ -18,7 +18,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Three.js 3D Graphics Engine -->
+  <!-- Three.js CDN for 3D DNA Visualization -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <!-- Premium Fonts: Playfair Display + JetBrains Mono + Plus Jakarta Sans -->
@@ -135,19 +135,6 @@
       background: rgba(255, 255, 255, 0.06);
     }
 
-    /* 3D Holographic Background Canvas */
-    #spatial3dCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.65;
-      transition: opacity 0.5s ease;
-    }
-
     /* Masked Security Redaction */
     .security-blur {
       filter: blur(4px);
@@ -158,9 +145,6 @@
 </head>
 <body class="bg-[#070709] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black relative">
 
-  <!-- Interactive 3D Three.js Spatial Background Layer -->
-  <canvas id="spatial3dCanvas"></canvas>
-
   <!-- Top Spatial Advisory Ribbon -->
   <aside aria-label="Advisory bar" class="border-b border-zinc-900 bg-[#0a0a0d]/90 backdrop-blur-md py-2.5 px-6 text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-zinc-400 uppercase flex flex-col sm:flex-row justify-between items-center gap-2 relative z-30 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
     <div class="flex items-center gap-2.5 flex-wrap">
@@ -169,19 +153,20 @@
         <span class="relative inline-flex rounded-full h-2 w-2 bg-[#dec7a6]"></span>
       </span>
       <span class="text-zinc-300">STRICT PRIVATE CLIENT PRACTICE &bull; RECIPROCAL NDA ENFORCED</span>
-      <span id="vipActiveBadge" class="hidden px-2 py-0.5 rounded bg-[#cbb28d]/20 text-[#dec7a6] text-[9px] border border-[#cbb28d]/40"></span>
-      <button 
-        onclick="lockPortalManually()" 
-        title="Engage Passcode Lock Vault"
-        class="ml-2 text-[9px] text-[#dec7a6] hover:text-white px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700/80 uppercase tracking-widest hover:border-[#dec7a6] transition-colors flex items-center gap-1"
-      >
-        <i data-lucide="lock" class="w-2.5 h-2.5"></i>
-        <span>Lock Vault</span>
-      </button>
+      <span id="vaultStatusPill" class="hidden text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded text-[9px]"></span>
     </div>
     <div class="flex items-center gap-6">
       <span class="text-[#dec7a6] font-semibold tracking-[0.22em]">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS</span>
       <span class="text-zinc-400 font-medium hidden md:inline">HYDERABAD &bull; DUBAI EXCLUSIVE</span>
+      <button 
+        type="button" 
+        onclick="lockVault()" 
+        class="text-zinc-400 hover:text-[#dec7a6] transition-colors flex items-center gap-1 text-[10px] tracking-widest uppercase border border-zinc-800 px-2 py-0.5 rounded bg-black/40"
+        title="Lock Vault &amp; Prompt Security Clearance"
+      >
+        <i data-lucide="lock" class="w-3 h-3"></i>
+        <span>Lock Portal</span>
+      </button>
     </div>
   </aside>
 
@@ -354,51 +339,52 @@
               </span>
             </div>
 
-            <!-- 3D DNA HOLOGRAM VIEWPORT -->
-            <div class="my-5 relative rounded-xl bg-black/80 border border-zinc-800/90 overflow-hidden shadow-inner group">
-              <div class="h-44 sm:h-48 w-full relative">
-                <canvas id="heroDnaCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
-                
-                <!-- 3D Viewport HUD Overlay -->
-                <div class="absolute top-2.5 left-3 right-3 flex items-center justify-between pointer-events-none text-[9px] font-mono tracking-widest uppercase">
-                  <div class="flex items-center gap-1.5 text-[#dec7a6] bg-black/60 px-2 py-0.5 rounded border border-[#cbb28d]/20 backdrop-blur-sm">
-                    <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
-                    <span>3D GENOMIC HELIX LATTICE</span>
-                  </div>
-                  <span class="text-zinc-500 hidden sm:inline">TOUCH / DRAG TO ROTATE</span>
-                </div>
+            <!-- Interactive 3D DNA Double Helix Hologram Viewport -->
+            <div class="relative w-full h-48 my-5 rounded-xl bg-gradient-to-b from-black/80 to-zinc-950/90 border border-zinc-800/90 overflow-hidden shadow-inner flex flex-col justify-between">
+              <!-- Top Viewport HUD -->
+              <div class="absolute top-2.5 inset-x-3 flex justify-between items-center z-10 pointer-events-none text-[9px] font-mono">
+                <span class="text-[#dec7a6] tracking-widest uppercase flex items-center gap-1">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
+                  3D CELLULAR GENOMIC SCANNER
+                </span>
+                <span class="text-zinc-500 uppercase tracking-wider">DRAG / SWIPE TO ROTATE</span>
+              </div>
 
-                <!-- Interactive Loci Checkpoints -->
-                <div class="absolute bottom-2 inset-x-3 flex items-center justify-between gap-1 z-10">
-                  <button 
-                    type="button" 
-                    onclick="focusDnaLocus('dunedin')"
-                    class="flex-1 py-1 rounded bg-black/70 hover:bg-[#cbb28d] text-[#dec7a6] hover:text-black text-[9px] font-mono border border-zinc-800 uppercase tracking-wider transition-all"
-                  >
-                    DunedinPACE
-                  </button>
-                  <button 
-                    type="button" 
-                    onclick="focusDnaLocus('cad')"
-                    class="flex-1 py-1 rounded bg-black/70 hover:bg-[#cbb28d] text-[#dec7a6] hover:text-black text-[9px] font-mono border border-zinc-800 uppercase tracking-wider transition-all"
-                  >
-                    9p21 CAD
-                  </button>
-                  <button 
-                    type="button" 
-                    onclick="focusDnaLocus('sirt1')"
-                    class="flex-1 py-1 rounded bg-black/70 hover:bg-[#cbb28d] text-[#dec7a6] hover:text-black text-[9px] font-mono border border-zinc-800 uppercase tracking-wider transition-all"
-                  >
-                    SIRT1 Biogenesis
-                  </button>
-                </div>
+              <!-- 3D Canvas -->
+              <canvas id="heroDnaCanvas" class="w-full h-full cursor-grab active:cursor-grabbing block"></canvas>
+
+              <!-- Bottom Interactive Loci Triggers -->
+              <div class="absolute bottom-2 inset-x-2.5 flex justify-between gap-1.5 z-10">
+                <button 
+                  type="button" 
+                  onclick="focusDnaLocus('dunedin')"
+                  class="flex-1 py-1 px-1.5 bg-black/75 hover:bg-[#cbb28d]/20 border border-zinc-800 hover:border-[#cbb28d]/50 rounded text-[9px] font-mono text-zinc-300 hover:text-white transition-all text-center uppercase tracking-wider"
+                  title="Focus Epigenetic Methylation Loci"
+                >
+                  DunedinPACE
+                </button>
+                <button 
+                  type="button" 
+                  onclick="focusDnaLocus('cad')"
+                  class="flex-1 py-1 px-1.5 bg-black/75 hover:bg-[#cbb28d]/20 border border-zinc-800 hover:border-[#cbb28d]/50 rounded text-[9px] font-mono text-zinc-300 hover:text-white transition-all text-center uppercase tracking-wider"
+                  title="Focus 9p21 CAD Coronary Marker"
+                >
+                  9p21 CAD
+                </button>
+                <button 
+                  type="button" 
+                  onclick="focusDnaLocus('sirt1')"
+                  class="flex-1 py-1 px-1.5 bg-black/75 hover:bg-[#cbb28d]/20 border border-zinc-800 hover:border-[#cbb28d]/50 rounded text-[9px] font-mono text-zinc-300 hover:text-white transition-all text-center uppercase tracking-wider"
+                  title="Focus SIRT1 Mitochondrial Biogenesis"
+                >
+                  SIRT1 Locus
+                </button>
               </div>
             </div>
 
             <!-- Segmented HUD Biometric Telemetry -->
-            <div class="space-y-4 my-6">
-              
-              <!-- Metric 1: Epigenetic Aging -->
+            <div class="space-y-4 my-5">
+              <!-- Metric 1: Epigenetic Pace of Aging -->
               <div class="p-3.5 rounded-lg bg-black/50 border border-zinc-800/80 shadow-inner transition-all duration-200">
                 <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-1.5">
                   <span class="tracking-wider">EPIGENETIC PACE OF AGING</span>
@@ -426,7 +412,7 @@
                   <div class="hud-segment inactive"></div>
                 </div>
                 <div class="flex justify-between items-center text-[9px] font-mono text-zinc-500 mt-1">
-                  <span>SCALE: ACCELERATED (1.0+)</span>
+                  <span>AGE DECELERATION: -36%</span>
                   <button 
                     type="button" 
                     onclick="toggleTelemetryDetail('telemetryDetail1')"
@@ -439,7 +425,7 @@
                 <!-- Hidden Inline Accordion Panel 1 -->
                 <div id="telemetryDetail1" class="hidden mt-3 pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
                   <p class="leading-relaxed">
-                    DunedinPACE measures biological aging velocity via DNA methylation profiling across 19 blood biomarkers. A 0.64 pace indicates the principal is aging at <strong>0.64 biological years per calendar year</strong> (&sim;36% deceleration).
+                    Quantifies biological aging velocity via DunedinPACE methylation algorithms. A score of 0.64 indicates the principal ages only <strong>0.64 biological years</strong> per calendar year through the 3-2-1 fitness protocol.
                   </p>
                   <div class="bg-black/70 p-2 rounded border border-zinc-800 text-[10px] font-mono text-zinc-400 flex justify-between">
                     <span>Clinical Basis: LNIPE Multi-Omic Cohort</span>
@@ -1453,59 +1439,6 @@
     </div>
   </footer>
 
-  <!-- MODAL: PASSCODE GATEKEEPER VAULT (Neutral Placeholder, No Exposed Passwords) -->
-  <div id="gatekeeperModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-    <div class="glass-spatial-card relative w-full max-w-md rounded-2xl p-7 sm:p-8 text-left shadow-2xl">
-      <div class="flex items-center gap-3 mb-5">
-        <div class="h-10 w-10 rounded-full bg-black border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6]">
-          <i data-lucide="lock" class="w-5 h-5"></i>
-        </div>
-        <div>
-          <h3 class="text-xl font-serif text-white">Private Security Clearance</h3>
-          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Restricted Advisory Portal</div>
-        </div>
-      </div>
-
-      <p class="text-xs text-zinc-300 font-light leading-relaxed mb-4">
-        Access to proprietary multi-omic datasets, laboratory publication certificates, and clinical protocols is restricted to active retainers and verified liaisons.
-      </p>
-
-      <div id="vaultErrorNotice" class="hidden mb-4 p-2.5 bg-red-950/60 border border-red-800/60 rounded text-xs font-mono text-red-300">
-        Incorrect passkey. Request clearance via direct email.
-      </div>
-
-      <form onsubmit="handleVaultPasscode(event)" class="space-y-4">
-        <div>
-          <label class="block text-[10px] font-mono uppercase text-[#dec7a6] mb-1.5 tracking-wider">Authorized Passkey</label>
-          <input 
-            type="password" 
-            id="vaultPassInput"
-            autocomplete="off"
-            placeholder="Enter authorization passkey" 
-            class="w-full bg-black/80 border border-zinc-700/80 rounded-lg px-4 py-3 text-xs text-white tracking-widest uppercase focus:outline-none focus:border-[#dec7a6] shadow-inner"
-          />
-        </div>
-
-        <button 
-          type="submit"
-          class="w-full py-3.5 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold tracking-widest text-xs uppercase rounded transition-all shadow-md"
-        >
-          Authenticate Access
-        </button>
-      </form>
-
-      <div class="mt-5 pt-4 border-t border-zinc-800 text-[10px] font-mono text-zinc-500 flex justify-between items-center">
-        <span>ESTATE CODE ON FILE</span>
-        <a 
-          href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Passcode%20Request%20-%20Vitesh%20Dhankhar"
-          class="text-[#dec7a6] hover:underline"
-        >
-          Request Passkey &rarr;
-        </a>
-      </div>
-    </div>
-  </div>
-
   <!-- MODAL: CLIENT INTAKE -->
   <div id="intakeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
     <div class="glass-spatial-card relative w-full max-w-2xl rounded-2xl p-6 sm:p-10 my-8 text-left shadow-2xl">
@@ -1756,99 +1689,141 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT: Three.js 3D Spatial Engines, Gatekeeper & Modals -->
+  <!-- MODAL: PRIVATE SECURITY CLEARANCE (PASSCODE GATEKEEPER) -->
+  <div id="gatekeeperModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl">
+    <div class="glass-spatial-card relative w-full max-w-md rounded-2xl p-7 sm:p-9 text-left shadow-2xl border border-zinc-800">
+      
+      <div class="flex items-center gap-3.5 pb-5 border-b border-zinc-800/80">
+        <div class="h-11 w-11 rounded-full bg-black border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6] font-serif shadow-inner">
+          <i data-lucide="shield" class="w-5 h-5 text-[#cbb28d]"></i>
+        </div>
+        <div>
+          <div class="text-[10px] font-mono text-[#dec7a6] uppercase tracking-[0.25em]">Confidential Protocol</div>
+          <h3 class="text-xl font-serif text-white">Private Security Clearance</h3>
+        </div>
+      </div>
+
+      <div class="py-5 space-y-4">
+        <p class="text-xs text-zinc-300 font-light leading-relaxed">
+          Access to client advisory dossiers, peer-reviewed clinical methodologies, and private placement tiers is restricted to verified family offices and prospective principals.
+        </p>
+
+        <form onsubmit="verifyPasscode(event)" class="space-y-3.5">
+          <div>
+            <label class="block text-[10px] font-mono uppercase text-zinc-400 mb-1.5 tracking-wider">
+              Enter Authorization Passcode
+            </label>
+            <input 
+              type="password" 
+              id="passcodeInput" 
+              autocomplete="off"
+              required 
+              placeholder="Enter authorization passcode" 
+              class="w-full bg-black/80 border border-zinc-800 focus:border-[#dec7a6] rounded px-3.5 py-2.5 text-xs text-white font-mono tracking-widest uppercase focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div id="passcodeError" class="hidden text-[11px] font-mono text-amber-400 bg-amber-950/40 border border-amber-900/50 p-2 rounded">
+            Authorization code unrecognized. Please consult your private liaison.
+          </div>
+
+          <button 
+            type="submit" 
+            id="gatekeeperSubmitBtn"
+            class="w-full py-3 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-bold text-xs uppercase tracking-widest rounded transition-all shadow-md hover:brightness-110 flex items-center justify-center gap-2"
+          >
+            <i data-lucide="key" class="w-3.5 h-3.5"></i>
+            <span>Authenticate &amp; Enter</span>
+          </button>
+        </form>
+
+        <div class="pt-2 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-500">
+          <span>STRICT DISCRETION PROTOCOL</span>
+          <a 
+            href="mailto:viteshdhankhar27@gmail.com?subject=Passcode%20Clearance%20Inquiry%20-%20Vitesh%20Dhankhar" 
+            class="text-[#dec7a6] hover:underline uppercase"
+          >
+            Request Access Pass &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: Three.js 3D DNA Engine, Gatekeeper, Accordions, Modals -->
   <script>
-    // Initialize Lucide Icons
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
-      initThreeJsBackground();
       initHeroDnaCanvas();
       checkPasscodeClearance();
     });
 
     // ----------------------------------------------------
-    // GLOBAL 3D BACKGROUND ENGINE (Three.js Kinetic Wave)
+    // PASSCODE VAULT GATEKEEPER & VIP CLEARANCE LOGIC
     // ----------------------------------------------------
-    let bgScene, bgCamera, bgRenderer, bgWavePoints;
-    function initThreeJsBackground() {
-      const canvas = document.getElementById('spatial3dCanvas');
-      if (!canvas) return;
+    const AUTHORIZED_PASSCODES = [
+      'SOVEREIGN2026', 
+      'HYD2026', 
+      'HYD-FOUNDER', 
+      'DUBAI-ROYAL', 
+      'VIP2026', 
+      'VITESH2026'
+    ];
 
-      bgScene = new THREE.Scene();
-      bgCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-      bgCamera.position.z = 240;
-      bgCamera.position.y = 80;
-      bgCamera.rotation.x = -0.3;
+    function checkPasscodeClearance() {
+      // 1. Check for VIP Query Parameter in URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlPass = (urlParams.get('access') || urlParams.get('pass') || urlParams.get('vip') || '').trim().toUpperCase();
 
-      bgRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      bgRenderer.setSize(window.innerWidth, window.innerHeight);
-      bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      // Build Undulating Wave Lattice
-      const countX = 50;
-      const countZ = 50;
-      const numPoints = countX * countZ;
-      const positions = new Float32Array(numPoints * 3);
-      const colors = new Float32Array(numPoints * 3);
-
-      let i = 0;
-      for (let ix = 0; ix < countX; ix++) {
-        for (let iz = 0; iz < countZ; iz++) {
-          positions[i] = (ix - countX / 2) * 16;
-          positions[i + 1] = 0;
-          positions[i + 2] = (iz - countZ / 2) * 16;
-
-          // Champagne gold palette
-          colors[i] = 0.85;     // R
-          colors[i + 1] = 0.76; // G
-          colors[i + 2] = 0.58; // B
-          i += 3;
-        }
+      if (urlPass && (AUTHORIZED_PASSCODES.includes(urlPass) || urlPass.startsWith('HYD') || urlPass.startsWith('VIP'))) {
+        grantVaultAccess(urlPass);
+        return;
       }
 
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-      const material = new THREE.PointsMaterial({
-        size: 2.2,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.5,
-        blending: THREE.AdditiveBlending
-      });
-
-      bgWavePoints = new THREE.Points(geometry, material);
-      bgScene.add(bgWavePoints);
-
-      let step = 0;
-      function animate() {
-        requestAnimationFrame(animate);
-        step += 0.015;
-
-        const posAttr = bgWavePoints.geometry.attributes.position;
-        let index = 0;
-        for (let ix = 0; ix < countX; ix++) {
-          for (let iz = 0; iz < countZ; iz++) {
-            posAttr.array[index + 1] = (Math.sin(ix * 0.25 + step) * 12) + (Math.cos(iz * 0.25 + step) * 12);
-            index += 3;
-          }
-        }
-        posAttr.needsUpdate = true;
-
-        // Subtle scroll parallax
-        const scrollY = window.scrollY || 0;
-        bgCamera.position.y = 80 - (scrollY * 0.04);
-
-        bgRenderer.render(bgScene, bgCamera);
+      // 2. Check for active session in browser
+      const storedSession = sessionStorage.getItem('vd_vault_auth');
+      if (!storedSession) {
+        document.getElementById('gatekeeperModal').classList.remove('hidden');
+      } else {
+        showActiveVipBadge(storedSession);
       }
-      animate();
+    }
 
-      window.addEventListener('resize', () => {
-        bgCamera.aspect = window.innerWidth / window.innerHeight;
-        bgCamera.updateProjectionMatrix();
-        bgRenderer.setSize(window.innerWidth, window.innerHeight);
-      });
+    function verifyPasscode(e) {
+      e.preventDefault();
+      const input = document.getElementById('passcodeInput');
+      const error = document.getElementById('passcodeError');
+      const val = (input.value || '').trim().toUpperCase();
+
+      if (AUTHORIZED_PASSCODES.includes(val) || val === 'HYD2026' || val.startsWith('HYD') || val.startsWith('VIP')) {
+        grantVaultAccess(val);
+      } else {
+        error.classList.remove('hidden');
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function grantVaultAccess(passcode) {
+      sessionStorage.setItem('vd_vault_auth', passcode);
+      document.getElementById('gatekeeperModal').classList.add('hidden');
+      showActiveVipBadge(passcode);
+    }
+
+    function showActiveVipBadge(passcode) {
+      const badge = document.getElementById('vaultStatusPill');
+      if (badge) {
+        badge.textContent = `CLEARANCE: ${passcode}`;
+        badge.classList.remove('hidden');
+      }
+    }
+
+    function lockVault() {
+      sessionStorage.removeItem('vd_vault_auth');
+      document.getElementById('gatekeeperModal').classList.remove('hidden');
+      const badge = document.getElementById('vaultStatusPill');
+      if (badge) badge.classList.add('hidden');
     }
 
     // ----------------------------------------------------
@@ -1864,7 +1839,7 @@
 
       dnaScene = new THREE.Scene();
       dnaCamera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-      dnaCamera.position.z = 45;
+      dnaCamera.position.z = 44;
 
       dnaRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       dnaRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
@@ -1877,9 +1852,9 @@
       const strandPoints1 = [];
       const strandPoints2 = [];
       const rungs = 28;
-      const rungMat = new THREE.LineBasicMaterial({ color: 0xcbb28d, transparent: true, opacity: 0.6 });
+      const rungMat = new THREE.LineBasicMaterial({ color: 0xcbb28d, transparent: true, opacity: 0.65 });
       const nodeMat = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
-      const nodeGeo = new THREE.SphereGeometry(0.5, 12, 12);
+      const nodeGeo = new THREE.SphereGeometry(0.48, 12, 12);
 
       for (let i = 0; i < rungs; i++) {
         const t = (i / rungs) * Math.PI * 4;
@@ -1921,6 +1896,9 @@
       const tube2 = new THREE.Mesh(tubeGeo2, tubeMat);
       dnaGroup.add(tube2);
 
+      // Subtle initial slant
+      dnaGroup.rotation.z = 0.2;
+
       // Mouse Drag & Touch Rotation Controls
       canvas.addEventListener('mousedown', (e) => {
         isDnaInteracting = true;
@@ -1956,7 +1934,7 @@
       function renderLoop() {
         requestAnimationFrame(renderLoop);
         if (!isDnaInteracting) {
-          dnaGroup.rotation.y += 0.008;
+          dnaGroup.rotation.y += 0.009;
         }
         dnaRenderer.render(dnaScene, dnaCamera);
       }
@@ -1972,7 +1950,7 @@
 
     function focusDnaLocus(type) {
       if (!dnaGroup) return;
-      if (type === 'dunedin') dnaGroup.rotation.set(0.2, 1.4, 0);
+      if (type === 'dunedin') dnaGroup.rotation.set(0.2, 1.4, 0.2);
       if (type === 'cad') dnaGroup.rotation.set(-0.3, 3.1, 0.2);
       if (type === 'sirt1') dnaGroup.rotation.set(0.5, 4.8, -0.1);
     }
@@ -2003,71 +1981,6 @@
       if (icon) {
         icon.style.transform = el.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
       }
-    }
-
-    // ----------------------------------------------------
-    // PASSCODE VAULT GATEKEEPER & VIP BYPASS LOGIC
-    // ----------------------------------------------------
-    const AUTHORIZED_PASSCODES = [
-      'SOVEREIGN2026', 
-      'HYD2026', 
-      'HYD-FOUNDER', 
-      'DUBAI-ROYAL', 
-      'VIP2026', 
-      'VITESH2026'
-    ];
-
-    function checkPasscodeClearance() {
-      // 1. Check for VIP Query Parameter in URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlPass = (urlParams.get('access') || urlParams.get('pass') || urlParams.get('vip') || '').trim().toUpperCase();
-
-      if (urlPass && (AUTHORIZED_PASSCODES.includes(urlPass) || urlPass.startsWith('HYD') || urlPass.startsWith('VIP'))) {
-        grantVaultAccess(urlPass);
-        return;
-      }
-
-      // 2. Check for active session in browser
-      const storedSession = sessionStorage.getItem('vd_vault_auth');
-      if (!storedSession) {
-        document.getElementById('gatekeeperModal').classList.remove('hidden');
-      } else {
-        showActiveVipBadge(storedSession);
-      }
-    }
-
-    function handleVaultPasscode(e) {
-      e.preventDefault();
-      const input = document.getElementById('vaultPassInput');
-      const pass = (input.value || '').trim().toUpperCase();
-      const errorBox = document.getElementById('vaultErrorNotice');
-
-      if (AUTHORIZED_PASSCODES.includes(pass) || pass.startsWith('HYD') || pass.startsWith('VIP')) {
-        errorBox.classList.add('hidden');
-        grantVaultAccess(pass);
-      } else {
-        errorBox.classList.remove('hidden');
-        input.value = '';
-      }
-    }
-
-    function grantVaultAccess(code) {
-      sessionStorage.setItem('vd_vault_auth', code);
-      document.getElementById('gatekeeperModal').classList.add('hidden');
-      showActiveVipBadge(code);
-    }
-
-    function showActiveVipBadge(code) {
-      const badge = document.getElementById('vipActiveBadge');
-      if (badge) {
-        badge.textContent = `CLEARANCE: ${code}`;
-        badge.classList.remove('hidden');
-      }
-    }
-
-    function lockPortalManually() {
-      sessionStorage.removeItem('vd_vault_auth');
-      document.getElementById('gatekeeperModal').classList.remove('hidden');
     }
 
     // ----------------------------------------------------
