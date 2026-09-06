@@ -1704,6 +1704,24 @@
       </div>
 
       <div class="py-5 space-y-4">
+        <!-- Interactive 3D DNA Hologram in Entrance Portal -->
+        <div class="relative w-full h-44 rounded-xl bg-gradient-to-b from-black/80 to-zinc-950/90 border border-zinc-800/90 overflow-hidden shadow-inner flex flex-col justify-between">
+          <div class="absolute top-2 inset-x-3 flex justify-between items-center z-10 pointer-events-none text-[9px] font-mono">
+            <span class="text-[#dec7a6] tracking-widest uppercase flex items-center gap-1">
+              <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
+              GENOMIC CLEARANCE SCANNER
+            </span>
+            <span class="text-zinc-500 uppercase tracking-wider">DRAG TO ROTATE</span>
+          </div>
+
+          <canvas id="gatekeeperDnaCanvas" class="w-full h-full cursor-grab active:cursor-grabbing block"></canvas>
+
+          <div class="absolute bottom-1.5 inset-x-3 flex justify-between items-center z-10 pointer-events-none text-[8px] font-mono text-zinc-500">
+            <span>BIOMETRIC ENCRYPTION: 256-BIT</span>
+            <span class="text-[#dec7a6]">ACTIVE CLEARANCE PORTAL</span>
+          </div>
+        </div>
+
         <p class="text-xs text-zinc-300 font-light leading-relaxed">
           Access to client advisory dossiers, peer-reviewed clinical methodologies, and private placement tiers is restricted to verified family offices and prospective principals.
         </p>
