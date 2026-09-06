@@ -1756,6 +1756,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       initHeroDnaCanvas();
+      initGatekeeperDnaCanvas();
       checkPasscodeClearance();
     });
 
@@ -1824,6 +1825,130 @@
       document.getElementById('gatekeeperModal').classList.remove('hidden');
       const badge = document.getElementById('vaultStatusPill');
       if (badge) badge.classList.add('hidden');
+      // Trigger canvas resize after modal opens
+      setTimeout(resizeGatekeeperCanvas, 50);
+    }
+
+    // ----------------------------------------------------
+    // LOCK PORTAL ENTRANCE 3D DNA HOLOGRAM ENGINE
+    // ----------------------------------------------------
+    let gkDnaScene, gkDnaCamera, gkDnaRenderer, gkDnaGroup;
+    let isGkDnaInteracting = false;
+    let gkPreviousMousePosition = { x: 0, y: 0 };
+
+    function initGatekeeperDnaCanvas() {
+      const canvas = document.getElementById('gatekeeperDnaCanvas');
+      if (!canvas) return;
+
+      gkDnaScene = new THREE.Scene();
+      gkDnaCamera = new THREE.PerspectiveCamera(45, (canvas.clientWidth || 350) / (canvas.clientHeight || 176), 0.1, 1000);
+      gkDnaCamera.position.z = 40;
+
+      gkDnaRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      gkDnaRenderer.setSize(canvas.clientWidth || 350, canvas.clientHeight || 176);
+      gkDnaRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      gkDnaGroup = new THREE.Group();
+      gkDnaScene.add(gkDnaGroup);
+
+      const strandPoints1 = [];
+      const strandPoints2 = [];
+      const rungs = 24;
+      const rungMat = new THREE.LineBasicMaterial({ color: 0xcbb28d, transparent: true, opacity: 0.75 });
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
+      const nodeGeo = new THREE.SphereGeometry(0.42, 10, 10);
+
+      for (let i = 0; i < rungs; i++) {
+        const t = (i / rungs) * Math.PI * 4;
+        const y = (i - rungs / 2) * 1.35;
+        const x1 = Math.cos(t) * 5.5;
+        const z1 = Math.sin(t) * 5.5;
+        const x2 = Math.cos(t + Math.PI) * 5.5;
+        const z2 = Math.sin(t + Math.PI) * 5.5;
+
+        strandPoints1.push(new THREE.Vector3(x1, y, z1));
+        strandPoints2.push(new THREE.Vector3(x2, y, z2));
+
+        const rungGeo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(x1, y, z1),
+          new THREE.Vector3(x2, y, z2)
+        ]);
+        const rungLine = new THREE.Line(rungGeo, rungMat);
+        gkDnaGroup.add(rungLine);
+
+        const node1 = new THREE.Mesh(nodeGeo, nodeMat);
+        node1.position.set(x1, y, z1);
+        const node2 = new THREE.Mesh(nodeGeo, nodeMat);
+        node2.position.set(x2, y, z2);
+        gkDnaGroup.add(node1);
+        gkDnaGroup.add(node2);
+      }
+
+      const curve1 = new THREE.CatmullRomCurve3(strandPoints1);
+      const tubeGeo1 = new THREE.TubeGeometry(curve1, 48, 0.16, 6, false);
+      const tubeMat = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
+      const tube1 = new THREE.Mesh(tubeGeo1, tubeMat);
+      gkDnaGroup.add(tube1);
+
+      const curve2 = new THREE.CatmullRomCurve3(strandPoints2);
+      const tubeGeo2 = new THREE.TubeGeometry(curve2, 48, 0.16, 6, false);
+      const tube2 = new THREE.Mesh(tubeGeo2, tubeMat);
+      gkDnaGroup.add(tube2);
+
+      gkDnaGroup.rotation.z = 0.25;
+
+      // Mouse Drag & Touch Rotation Controls
+      canvas.addEventListener('mousedown', (e) => {
+        isGkDnaInteracting = true;
+        gkPreviousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mouseup', () => { isGkDnaInteracting = false; });
+      window.addEventListener('mousemove', (e) => {
+        if (!isGkDnaInteracting) return;
+        const deltaX = e.clientX - gkPreviousMousePosition.x;
+        const deltaY = e.clientY - gkPreviousMousePosition.y;
+        gkDnaGroup.rotation.y += deltaX * 0.012;
+        gkDnaGroup.rotation.x += deltaY * 0.012;
+        gkPreviousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      // Touch events for mobile
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isGkDnaInteracting = true;
+          gkPreviousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+      window.addEventListener('touchend', () => { isGkDnaInteracting = false; });
+      window.addEventListener('touchmove', (e) => {
+        if (!isGkDnaInteracting || e.touches.length !== 1) return;
+        const deltaX = e.touches[0].clientX - gkPreviousMousePosition.x;
+        const deltaY = e.touches[0].clientY - gkPreviousMousePosition.y;
+        gkDnaGroup.rotation.y += deltaX * 0.012;
+        gkDnaGroup.rotation.x += deltaY * 0.012;
+        gkPreviousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }, { passive: true });
+
+      function renderGkLoop() {
+        requestAnimationFrame(renderGkLoop);
+        if (!isGkDnaInteracting && gkDnaGroup) {
+          gkDnaGroup.rotation.y += 0.012;
+        }
+        if (gkDnaRenderer && gkDnaScene && gkDnaCamera) {
+          gkDnaRenderer.render(gkDnaScene, gkDnaCamera);
+        }
+      }
+      renderGkLoop();
+
+      window.addEventListener('resize', resizeGatekeeperCanvas);
+    }
+
+    function resizeGatekeeperCanvas() {
+      const canvas = document.getElementById('gatekeeperDnaCanvas');
+      if (!canvas || !canvas.clientWidth || !canvas.clientHeight || !gkDnaCamera || !gkDnaRenderer) return;
+      gkDnaCamera.aspect = canvas.clientWidth / canvas.clientHeight;
+      gkDnaCamera.updateProjectionMatrix();
+      gkDnaRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
     }
 
     // ----------------------------------------------------
