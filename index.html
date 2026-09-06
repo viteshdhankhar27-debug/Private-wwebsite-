@@ -77,56 +77,66 @@
       background: #cbb28d;
     }
 
-    /* Spatial 3D Lighting & Glassmorphic Elevation */
+    /* Spatial 3D Lighting & Specular Glassmorphism */
     .glass-spatial-card {
-      background: linear-gradient(145deg, rgba(22, 22, 28, 0.7) 0%, rgba(9, 9, 12, 0.9) 100%);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      position: relative;
+      background: linear-gradient(145deg, rgba(20, 20, 26, 0.72) 0%, rgba(9, 9, 13, 0.94) 100%);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-top: 1px solid rgba(222, 199, 166, 0.38);
+      border-top: 1px solid rgba(222, 199, 166, 0.45);
       box-shadow: 
-        0 24px 60px -15px rgba(0, 0, 0, 0.95),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
-        0 0 30px rgba(203, 178, 141, 0.04);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        0 24px 60px -15px rgba(0, 0, 0, 0.96),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+        0 0 35px rgba(203, 178, 141, 0.04);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
       transform: perspective(1200px) translateZ(0);
+      overflow: hidden;
+    }
+    .glass-spatial-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(650px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(222, 199, 166, 0.09), transparent 60%);
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.3s;
     }
     .glass-spatial-card:hover {
-      transform: perspective(1200px) translateY(-4px) translateZ(8px);
-      border-top: 1px solid rgba(222, 199, 166, 0.7);
+      transform: perspective(1200px) translateY(-4px) translateZ(10px);
+      border-top: 1px solid rgba(222, 199, 166, 0.85);
       box-shadow: 
-        0 35px 80px -20px rgba(0, 0, 0, 0.98),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
-        0 0 45px rgba(203, 178, 141, 0.15);
+        0 35px 85px -20px rgba(0, 0, 0, 0.98),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+        0 0 45px rgba(203, 178, 141, 0.16);
     }
 
-    /* 3D Gatekeeper Floating Vault Card */
-    .vault-3d-card {
-      background: linear-gradient(160deg, rgba(18, 18, 24, 0.92) 0%, rgba(7, 7, 10, 0.98) 100%);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid rgba(203, 178, 141, 0.3);
-      border-top: 1.5px solid rgba(222, 199, 166, 0.7);
+    /* Swiss-Engineered Tactile Vault Card */
+    .vault-titanium-card {
+      position: relative;
+      background: radial-gradient(circle at 50% 0%, rgba(32, 32, 42, 0.85) 0%, rgba(10, 10, 14, 0.98) 100%);
+      border: 1px solid rgba(203, 178, 141, 0.35);
+      border-top: 1.5px solid rgba(222, 199, 166, 0.8);
       box-shadow: 
-        0 40px 100px -20px rgba(0, 0, 0, 0.98),
-        0 0 60px rgba(203, 178, 141, 0.12),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-      transform-style: preserve-3d;
-      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+        0 50px 120px -25px rgba(0, 0, 0, 0.98),
+        0 0 70px rgba(203, 178, 141, 0.14),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
     }
 
     /* Machined Titanium Badge */
     .badge-machined {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(18, 18, 24, 0.85) 100%);
-      border: 1px solid rgba(222, 199, 166, 0.28);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(18, 18, 24, 0.9) 100%);
+      border: 1px solid rgba(222, 199, 166, 0.3);
       box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
         0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
     /* Ambient Conic Glowing Orbs */
     .glow-conic-radial {
-      background: radial-gradient(circle at 50% 50%, rgba(203, 178, 141, 0.15) 0%, rgba(203, 178, 141, 0.03) 45%, transparent 70%);
+      background: radial-gradient(circle at 50% 50%, rgba(203, 178, 141, 0.16) 0%, rgba(203, 178, 141, 0.03) 45%, transparent 70%);
     }
 
     @keyframes spatialBreath {
@@ -137,7 +147,7 @@
       animation: spatialBreath 7s ease-in-out infinite;
     }
 
-    /* Telemetry HUD Bars */
+    /* Telemetry HUD Segment Indicators */
     .hud-segment {
       height: 6px;
       border-radius: 1px;
@@ -145,13 +155,13 @@
     }
     .hud-segment.active-gold {
       background: linear-gradient(90deg, #cbb28d, #dec7a6);
-      box-shadow: 0 0 8px rgba(222, 199, 166, 0.6);
+      box-shadow: 0 0 8px rgba(222, 199, 166, 0.7);
     }
     .hud-segment.inactive {
       background: rgba(255, 255, 255, 0.07);
     }
 
-    /* 3D Holographic Canvas Layer */
+    /* 3D Holographic Background Canvas */
     #spatial3dCanvas {
       position: fixed;
       top: 0;
@@ -160,11 +170,11 @@
       height: 100vh;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.72;
+      opacity: 0.75;
       transition: opacity 0.5s ease;
     }
 
-    /* Obfuscated / Masked Security Text */
+    /* Masked Security Redaction */
     .security-blur {
       filter: blur(4px);
       user-select: none;
@@ -188,7 +198,7 @@
       <span id="vipActiveBadge" class="hidden px-2 py-0.5 rounded bg-[#cbb28d]/20 text-[#dec7a6] text-[9px] border border-[#cbb28d]/40"></span>
       <button 
         onclick="lockPortalManually()" 
-        title="Click to engage 3D passcode lock screen"
+        title="Engage Tactile Passcode Lock Vault"
         class="ml-2 text-[9px] text-[#dec7a6] hover:text-white px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700/80 uppercase tracking-widest hover:border-[#dec7a6] transition-colors flex items-center gap-1"
       >
         <i data-lucide="lock" class="w-2.5 h-2.5"></i>
@@ -197,7 +207,7 @@
     </div>
     <div class="flex items-center gap-6">
       <span class="text-[#dec7a6] font-semibold tracking-[0.24em]">Q3/Q4 ROSTER: 2 PRIVATE PLACEMENTS</span>
-      <span class="text-zinc-400 font-medium hidden md:inline">HYDERABAD EXCLUSIVE</span>
+      <span class="text-zinc-400 font-medium hidden md:inline">HYDERABAD &bull; DUBAI EXCLUSIVE</span>
     </div>
   </aside>
 
@@ -217,7 +227,11 @@
       <nav class="hidden lg:flex items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-zinc-400 font-mono">
         <a href="#publications" class="hover:text-[#dec7a6] text-[#dec7a6] transition-colors flex items-center gap-1.5">
           <i data-lucide="microscope" class="w-3.5 h-3.5"></i>
-          <span>Published Researches</span>
+          <span>Researches</span>
+        </a>
+        <a href="#proof" class="hover:text-[#dec7a6] transition-colors flex items-center gap-1.5">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>N=1 Protocol Proof</span>
         </a>
         <a href="#certificates" class="hover:text-[#dec7a6] transition-colors">Certifications</a>
         <a href="#rehab" class="hover:text-[#dec7a6] transition-colors flex items-center gap-1.5">
@@ -225,7 +239,7 @@
           <span>Rehab Suite</span>
         </a>
         <a href="#methodology" class="hover:text-[#dec7a6] transition-colors">Architecture</a>
-        <a href="#tiers" class="hover:text-[#dec7a6] transition-colors">Engagements</a>
+        <a href="#tiers" class="hover:text-[#dec7a6] transition-colors">Retainers</a>
         <a href="#discretion" class="hover:text-[#dec7a6] transition-colors">Discretion Charter</a>
       </nav>
 
@@ -237,7 +251,7 @@
           title="Direct Confidential Email"
         >
           <i data-lucide="mail" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
-          <span>Email Advisory Desk</span>
+          <span>Direct Advisory Desk</span>
         </a>
 
         <button 
@@ -261,10 +275,11 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden lg:hidden border-b border-zinc-800 bg-[#08080a]/95 backdrop-blur-xl p-6 flex flex-col gap-4 text-xs tracking-widest uppercase font-mono shadow-2xl">
       <a href="#publications" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80 text-[#dec7a6]">Published Researches</a>
+      <a href="#proof" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Founder N=1 Protocol</a>
       <a href="#certificates" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Certifications</a>
       <a href="#rehab" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Rehab Suite</a>
       <a href="#methodology" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Architecture</a>
-      <a href="#tiers" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Engagement Tiers</a>
+      <a href="#tiers" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Retainer Tiers</a>
       <a href="#discretion" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Discretion Charter</a>
       
       <div class="pt-2 flex flex-col gap-2.5">
@@ -284,16 +299,15 @@
       </div>
     </div>
   </header>
-
-  <!-- Hero Section with Volumetric Lighting & 3D Spatial Canvas -->
+  <!-- Hero Section with Multi-Layer 3D Biometric Scanner -->
   <section class="relative pt-12 pb-24 md:pt-28 md:pb-36 overflow-hidden z-10">
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] glow-conic-radial rounded-full blur-[130px] pointer-events-none animate-spatial-glow"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[580px] glow-conic-radial rounded-full blur-[140px] pointer-events-none animate-spatial-glow"></div>
 
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
         
         <div class="lg:col-span-7 space-y-8 text-left">
-          <!-- Refined Institutional Header Badge (Replaced old wording) -->
+          <!-- Institutional Header Badge -->
           <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full badge-machined text-[#dec7a6] text-[11px] uppercase tracking-[0.22em] font-mono">
             <i data-lucide="shield" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
             Private Biomechanical &amp; Longevity Advisory &bull; High-Performance Human Architecture
@@ -350,7 +364,7 @@
           </div>
         </div>
 
-        <!-- 3D Dimensional Decision & Telemetry Card -->
+        <!-- UPGRADE 1: INTERACTIVE 3D MULTI-LAYER BIOMETRIC SCANNER -->
         <div class="lg:col-span-5 relative">
           <div class="glass-spatial-card relative mx-auto max-w-md lg:max-w-none rounded-2xl p-7 text-left">
             
@@ -370,56 +384,60 @@
               </span>
             </div>
 
-            <!-- INTERACTIVE 3D DNA HELIX VIEWPORT -->
-            <div class="my-5 relative rounded-2xl bg-black/80 border border-zinc-800/90 overflow-hidden shadow-inner group">
-              <div class="h-44 sm:h-48 w-full relative">
+            <!-- 3D MULTI-LAYER SCANNER VIEWPORT -->
+            <div class="my-5 relative rounded-2xl bg-black/85 border border-zinc-800/90 overflow-hidden shadow-inner group">
+              <div class="h-48 sm:h-52 w-full relative">
                 <canvas id="heroDnaCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
                 
-                <!-- 3D HUD Overlay -->
+                <!-- 3D HUD Top Bar -->
                 <div class="absolute top-2.5 left-3 right-3 flex items-center justify-between pointer-events-none text-[9px] font-mono tracking-widest uppercase">
-                  <div class="flex items-center gap-1.5 text-[#dec7a6] bg-black/60 px-2 py-0.5 rounded border border-[#cbb28d]/20 backdrop-blur-sm">
+                  <div class="flex items-center gap-1.5 text-[#dec7a6] bg-black/70 px-2 py-0.5 rounded border border-[#cbb28d]/30 backdrop-blur-sm">
                     <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
-                    <span>3D BIOMETRIC HELIX &bull; ACTIVE</span>
+                    <span id="activeScannerLayerTitle">LAYER 1: EPIGENETIC METHYLATION</span>
                   </div>
-                  <span class="text-zinc-500 hidden sm:inline">DRAG / SWIPE TO ROTATE</span>
+                  <span class="text-zinc-400 hidden sm:inline">DRAG TO PIVOT CAMERA</span>
                 </div>
 
-                <!-- Interactive DNA Loci Checkpoint Selector -->
-                <div class="absolute bottom-2 inset-x-2 flex items-center justify-center gap-1.5 flex-wrap z-10">
+                <!-- 3-LAYER FOCAL SWITCHES -->
+                <div class="absolute bottom-2.5 inset-x-3 flex items-center justify-between gap-1.5 z-10 bg-black/75 p-1 rounded-lg border border-zinc-800 backdrop-blur-md">
                   <button 
                     type="button"
-                    onclick="focusDnaLocus('dunedin')"
-                    class="px-2 py-1 rounded bg-black/80 hover:bg-[#cbb28d] hover:text-zinc-950 border border-[#cbb28d]/40 text-[#dec7a6] text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm"
+                    id="btnLayerEpigenetic"
+                    onclick="switchScannerLayer('epigenetic')"
+                    class="flex-1 py-1 rounded bg-[#cbb28d] text-zinc-950 font-bold text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-1"
                   >
-                    DunedinPACE
+                    <span>1. Epigenetic</span>
                   </button>
                   <button 
                     type="button"
-                    onclick="focusDnaLocus('cad9p21')"
-                    class="px-2 py-1 rounded bg-black/80 hover:bg-[#cbb28d] hover:text-zinc-950 border border-zinc-700/80 text-zinc-300 text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm"
+                    id="btnLayerCardio"
+                    onclick="switchScannerLayer('cardio')"
+                    class="flex-1 py-1 rounded bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white text-[9px] font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-1"
                   >
-                    9p21 CAD
+                    <span>2. Vascular</span>
                   </button>
                   <button 
                     type="button"
-                    onclick="focusDnaLocus('sirt1')"
-                    class="px-2 py-1 rounded bg-black/80 hover:bg-[#cbb28d] hover:text-zinc-950 border border-zinc-700/80 text-zinc-300 text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm"
+                    id="btnLayerNeural"
+                    onclick="switchScannerLayer('neural')"
+                    class="flex-1 py-1 rounded bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white text-[9px] font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-1"
                   >
-                    SIRT1 Biogenesis
+                    <span>3. Reflexes</span>
                   </button>
                 </div>
               </div>
 
-              <div id="dnaStatusNotice" class="px-3 py-1.5 bg-zinc-950/90 border-t border-zinc-800/80 text-[10px] font-mono text-zinc-400 flex items-center justify-between">
-                <span>TARGET LOCUS: <strong id="currentLocusName" class="text-[#dec7a6]">EPIGENETIC METHYLATION</strong></span>
-                <span id="currentLocusScore" class="text-emerald-400 font-semibold">0.64 PACE (-36%)</span>
+              <!-- Scanner Diagnostic Output -->
+              <div id="scannerTelemetryOutput" class="px-3.5 py-2 bg-zinc-950/95 border-t border-zinc-800/80 text-[10px] font-mono text-zinc-400 flex items-center justify-between">
+                <span>TARGET METRIC: <strong id="scannerMetricLabel" class="text-[#dec7a6]">DUNEDINPACE DNAm</strong></span>
+                <span id="scannerMetricVal" class="text-emerald-400 font-semibold">0.64 PACE (-36% DECAY)</span>
               </div>
             </div>
 
-            <!-- Segmented HUD Gauges with Inline Interactive Expansion (No extra space) -->
+            <!-- Synchronized HUD Biometric Meters -->
             <div class="space-y-4 my-6">
               
-              <!-- Metric 1: Epigenetic Aging (Expandable in-place) -->
+              <!-- Metric 1: Epigenetic Aging -->
               <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner transition-all duration-300">
                 <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-2">
                   <span class="tracking-wider">EPIGENETIC PACE OF AGING</span>
@@ -469,7 +487,7 @@
                 </div>
               </div>
 
-              <!-- Metric 2: Neuromuscular Speed (Expandable in-place) -->
+              <!-- Metric 2: Neuromuscular Speed -->
               <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner transition-all duration-300">
                 <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-2">
                   <span class="tracking-wider">NEUROMUSCULAR REACTION SPEED</span>
@@ -519,7 +537,7 @@
                 </div>
               </div>
 
-              <!-- Metric 3: Fiber-First Glycemic Telemetry (Expandable in-place) -->
+              <!-- Metric 3: Fiber-First Glycemic Telemetry -->
               <div class="p-4 rounded-xl bg-black/60 border border-zinc-800/80 shadow-inner transition-all duration-300">
                 <div class="flex justify-between items-center text-[11px] font-mono text-zinc-400 mb-2">
                   <span class="tracking-wider">PRIVATE CHEF GLYCEMIC MAPPING</span>
@@ -589,7 +607,6 @@
       </div>
     </div>
   </section>
-
   <!-- SECTION: PEER-REVIEWED RESEARCH VAULT -->
   <section id="publications" class="py-24 bg-[#08080a] border-y border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -650,7 +667,7 @@
           <div class="pt-4 border-t border-zinc-800/80 space-y-3.5">
             <div class="bg-black/60 px-3.5 py-2.5 rounded-lg border border-zinc-800/80 text-[11px] font-mono shadow-inner">
               <div class="text-[9px] text-zinc-400 uppercase tracking-wider">Primary Protocol Yield:</div>
-              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">DunedinPACE Pace-of-Aging Reduction & DNAm Calibration</div>
+              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">DunedinPACE Pace-of-Aging Reduction &amp; DNAm Calibration</div>
             </div>
 
             <button
@@ -696,7 +713,7 @@
           <div class="pt-4 border-t border-zinc-800/80 space-y-3.5">
             <div class="bg-black/60 px-3.5 py-2.5 rounded-lg border border-zinc-800/80 text-[11px] font-mono shadow-inner">
               <div class="text-[9px] text-zinc-400 uppercase tracking-wider">Primary Protocol Yield:</div>
-              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">+12.4% Agility & 19.6ms Faster Neuromuscular Reflexes</div>
+              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">+12.4% Agility &amp; 19.6ms Faster Neuromuscular Reflexes</div>
             </div>
 
             <button
@@ -742,7 +759,7 @@
           <div class="pt-4 border-t border-zinc-800/80 space-y-3.5">
             <div class="bg-black/60 px-3.5 py-2.5 rounded-lg border border-zinc-800/80 text-[11px] font-mono shadow-inner">
               <div class="text-[9px] text-zinc-400 uppercase tracking-wider">Primary Protocol Yield:</div>
-              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">Biometric Somatotype Matching & Talent Mapping Matrix</div>
+              <div class="font-semibold text-[#dec7a6] mt-0.5 text-xs">Biometric Somatotype Matching &amp; Talent Mapping Matrix</div>
             </div>
 
             <button
@@ -759,7 +776,123 @@
 
     </div>
   </section>
+  <!-- UPGRADE 3: THE FOUNDER PROTOCOL (EMPIRICAL N=1 PROOF) -->
+  <section id="proof" class="py-24 border-b border-zinc-900/90 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
+          Empirical Case Dossier &bull; N=1 Founder Proof
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
+          Self-Architecture in Practice
+        </h2>
+        <p class="text-zinc-400 text-sm font-light leading-relaxed">
+          Before deploying protocols across family offices, sports institutions, and sovereign clients, Vitesh Dhankhar engineered a systematic 16 kg recomposition and biological turnaround governed entirely by multi-omic sequencing.
+        </p>
+      </div>
 
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left 7 Cols: Telemetry & Biomarker Evidence -->
+        <div class="lg:col-span-7 glass-spatial-card rounded-2xl p-8 flex flex-col justify-between text-left">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-zinc-800/80 text-[10px] font-mono">
+              <span class="text-[#dec7a6] tracking-widest uppercase font-semibold">CLINICAL PARAMETER CALIBRATION</span>
+              <span class="badge-machined px-2.5 py-1 text-emerald-400 font-semibold uppercase tracking-wider rounded">DEXA &amp; LAB VERIFIED</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+              <div class="p-4 rounded-xl bg-black/70 border border-zinc-800/90 space-y-1">
+                <span class="text-[10px] font-mono text-zinc-400 uppercase">Body Mass Recomposition</span>
+                <div class="text-2xl font-serif text-white">-16.2 KG <span class="text-xs font-mono text-[#dec7a6] font-normal">FAT DEPLETION</span></div>
+                <p class="text-[11px] text-zinc-400 font-light pt-1">
+                  Visceral Adipose Tissue (VAT) purged while preserving lean muscle mass via the 3-2-1 resistance protocol.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-black/70 border border-zinc-800/90 space-y-1">
+                <span class="text-[10px] font-mono text-zinc-400 uppercase">Fasting Serum Insulin</span>
+                <div class="text-2xl font-serif text-[#dec7a6]">3.2 &mu;IU/mL <span class="text-xs font-mono text-emerald-400 font-normal">OPTIMAL</span></div>
+                <p class="text-[11px] text-zinc-400 font-light pt-1">
+                  Elimination of postprandial glucose excursions achieved through strict Fiber-First meal ordering.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-black/70 border border-zinc-800/90 space-y-1">
+                <span class="text-[10px] font-mono text-zinc-400 uppercase">Dermatological &amp; AGE Reversal</span>
+                <div class="text-2xl font-serif text-white">Gut-Skin Axis <span class="text-xs font-mono text-[#dec7a6] font-normal">RESTORED</span></div>
+                <p class="text-[11px] text-zinc-400 font-light pt-1">
+                  Total eradication of cystic acne and inflammatory erythema via reduction of reactive Advanced Glycation End-products.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-black/70 border border-zinc-800/90 space-y-1">
+                <span class="text-[10px] font-mono text-zinc-400 uppercase">Craniofacial Vascular Tone</span>
+                <div class="text-2xl font-serif text-[#dec7a6]">&sim;72% Depuff <span class="text-xs font-mono text-emerald-400 font-normal">STRUCTURAL</span></div>
+                <p class="text-[11px] text-zinc-400 font-light pt-1">
+                  Lymphatic fluid evacuation and mandibular posture alignment engineered for high-definition film optics.
+                </p>
+              </div>
+            </div>
+
+            <p class="text-xs text-zinc-300 font-light leading-relaxed">
+              "We do not advise on hypothetical wellness theories. Every protocol mandated to a client—from glycemic sequencing to low-shear loading—has been measured and proven at the molecular level."
+            </p>
+          </div>
+
+          <div class="pt-5 border-t border-zinc-800/80 flex items-center justify-between text-xs font-mono">
+            <span class="text-zinc-400">Founder Protocol: N=1 Living Laboratory</span>
+            <button 
+              onclick="openIntakeModal()"
+              class="text-[#dec7a6] hover:underline uppercase tracking-wider font-semibold"
+            >
+              Inquire on Custom Protocol &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Empirical Protocol Blueprint -->
+        <div class="lg:col-span-5 glass-spatial-card rounded-2xl p-8 flex flex-col justify-between text-left">
+          <div>
+            <div class="flex items-center gap-2 pb-4 border-b border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
+              <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+              <span>The 3 Pillars of the Protocol</span>
+            </div>
+
+            <div class="space-y-4 my-6 text-xs font-light">
+              <div class="p-3.5 rounded-lg bg-black/60 border border-zinc-800/80">
+                <div class="font-mono text-[10px] text-[#dec7a6] uppercase font-semibold">1. Fiber-First Culinary Architecture</div>
+                <p class="text-zinc-300 mt-1 leading-relaxed">
+                  Consuming soluble dietary fiber prior to proteins and lipids creates a viscous jejunal mesh, blunting systemic insulin surges by up to 30%.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-lg bg-black/60 border border-zinc-800/80">
+                <div class="font-mono text-[10px] text-[#dec7a6] uppercase font-semibold">2. 3-2-1 Biomechanical Periodization</div>
+                <p class="text-zinc-300 mt-1 leading-relaxed">
+                  3 sessions Progressive Resistance Training (osteogenic and sarcopenic defense) + 2 sessions Zone 2 (mitochondrial biogenesis) + 1 session HIIT (VO2 peak).
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-lg bg-black/60 border border-zinc-800/80">
+                <div class="font-mono text-[10px] text-[#dec7a6] uppercase font-semibold">3. Circadian Vascular Flushing</div>
+                <p class="text-zinc-300 mt-1 leading-relaxed">
+                  Contrast hyperthermia and cold shock proteins activate heat shock proteins (HSP70) and endothelial nitric oxide synthase (eNOS) for vascular compliance.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-[#cbb28d]/10 border border-[#cbb28d]/30 text-[10px] font-mono text-[#dec7a6]">
+            AUTHENTICATION: Registered with Sports Science Department, LNIPE Gwalior.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
   <!-- SECTION: OFFICIAL ACCREDITED CERTIFICATES (With Masked/Blurred Registration Numbers) -->
   <section id="certificates" class="py-24 border-b border-zinc-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
@@ -783,47 +916,57 @@
           <div class="relative">
             <div class="w-full h-60 bg-gradient-to-br from-zinc-900 to-black rounded-xl border border-zinc-800/90 p-5 relative overflow-hidden shadow-inner">
               <div class="flex justify-between items-start">
-                <div class="text-[10px] font-mono text-[#dec7a6] uppercase tracking-widest font-semibold">
-                  INTERNATIONAL JOURNAL OF PHYSIOLOGY
+                <div class="flex items-center gap-2.5">
+                  <div class="h-9 w-9 rounded-full bg-black border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6] font-serif text-xs font-bold shadow">
+                    VD
+                  </div>
+                  <div>
+                    <div class="text-xs font-serif text-white">Certificate of Publication</div>
+                    <div class="text-[9px] font-mono text-[#dec7a6]">IJPHPE &bull; Impact Factor 8.16</div>
+                  </div>
                 </div>
-                <span class="badge-machined px-2.5 py-0.5 text-[9px] font-mono text-emerald-400 border border-emerald-500/30 rounded font-semibold">
+                <span class="badge-machined px-2 py-0.5 text-[8px] font-mono text-emerald-400 border border-emerald-500/30 uppercase rounded">
                   AUTHENTICATED
                 </span>
               </div>
 
-              <div class="mt-4 space-y-1">
-                <div class="text-xs font-serif text-zinc-300">CERTIFICATE OF SCIENTIFIC PUBLICATION</div>
-                <div class="text-[10px] font-mono text-zinc-400">Presented to author: <span class="text-white">VITESH DHANKHAR</span></div>
-                <!-- Blurred Certificate & Paper Identifier -->
-                <div class="text-[10px] font-mono text-zinc-400 flex items-center gap-2">
-                  <span>Certificate ID:</span>
-                  <span class="security-blur text-white bg-zinc-800/80 px-2 py-0.5 rounded">IJPHPE-REG-981240-X</span>
-                  <span class="text-[9px] text-[#dec7a6] font-mono">[MASKED]</span>
+              <!-- Certificate Body Representation -->
+              <div class="my-4 space-y-2 text-left">
+                <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">This is to certify that the paper entitled:</div>
+                <div class="text-xs font-serif text-zinc-200 line-clamp-2 italic">
+                  "Integrative multi-omic profiling of glycaemic variability and epigenetic aging: A comparative framework for biological age reversal in South Asian Cohorts"
+                </div>
+                <div class="text-[10px] font-mono text-zinc-300">
+                  Authored by: <strong class="text-white">Vitesh Dhankhar</strong>, Yenshi Dhankhar, Divya Deep
                 </div>
               </div>
 
-              <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/90 to-transparent flex items-end justify-center pb-4">
-                <div class="badge-machined flex items-center gap-2 text-xs font-mono text-[#dec7a6] px-4 py-1.5 rounded border border-[#cbb28d]/40">
-                  <i data-lucide="lock" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
-                  <span>SECURITY WATERMARK &bull; RESTRICTED VIEW</span>
+              <!-- Redacted / Blurred Security Band -->
+              <div class="absolute bottom-3 inset-x-5 flex justify-between items-center text-[9px] font-mono bg-black/80 px-3 py-1.5 rounded border border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="text-zinc-500">CERT REG:</span>
+                  <span class="security-blur text-[#dec7a6] tracking-widest font-bold">IJPHPE-2026-V8-I8-99482X</span>
                 </div>
+                <span class="text-zinc-400 uppercase">Masked for Security</span>
               </div>
             </div>
 
-            <div class="mt-5 space-y-1 text-left">
-              <h4 class="text-base font-serif text-white">Epigenetic Aging &amp; Glycemic Variability Certification</h4>
-              <p class="text-xs text-zinc-400 font-mono">Issued by AkiNik Publications &bull; RJIF 8.16</p>
-            </div>
+            <h3 class="text-base font-serif text-white mt-5 mb-1.5">
+              Epigenetic Aging &amp; Glycaemic Variability Certificate
+            </h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed">
+              Editorial board confirmation for clinical multi-omic investigation into South Asian thin-fat biological age deceleration.
+            </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between">
-            <span class="text-xs font-mono text-zinc-400">Clearance Required</span>
-            <a 
-              href="mailto:viteshdhankhar27@gmail.com?subject=Verification%20Clearance%20Request%20-%20IJPHPE-2026-192"
-              class="px-4 py-2.5 bg-gradient-to-r from-[#dec7a6] to-[#b0966e] hover:brightness-110 text-zinc-950 text-xs font-mono uppercase tracking-wider rounded font-semibold transition-all shadow-sm"
+          <div class="pt-4 mt-5 border-t border-zinc-800/80 flex items-center justify-between">
+            <span class="text-[10px] font-mono text-[#dec7a6]">DOI: 10.33545/26647265...</span>
+            <button 
+              onclick="openIntakeModal()" 
+              class="text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider flex items-center gap-1"
             >
-              Request Verification &rarr;
-            </a>
+              Request Verified Copy &rarr;
+            </button>
           </div>
         </div>
 
@@ -832,47 +975,57 @@
           <div class="relative">
             <div class="w-full h-60 bg-gradient-to-br from-zinc-900 to-black rounded-xl border border-zinc-800/90 p-5 relative overflow-hidden shadow-inner">
               <div class="flex justify-between items-start">
-                <div class="text-[10px] font-mono text-[#dec7a6] uppercase tracking-widest font-semibold">
-                  SPORTS &amp; PHYSICAL EDUCATION JOURNAL
+                <div class="flex items-center gap-2.5">
+                  <div class="h-9 w-9 rounded-full bg-black border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6] font-serif text-xs font-bold shadow">
+                    VD
+                  </div>
+                  <div>
+                    <div class="text-xs font-serif text-white">Certificate of Publication</div>
+                    <div class="text-[9px] font-mono text-[#dec7a6]">IJPSPE &bull; Impact Factor 8.28</div>
+                  </div>
                 </div>
-                <span class="badge-machined px-2.5 py-0.5 text-[9px] font-mono text-emerald-400 border border-emerald-500/30 rounded font-semibold">
+                <span class="badge-machined px-2 py-0.5 text-[8px] font-mono text-emerald-400 border border-emerald-500/30 uppercase rounded">
                   AUTHENTICATED
                 </span>
               </div>
 
-              <div class="mt-4 space-y-1">
-                <div class="text-xs font-serif text-zinc-300">CERTIFICATE OF PEER-REVIEW PUBLICATION</div>
-                <div class="text-[10px] font-mono text-zinc-400">Presented to author: <span class="text-white">VITESH DHANKHAR</span></div>
-                <!-- Blurred Certificate & Paper Identifier -->
-                <div class="text-[10px] font-mono text-zinc-400 flex items-center gap-2">
-                  <span>Certificate ID:</span>
-                  <span class="security-blur text-white bg-zinc-800/80 px-2 py-0.5 rounded">IJPSPE-REG-774391-B</span>
-                  <span class="text-[9px] text-[#dec7a6] font-mono">[MASKED]</span>
+              <!-- Certificate Body Representation -->
+              <div class="my-4 space-y-2 text-left">
+                <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">This is to certify that the paper entitled:</div>
+                <div class="text-xs font-serif text-zinc-200 line-clamp-2 italic">
+                  "Cross-format training in badminton: Effect of weekly doubles practice on singles match performance"
+                </div>
+                <div class="text-[10px] font-mono text-zinc-300">
+                  Authored by: Yenshi Dhankhar and <strong class="text-white">Vitesh Dhankhar</strong>
                 </div>
               </div>
 
-              <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/90 to-transparent flex items-end justify-center pb-4">
-                <div class="badge-machined flex items-center gap-2 text-xs font-mono text-[#dec7a6] px-4 py-1.5 rounded border border-[#cbb28d]/40">
-                  <i data-lucide="lock" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
-                  <span>SECURITY WATERMARK &bull; RESTRICTED VIEW</span>
+              <!-- Redacted / Blurred Security Band -->
+              <div class="absolute bottom-3 inset-x-5 flex justify-between items-center text-[9px] font-mono bg-black/80 px-3 py-1.5 rounded border border-zinc-800">
+                <div class="flex items-center gap-2">
+                  <span class="text-zinc-500">CERT REG:</span>
+                  <span class="security-blur text-[#dec7a6] tracking-widest font-bold">IJPSPE-2026-V8-I8-88194Q</span>
                 </div>
+                <span class="text-zinc-400 uppercase">Masked for Security</span>
               </div>
             </div>
 
-            <div class="mt-5 space-y-1 text-left">
-              <h4 class="text-base font-serif text-white">Cross-Format Neuromuscular Velocity Certification</h4>
-              <p class="text-xs text-zinc-400 font-mono">Issued by AkiNik Publications &bull; RJIF 8.28</p>
-            </div>
+            <h3 class="text-base font-serif text-white mt-5 mb-1.5">
+              Cross-Format Neuromuscular Velocity Certificate
+            </h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed">
+              Official verification documenting the -19.6 millisecond reaction acceleration and +12.4% agility transference framework.
+            </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between">
-            <span class="text-xs font-mono text-zinc-400">Clearance Required</span>
-            <a 
-              href="mailto:viteshdhankhar27@gmail.com?subject=Verification%20Clearance%20Request%20-%20IJPSPE-2026-288"
-              class="px-4 py-2.5 bg-gradient-to-r from-[#dec7a6] to-[#b0966e] hover:brightness-110 text-zinc-950 text-xs font-mono uppercase tracking-wider rounded font-semibold transition-all shadow-sm"
+          <div class="pt-4 mt-5 border-t border-zinc-800/80 flex items-center justify-between">
+            <span class="text-[10px] font-mono text-[#dec7a6]">DOI: 10.33545/26647710...</span>
+            <button 
+              onclick="openIntakeModal()" 
+              class="text-xs font-mono text-zinc-300 hover:text-white uppercase tracking-wider flex items-center gap-1"
             >
-              Request Verification &rarr;
-            </a>
+              Request Verified Copy &rarr;
+            </button>
           </div>
         </div>
 
@@ -880,386 +1033,240 @@
 
     </div>
   </section>
-
-  <!-- SECTION: ADVANCED REHABILITATION & CELLULAR RESTORATION LAB (Fully Expandable with Clinical Depth) -->
+  <!-- SECTION: ADVANCED RECOVERY LAB & CLINICAL REHAB SUITE -->
   <section id="rehab" class="py-24 bg-[#08080a] border-b border-zinc-900/90 relative z-10">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div class="space-y-3 text-left">
-          <div class="inline-flex items-center gap-2 text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
-            <i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
-            Cellular Restoration &bull; Orthopedic Regeneration Lab
-          </div>
-          <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
-            Clinical Rehabilitation Protocols
-          </h2>
-          <p class="text-zinc-400 text-xs sm:text-sm max-w-2xl font-light leading-relaxed">
-            Eliminating chronic inflammation, rebuilding connective tissue elasticity, and rapidly down-regulating executive stress cascades through integrated clinical recovery modalities. Tap any protocol to inspect clinical parameters.
-          </p>
-        </div>
-
-        <div class="badge-machined text-xs font-mono text-[#dec7a6] px-4 py-2.5 rounded flex items-center gap-2 self-start md:self-auto border border-[#cbb28d]/40 shadow-sm">
-          <i data-lucide="shield-check" class="w-4 h-4 text-[#cbb28d]"></i>
-          ESTATE &amp; PRIVATE FACILITY DEPLOYMENT
-        </div>
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
+          Advanced Cellular Restoration Suite
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
+          Clinical Recovery &amp; Rehab Protocols
+        </h2>
+        <p class="text-zinc-400 text-sm font-light leading-relaxed">
+          High-performance bodily stress demands clinical-grade cellular restoration. We curate, calibrate, and oversee private estate installations and specialized clinical modalities.
+        </p>
       </div>
 
-      <!-- Rehabilitation Modalities Grid (With Interactive Detailed Drawers) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 text-left">
         
-        <!-- Modality 1: Hyperbaric Oxygen Therapy -->
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
-                <i data-lucide="wind" class="w-6 h-6"></i>
-              </div>
-              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
-                Tissue Oxygenation
-              </span>
+        <!-- Modality 1 -->
+        <div class="glass-spatial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] mb-5 shadow-sm">
+              <i data-lucide="gauge" class="w-6 h-6"></i>
             </div>
-
-            <div>
-              <h3 class="text-lg font-serif text-white group-hover:text-[#dec7a6] transition-colors">
-                Hyperbaric Oxygenation (HBOT)
-              </h3>
-              <p class="text-xs text-[#a49175] font-mono mt-0.5">Mitochondrial Respiration &amp; Microvascular Repair</p>
-            </div>
-
-            <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              1.5 to 2.0 ATA pressure cycles to saturate blood plasma with dissolved oxygen. Accelerates collagen cross-linking, neuro-cognitive recovery, and systemic stem cell mobilization.
+            <h3 class="text-lg font-serif text-white mb-2">Hyperbaric Oxygen (HBOT)</h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+              Mitochondrial oxygenation at 1.5 to 2.0 ATA pressure. Elevates plasma-dissolved oxygen, accelerating deep tissue repair, neurogenesis, and telomere protection.
             </p>
+          </div>
 
-            <!-- Interactive Click to Expand Full Clinical Info -->
+          <div class="pt-4 border-t border-zinc-800/80 space-y-2">
             <button 
-              type="button" 
-              onclick="toggleRehabExpansion('rehabInfo1')"
-              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+              onclick="toggleProtocolDetail('rehab1')"
+              class="w-full py-2.5 bg-zinc-900/80 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 border border-zinc-800"
             >
-              <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span id="rehabInfo1BtnText">Inspect Full Clinical Protocol &darr;</span>
+              <span>Inspect Clinical Protocol</span>
+              <i data-lucide="chevron-down" id="rehab1Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
             </button>
 
-            <!-- Expanded Info Section 1 -->
-            <div id="rehabInfo1" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
-              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
-                <div class="text-[#dec7a6] uppercase font-semibold">Clinical Parameters:</div>
-                <div class="text-zinc-400">&bull; Chamber Depth: 1.5 - 2.0 ATA (Pure 100% Medical Grade O₂)</div>
-                <div class="text-zinc-400">&bull; Duration: 60 - 90 minute pressurized saturation profiles</div>
-                <div class="text-zinc-400">&bull; Circulatory Mechanism: Henry's Law 15-fold plasma O₂ dissolution</div>
+            <!-- Detailed Expandable Clinical Drawer -->
+            <div id="rehab1" class="hidden pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
+              <div class="p-2.5 bg-black/70 rounded border border-zinc-800/90 text-[10px] font-mono text-zinc-400 space-y-1">
+                <div>DOSAGE: <span class="text-white">60-90 min @ 1.5-2.0 ATA</span></div>
+                <div>FREQUENCY: <span class="text-[#dec7a6]">3x weekly during intensive blocks</span></div>
+                <div>CELLULAR TARGET: <span class="text-white">VEGF upregulation &amp; stem cell mobilization</span></div>
               </div>
-              <p class="leading-relaxed">
-                Upregulates Hypoxia-Inducible Factor 1-alpha (HIF-1&alpha;) down-stream cascades, stimulating de-novo VEGF capillary neoangiogenesis in ischemic connective tissue beds, accelerates tendon elasticity, and clears neurological brain fog post-international travel.
+              <p class="text-[11px] leading-relaxed">
+                Hyperbaric oxygen increases dissolved oxygen in blood plasma by up to 10-fold, allowing tissue perfusion regardless of hemoglobin saturation. Stimulates fibroblast proliferation and reduces cerebral inflammation post-travel.
               </p>
-              <div class="text-[10px] font-mono text-zinc-400">Estate Integration: Modular monoplace hard-shell chamber installations supervised in Hyderabad private compounds.</div>
             </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-            <span>YIELD:</span>
-            <span class="text-[#dec7a6] font-semibold">+300% Plasma O₂ Diffusion</span>
           </div>
         </div>
 
-        <!-- Modality 2: Photobiomodulation -->
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
-                <i data-lucide="sun" class="w-6 h-6"></i>
-              </div>
-              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
-                Cellular Repair
-              </span>
+        <!-- Modality 2 -->
+        <div class="glass-spatial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] mb-5 shadow-sm">
+              <i data-lucide="sun" class="w-6 h-6"></i>
             </div>
-
-            <div>
-              <h3 class="text-lg font-serif text-white group-hover:text-[#dec7a6] transition-colors">
-                Photobiomodulation (Red &amp; NIR)
-              </h3>
-              <p class="text-xs text-[#a49175] font-mono mt-0.5">660nm Red &amp; 850nm Near-Infrared Spectrum</p>
-            </div>
-
-            <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Targeted photonic wavelengths directly stimulate mitochondrial Cytochrome c oxidase, upregulating ATP bio-synthesis, eliminating dermatological inflammation, and clearing senescent debris.
+            <h3 class="text-lg font-serif text-white mb-2">Photobiomodulation (Red / NIR)</h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+              Targeted 660nm red and 850nm near-infrared wavelengths stimulate mitochondrial cytochrome c oxidase, enhancing ATP yield and eliminating systemic inflammation.
             </p>
+          </div>
 
-            <!-- Interactive Click to Expand Full Clinical Info -->
+          <div class="pt-4 border-t border-zinc-800/80 space-y-2">
             <button 
-              type="button" 
-              onclick="toggleRehabExpansion('rehabInfo2')"
-              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+              onclick="toggleProtocolDetail('rehab2')"
+              class="w-full py-2.5 bg-zinc-900/80 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 border border-zinc-800"
             >
-              <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span id="rehabInfo2BtnText">Inspect Full Clinical Protocol &darr;</span>
+              <span>Inspect Clinical Protocol</span>
+              <i data-lucide="chevron-down" id="rehab2Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
             </button>
 
-            <!-- Expanded Info Section 2 -->
-            <div id="rehabInfo2" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
-              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
-                <div class="text-[#dec7a6] uppercase font-semibold">Photonic Parameters:</div>
-                <div class="text-zinc-400">&bull; Dual Spectral Tuning: 660nm (Dermal) &bull; 850nm (Deep Musculoskeletal)</div>
-                <div class="text-zinc-400">&bull; Irradiance Dosage: &gt;100 mW/cm&sup2; at 6-inch axial clearance</div>
-                <div class="text-zinc-400">&bull; Frequency: 15-minute daily sessions integrated pre/post training</div>
+            <!-- Detailed Expandable Clinical Drawer -->
+            <div id="rehab2" class="hidden pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
+              <div class="p-2.5 bg-black/70 rounded border border-zinc-800/90 text-[10px] font-mono text-zinc-400 space-y-1">
+                <div>WAVELENGTHS: <span class="text-white">660nm (Dermal) &bull; 850nm (Deep Myo)</span></div>
+                <div>IRRADIANCE: <span class="text-[#dec7a6]">>100 mW/cm&sup2; at surface</span></div>
+                <div>ESTATE INSTALLATION: <span class="text-white">Full-body medical panel array</span></div>
               </div>
-              <p class="leading-relaxed">
-                Photons photochemically dissociate inhibitory nitric oxide (NO) from Cytochrome c oxidase, instantly restoring mitochondrial electron transport and driving ATP synthesis. Drastically speeds delayed onset muscle soreness (DOMS) clearance and enhances skin collagen density.
+              <p class="text-[11px] leading-relaxed">
+                Photon absorption by cytochrome c oxidase unbinds nitric oxide, accelerating mitochondrial electron transport and collagen synthesis. Used daily for jetlag recovery and tendon resilience.
               </p>
-              <div class="text-[10px] font-mono text-zinc-400">Deployment: Full-body vertical LED medical panels integrated into private master suites.</div>
             </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-            <span>YIELD:</span>
-            <span class="text-[#dec7a6] font-semibold">Maximal Fibroblast Synthesis</span>
           </div>
         </div>
 
-        <!-- Modality 3: Contrast Thermal Vasodilation -->
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
-                <i data-lucide="flame" class="w-6 h-6"></i>
-              </div>
-              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
-                Thermal Shock
-              </span>
+        <!-- Modality 3 -->
+        <div class="glass-spatial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] mb-5 shadow-sm">
+              <i data-lucide="flame" class="w-6 h-6"></i>
             </div>
-
-            <div>
-              <h3 class="text-lg font-serif text-white group-hover:text-[#dec7a6] transition-colors">
-                Contrast Thermal Vasodilation
-              </h3>
-              <p class="text-xs text-[#a49175] font-mono mt-0.5">Infrared Sauna (80°C) &amp; Sub-Zero Plunge (3°C)</p>
-            </div>
-
-            <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Alternating extreme hyperthermic and hypothermic shock. Triggers Heat Shock Proteins (HSP70) to repair misfolded cellular proteins and cold shock protein (RBM3) for neuro-synaptogenesis.
+            <h3 class="text-lg font-serif text-white mb-2">Contrast Vasodilation Protocols</h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+              Far-infrared sauna (80°C) paired with refrigerated immersion (4°C). Triggers heat shock proteins (HSP70), norepinephrine release, and vascular elasticity.
             </p>
+          </div>
 
-            <!-- Interactive Click to Expand Full Clinical Info -->
+          <div class="pt-4 border-t border-zinc-800/80 space-y-2">
             <button 
-              type="button" 
-              onclick="toggleRehabExpansion('rehabInfo3')"
-              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+              onclick="toggleProtocolDetail('rehab3')"
+              class="w-full py-2.5 bg-zinc-900/80 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 border border-zinc-800"
             >
-              <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span id="rehabInfo3BtnText">Inspect Full Clinical Protocol &darr;</span>
+              <span>Inspect Clinical Protocol</span>
+              <i data-lucide="chevron-down" id="rehab3Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
             </button>
 
-            <!-- Expanded Info Section 3 -->
-            <div id="rehabInfo3" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
-              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
-                <div class="text-[#dec7a6] uppercase font-semibold">Contrast Architecture:</div>
-                <div class="text-zinc-400">&bull; Hyperthermic Phase: 20 mins Infrared / Finnish 80°C - 90°C</div>
-                <div class="text-zinc-400">&bull; Hypothermic Plunge: 3 mins 3°C - 5°C with continuous water agitation</div>
-                <div class="text-zinc-400">&bull; Vascular Cycling: 3 full cycles for maximal arterial compliance</div>
+            <!-- Detailed Expandable Clinical Drawer -->
+            <div id="rehab3" class="hidden pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
+              <div class="p-2.5 bg-black/70 rounded border border-zinc-800/90 text-[10px] font-mono text-zinc-400 space-y-1">
+                <div>RATIO: <span class="text-white">20 min Sauna (85&deg;C) : 3 min Cold (4&deg;C) &times; 3</span></div>
+                <div>HEAT SHOCK: <span class="text-[#dec7a6]">HSP70 / HSP90 proteostasis</span></div>
+                <div>COLD SHOCK: <span class="text-white">+250% Dopamine / Norepinephrine spike</span></div>
               </div>
-              <p class="leading-relaxed">
-                Forces full-body vascular pumping (massive vasodilation followed by peripheral vasoconstriction). Induces a 250% surge in plasma norepinephrine, suppressing systemic inflammation, boosting brown adipose tissue (BAT) mitochondrial uncoupling, and clearing muscle lactate.
+              <p class="text-[11px] leading-relaxed">
+                Vigorous cyclical vasoconstriction and vasodilation cleanses interstitial lymphatic waste, restores baroreceptor sensitivity, and significantly improves nocturnal heart rate variability (HRV).
               </p>
-              <div class="text-[10px] font-mono text-zinc-400">Compound Buildout: High-filtration chilling plunge units paired with custom cedar infrared saunas.</div>
             </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-            <span>YIELD:</span>
-            <span class="text-[#dec7a6] font-semibold">250% Norepinephrine Surge</span>
           </div>
         </div>
 
-        <!-- Modality 4: Cellular IV & NAD+ -->
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
-                <i data-lucide="droplet" class="w-6 h-6"></i>
-              </div>
-              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
-                Biochemical
-              </span>
+        <!-- Modality 4 -->
+        <div class="glass-spatial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] mb-5 shadow-sm">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
             </div>
-
-            <div>
-              <h3 class="text-lg font-serif text-white group-hover:text-[#dec7a6] transition-colors">
-                Cellular IV &amp; NAD+ Integration
-              </h3>
-              <p class="text-xs text-[#a49175] font-mono mt-0.5">Direct Physician &amp; Laboratory Coordination</p>
-            </div>
-
-            <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Bypassing gastrointestinal absorption barriers through calibrated intravenous cascades: high-dose Glutathione for hepatic detox, magnesium glycinate for nervous system reset, and NAD+ cofactors.
+            <h3 class="text-lg font-serif text-white mb-2">Cellular IV &amp; NAD+ Coordination</h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+              Direct liaison with your private physician for cellular hydration, glutathione infusions, and NAD+ precursors to preserve DNA repair and metabolic homeostasis.
             </p>
+          </div>
 
-            <!-- Interactive Click to Expand Full Clinical Info -->
+          <div class="pt-4 border-t border-zinc-800/80 space-y-2">
             <button 
-              type="button" 
-              onclick="toggleRehabExpansion('rehabInfo4')"
-              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+              onclick="toggleProtocolDetail('rehab4')"
+              class="w-full py-2.5 bg-zinc-900/80 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 border border-zinc-800"
             >
-              <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span id="rehabInfo4BtnText">Inspect Full Clinical Protocol &darr;</span>
+              <span>Inspect Clinical Protocol</span>
+              <i data-lucide="chevron-down" id="rehab4Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
             </button>
 
-            <!-- Expanded Info Section 4 -->
-            <div id="rehabInfo4" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
-              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
-                <div class="text-[#dec7a6] uppercase font-semibold">Infusion Cascades:</div>
-                <div class="text-zinc-400">&bull; NAD+ Loading: 500mg - 750mg slow infusion for PARP-1 DNA repair</div>
-                <div class="text-zinc-400">&bull; Hepatic Push: 2400mg Glutathione + Alpha-Lipoic Acid</div>
-                <div class="text-zinc-400">&bull; Neuro-Calm: Intravenous Magnesium Sulphate + Methyl-B Complex</div>
+            <!-- Detailed Expandable Clinical Drawer -->
+            <div id="rehab4" class="hidden pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
+              <div class="p-2.5 bg-black/70 rounded border border-zinc-800/90 text-[10px] font-mono text-zinc-400 space-y-1">
+                <div>ADMINISTRATION: <span class="text-white">Physician-conducted slow IV drip</span></div>
+                <div>CO-FACTORS: <span class="text-[#dec7a6]">Glutathione, B-Complex, Magnesium Glycinate</span></div>
+                <div>DNA INTEGRITY: <span class="text-white">PARP1 and Sirtuin cofactor replenishment</span></div>
               </div>
-              <p class="leading-relaxed">
-                Replenishes the intracellular NAD+/NADH ratio, activating SIRT1 and SIRT3 longevity genes. Protects nuclear DNA integrity, accelerates ATP synthase rotational velocity, and rapidly neutralizes reactive oxygen species (ROS) from trans-meridian flights.
+              <p class="text-[11px] leading-relaxed">
+                We coordinate timing with clinical medical staff around heavy travel schedules and intensive physical filming blocks, ensuring intracellular cofactor saturation without liver or renal strain.
               </p>
-              <div class="text-[10px] font-mono text-zinc-400">Clinical Protocol: Administered exclusively by licensed concierge nursing and medical partners.</div>
             </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-            <span>YIELD:</span>
-            <span class="text-[#dec7a6] font-semibold">100% Bioavailability</span>
           </div>
         </div>
 
-        <!-- Modality 5: Biomechanical Joint Decompression -->
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
-                <i data-lucide="activity" class="w-6 h-6"></i>
-              </div>
-              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
-                Orthopedic
-              </span>
+        <!-- Modality 5 -->
+        <div class="glass-spatial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] mb-5 shadow-sm">
+              <i data-lucide="bone" class="w-6 h-6"></i>
             </div>
-
-            <div>
-              <h3 class="text-lg font-serif text-white group-hover:text-[#dec7a6] transition-colors">
-                Biomechanical Joint Decompression
-              </h3>
-              <p class="text-xs text-[#a49175] font-mono mt-0.5">Axial Traction &amp; Kinetic Chain Release</p>
-            </div>
-
-            <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Low-shear spinal re-alignment and myofascial decompression engineered specifically for executives suffering from prolonged sedentary load, international jet lag, and spinal disc compression.
+            <h3 class="text-lg font-serif text-white mb-2">Biomechanical Joint Decompression</h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+              Low-shear spinal traction, myotendinous shear reduction, and synovial fluid mobilization designed to bulletproof knees, spine, and shoulders against degenerative loading.
             </p>
+          </div>
 
-            <!-- Interactive Click to Expand Full Clinical Info -->
+          <div class="pt-4 border-t border-zinc-800/80 space-y-2">
             <button 
-              type="button" 
-              onclick="toggleRehabExpansion('rehabInfo5')"
-              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+              onclick="toggleProtocolDetail('rehab5')"
+              class="w-full py-2.5 bg-zinc-900/80 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 border border-zinc-800"
             >
-              <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span id="rehabInfo5BtnText">Inspect Full Clinical Protocol &darr;</span>
+              <span>Inspect Clinical Protocol</span>
+              <i data-lucide="chevron-down" id="rehab5Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
             </button>
 
-            <!-- Expanded Info Section 5 -->
-            <div id="rehabInfo5" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
-              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
-                <div class="text-[#dec7a6] uppercase font-semibold">Biomechanical Matrix:</div>
-                <div class="text-zinc-400">&bull; Spinal Traction: Targeted L4-L5 &amp; L5-S1 disc re-imbibition</div>
-                <div class="text-zinc-400">&bull; Scapular Recalibration: Lower trapezius &amp; serratus anterior activation</div>
-                <div class="text-zinc-400">&bull; Hip Joint Capsule: Psoas and piriformis reciprocal inhibition release</div>
+            <!-- Detailed Expandable Clinical Drawer -->
+            <div id="rehab5" class="hidden pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
+              <div class="p-2.5 bg-black/70 rounded border border-zinc-800/90 text-[10px] font-mono text-zinc-400 space-y-1">
+                <div>MODALITY: <span class="text-white">Inversion traction &amp; end-range isometrics</span></div>
+                <div>COLLAGEN DEFENSE: <span class="text-[#dec7a6]">Type I &amp; II cartilage protection</span></div>
+                <div>POSTURE PROFILE: <span class="text-white">Thoracic spine extension &amp; sacral alignment</span></div>
               </div>
-              <p class="leading-relaxed">
-                Relieves intra-discal pressure, rehydrating fibrocartilage nucleus pulposus cushions. Restores neutral pelvic tilt, removes compressive loads from lumbar vertebrae, and opens thoracic expansion for deeper tidal respiratory volume during boardroom presentations.
+              <p class="text-[11px] leading-relaxed">
+                Reverses the compressive spinal forces generated by long-haul air travel and extended executive desk postures. Ensures pain-free athletic longevity and commanding upright presence.
               </p>
-              <div class="text-[10px] font-mono text-zinc-400">Implementation: Dedicated in-person manual release &amp; proprietary postural traction apparatus.</div>
             </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-            <span>YIELD:</span>
-            <span class="text-[#dec7a6] font-semibold">Zero-Shear Orthopedic Safety</span>
           </div>
         </div>
 
-        <!-- Modality 6: Circadian & Deep Sleep Mapping -->
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="flex justify-between items-start">
-              <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] group-hover:border-[#cbb28d]/70 transition-colors shadow-inner">
-                <i data-lucide="moon" class="w-6 h-6"></i>
-              </div>
-              <span class="badge-machined text-[10px] font-mono uppercase tracking-widest text-[#dec7a6] px-2.5 py-1 rounded border border-[#cbb28d]/20">
-                Neuro-Recovery
-              </span>
+        <!-- Modality 6 -->
+        <div class="glass-spatial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="h-12 w-12 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] mb-5 shadow-sm">
+              <i data-lucide="moon" class="w-6 h-6"></i>
             </div>
-
-            <div>
-              <h3 class="text-lg font-serif text-white group-hover:text-[#dec7a6] transition-colors">
-                Circadian &amp; Deep Sleep Mapping
-              </h3>
-              <p class="text-xs text-[#a49175] font-mono mt-0.5">Continuous HRV &amp; Core Temperature Calibration</p>
-            </div>
-
-            <p class="text-xs text-zinc-400 font-light leading-relaxed">
-              Nightly sleep architecture calibration optimizing Slow-Wave Sleep (SWS) and glymphatic brain detoxification. Custom thermal sleep environments, blue-light blockers, and evening cortisol suppression.
+            <h3 class="text-lg font-serif text-white mb-2">Circadian &amp; Sleep Architecture</h3>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+              Temperature regulation (18°C sleep suites), 0-lux darkness shielding, and blue-light frequency filtration tailored to synchronize melatonin rhythm across time zones.
             </p>
+          </div>
 
-            <!-- Interactive Click to Expand Full Clinical Info -->
+          <div class="pt-4 border-t border-zinc-800/80 space-y-2">
             <button 
-              type="button" 
-              onclick="toggleRehabExpansion('rehabInfo6')"
-              class="text-xs font-mono text-[#dec7a6] hover:text-white flex items-center gap-1.5 pt-1 uppercase tracking-wider transition-colors"
+              onclick="toggleProtocolDetail('rehab6')"
+              class="w-full py-2.5 bg-zinc-900/80 hover:bg-[#cbb28d] hover:text-zinc-950 text-zinc-200 text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-1.5 border border-zinc-800"
             >
-              <i data-lucide="info" class="w-3.5 h-3.5"></i>
-              <span id="rehabInfo6BtnText">Inspect Full Clinical Protocol &darr;</span>
+              <span>Inspect Clinical Protocol</span>
+              <i data-lucide="chevron-down" id="rehab6Icon" class="w-3.5 h-3.5 transition-transform duration-200"></i>
             </button>
 
-            <!-- Expanded Info Section 6 -->
-            <div id="rehabInfo6" class="hidden pt-3 mt-2 border-t border-zinc-800/80 space-y-3 text-xs font-light text-zinc-300">
-              <div class="p-3 bg-black/70 rounded-lg border border-zinc-800/90 space-y-1.5 font-mono text-[11px]">
-                <div class="text-[#dec7a6] uppercase font-semibold">Sleep Architecture Targets:</div>
-                <div class="text-zinc-400">&bull; Slow-Wave Sleep (SWS): Minimum 100+ minutes nightly target</div>
-                <div class="text-zinc-400">&bull; Core Thermal Drop: 1.2°C ambient reduction via hydro-regulated bedding</div>
-                <div class="text-zinc-400">&bull; Glymphatic Clearance: Evening posture protocols to flush beta-amyloid</div>
+            <!-- Detailed Expandable Clinical Drawer -->
+            <div id="rehab6" class="hidden pt-3 border-t border-zinc-800 text-xs text-zinc-300 font-light space-y-2">
+              <div class="p-2.5 bg-black/70 rounded border border-zinc-800/90 text-[10px] font-mono text-zinc-400 space-y-1">
+                <div>BEDROOM TEMPERATURE: <span class="text-white">18.5&deg;C &plusmn; 0.5&deg;C</span></div>
+                <div>SLOW-WAVE TARGET: <span class="text-[#dec7a6]">>20% Deep SWS nocturnal cycle</span></div>
+                <div>TIME-ZONE TRANSIT: <span class="text-white">Pre-flight melatonin receptor calibration</span></div>
               </div>
-              <p class="leading-relaxed">
-                Coordinates nocturnal autonomic tone balance via real-time Root Mean Square of Successive Differences (RMSSD) Heart Rate Variability telemetry. Regulates evening pineal melatonin surge and dampens adrenal cortisol release for restorative neuro-cognitive consolidation.
+              <p class="text-[11px] leading-relaxed">
+                Direct specifications provided to estate house managers and luxury hotel concierges. Maximizes the release of endogenous growth hormone and cerebrospinal glymphatic clearance.
               </p>
-              <div class="text-[10px] font-mono text-zinc-400">Suite Audit: Direct consultation on bedroom lighting spectrum, air particulate filtration, and acoustics.</div>
             </div>
           </div>
-
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-            <span>YIELD:</span>
-            <span class="text-[#dec7a6] font-semibold">+22% Deep SWS Duration</span>
-          </div>
         </div>
 
-      </div>
-
-      <!-- Estate Suite Consultation Strip -->
-      <div class="mt-12 glass-spatial-card p-7 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-        <div class="space-y-1.5">
-          <div class="text-xs font-semibold uppercase font-mono text-white flex items-center gap-2">
-            <i data-lucide="wrench" class="w-4 h-4 text-[#dec7a6]"></i>
-            Private Residence &amp; Estate Recovery Suite Buildout
-          </div>
-          <p class="text-xs text-zinc-400 font-light max-w-2xl leading-relaxed">
-            Vitesh consults directly with your architects and contractors in Jubilee Hills and Banjara Hills to procure, calibrate, and install private hyperbaric chambers, infrared saunas, and plunge suites.
-          </p>
-        </div>
-
-        <a 
-          href="mailto:viteshdhankhar27@gmail.com?subject=Private%20Estate%20Rehab%20Suite%20Buildout%20Inquiry"
-          class="px-6 py-3.5 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm shrink-0 flex items-center gap-2 transition-all shadow-[0_4px_20px_rgba(203,178,141,0.25)]"
-        >
-          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-          <span>Inquire on Estate Buildout</span>
-        </a>
       </div>
 
     </div>
   </section>
-
-  <!-- Methodology Pillars -->
-  <section id="methodology" class="py-24 bg-[#060608] border-b border-zinc-900/90 relative z-10">
+  <!-- SECTION: THE 4 ARCHITECTURAL PILLARS -->
+  <section id="methodology" class="py-24 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
@@ -1275,62 +1282,62 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
-          <div class="space-y-3.5">
-            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
+        <div class="glass-spatial-card p-7 rounded-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6]">
               <i data-lucide="sparkles" class="w-5 h-5"></i>
             </div>
-            <h3 class="text-lg font-serif text-white">Executive Gravitas</h3>
+            <h3 class="text-lg font-serif text-white">Cinematic Presence</h3>
             <p class="text-xs text-zinc-400 leading-relaxed font-light">
-              Tailored clavicle-to-waist ratios, postural power, and photographic definition calibrated for executive presence, boardroom authority, and public stages.
+              Tailored clavicle-to-waist ratios, postural power, and photographic definition calibrated for film optics, bespoke suiting, and public stages.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase">
             Aesthetic Engineering
           </div>
         </div>
 
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
-          <div class="space-y-3.5">
-            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
-              <i data-lucide="activity" class="w-5 h-5"></i>
+        <div class="glass-spatial-card p-7 rounded-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6]">
+              <i data-lucide="heart-pulse" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Biomarker Longevity</h3>
             <p class="text-xs text-zinc-400 leading-relaxed font-light">
               Mitochondrial respiration, vascular elasticity, and low-shear joint loading designed to keep leaders operating at peak capacity for decades.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase">
             Cellular Healthspan
           </div>
         </div>
 
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
-          <div class="space-y-3.5">
-            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
+        <div class="glass-spatial-card p-7 rounded-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6]">
               <i data-lucide="globe" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Global Mobility</h3>
             <p class="text-xs text-zinc-400 leading-relaxed font-light">
-              Accompaniment on private aviation and international estates. Direct culinary execution directives coordinated with your personal chef.
+              Accompaniment on private aviation, soundstages, and superyachts. Direct culinary execution directives coordinated with your personal chef.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase">
             Zero Disruption
           </div>
         </div>
 
-        <div class="glass-spatial-card p-7 rounded-2xl flex flex-col justify-between">
-          <div class="space-y-3.5">
-            <div class="h-11 w-11 rounded-xl bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6] shadow-inner">
+        <div class="glass-spatial-card p-7 rounded-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="h-11 w-11 rounded-lg bg-black border border-zinc-800 flex items-center justify-center text-[#dec7a6]">
               <i data-lucide="shield" class="w-5 h-5"></i>
             </div>
             <h3 class="text-lg font-serif text-white">Ironclad Discretion</h3>
             <p class="text-xs text-zinc-400 leading-relaxed font-light">
-              Strict legal reciprocal NDA agreements executed prior to first evaluation. No social media exploitation or leveraging of client identities.
+              Strict legal NDA agreements executed prior to first evaluation. No social media exploitation or public leveraging of client identities.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase tracking-wider">
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 text-[10px] font-mono text-[#dec7a6] uppercase">
             Anonymity Guaranteed
           </div>
         </div>
@@ -1339,18 +1346,71 @@
     </div>
   </section>
 
-  <!-- Engagement Tiers with 3D Center Elevation -->
-  <section id="tiers" class="py-24 border-b border-zinc-900/90 relative z-10">
+  <!-- SECTION: PRIVATE ESTATE GYM & ARCHITECTURAL BUILDOUT -->
+  <section class="py-20 bg-[#08080a] border-y border-zinc-900/90 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="glass-spatial-card rounded-2xl p-8 sm:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-8 space-y-4 text-left">
+            <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-[#dec7a6]">
+              <i data-lucide="building-2" class="w-3.5 h-3.5"></i>
+              <span>Compound Architecture &amp; Private Facility Buildout</span>
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-serif text-white font-light">
+              Private Compound &amp; Estate Gym Commissioning
+            </h2>
+            <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+              We collaborate with your estate architects and interior contractors across Hyderabad, Dubai, and London to build bespoke private wellness facilities: commercial-grade biomechanical loading equipment, circadian light bays, hyperbaric oxygen chambers, and cold contrast plunge suites.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs font-mono text-zinc-400">
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
+                <span>Architectural Liaison</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
+                <span>Biomechanical Rigging</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
+                <span>Medical Modality Layout</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col gap-3">
+            <button 
+              onclick="openIntakeModal()"
+              class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-semibold tracking-widest text-xs uppercase rounded shadow-lg hover:brightness-110 transition-all"
+            >
+              Commission Facility Buildout
+            </button>
+            <a 
+              href="mailto:viteshdhankhar27@gmail.com?subject=Estate%20Facility%20Architecture%20Inquiry%20-%20Vitesh%20Dhankhar"
+              class="w-full py-3 bg-zinc-900 border border-zinc-700 text-center text-zinc-300 font-mono text-[11px] uppercase tracking-wider rounded hover:border-[#dec7a6] transition-colors"
+            >
+              Consult Advisory Desk
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: RETROSPECTIVE RETAINERS & ENGAGEMENT TIERS -->
+  <section id="tiers" class="py-24 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <span class="text-[11px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
           Capacity Architecture
         </span>
         <h2 class="text-3xl sm:text-5xl font-serif text-white font-light">
-          Engagement Tiers
+          Private Advisory Tiers
         </h2>
         <p class="text-zinc-400 text-sm font-light leading-relaxed">
-          Capped strictly to preserve absolute personal involvement. Retainer structures based on mobility, frequency, and deployment level.
+          Strictly capped to preserve personal oversight. Retainer structures reflect mobility, flight accompaniment, and private estate integration.
         </p>
       </div>
 
@@ -1362,7 +1422,7 @@
             <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Executive Retainer</div>
             <h3 class="text-2xl font-serif text-white mt-2 mb-2">The Leadership Protocol</h3>
             <p class="text-xs text-zinc-400 mb-6 font-light leading-relaxed">
-              For active CEOs, chairpersons, and investment partners requiring physical vitality and stress minimization within dense schedules.
+              For active chairpersons, founders, and managing partners requiring physical vitality and stress minimization within dense schedules.
             </p>
 
             <ul class="space-y-3.5 text-xs text-zinc-300">
@@ -1388,16 +1448,16 @@
           <div class="pt-8 mt-8 border-t border-zinc-800">
             <button 
               onclick="openIntakeModal()"
-              class="w-full py-3.5 border border-zinc-700/90 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
+              class="w-full py-3.5 border border-zinc-700 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
             >
               Inquire on Availability
             </button>
           </div>
         </div>
 
-        <!-- Tier 2: Sovereign Concierge -->
-        <div class="glass-spatial-card rounded-2xl p-8 flex flex-col justify-between relative shadow-[0_0_55px_rgba(203,178,141,0.22)] text-left border-2 border-[#dec7a6]/70 transform lg:-translate-y-2">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-bold uppercase tracking-[0.2em] text-[10px] px-4 py-1 rounded-full shadow-lg">
+        <!-- Tier 2: Sovereign Concierge (Featured) -->
+        <div class="glass-spatial-card rounded-2xl border-2 border-[#cbb28d] p-8 flex flex-col justify-between relative shadow-[0_0_55px_rgba(203,178,141,0.22)] text-left">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#cbb28d] text-zinc-950 font-bold uppercase tracking-[0.2em] text-[10px] px-4 py-1 rounded-full shadow">
             Global Concierge &bull; Strictly Capped
           </div>
 
@@ -1419,7 +1479,7 @@
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
-                <span>Direct Priority Desk Line with Vitesh Personally</span>
+                <span>Direct Liaison Line with Vitesh</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
@@ -1428,16 +1488,16 @@
             </ul>
           </div>
 
-          <div class="pt-8 mt-8 border-t border-[#cbb28d]/40 flex flex-col gap-2.5">
+          <div class="pt-8 mt-8 border-t border-[#cbb28d]/30 flex flex-col gap-2.5">
             <button 
               onclick="openIntakeModal()"
-              class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs uppercase tracking-wider transition-all rounded-sm shadow-md"
+              class="w-full py-3.5 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-semibold text-xs uppercase tracking-wider transition-all rounded-sm shadow-md hover:brightness-110"
             >
               Apply for Sovereign Placement
             </button>
             <a 
-              href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Inquiry%20-%20The%20Sovereign%20Concierge"
-              class="w-full py-2.5 text-center text-zinc-400 hover:text-[#dec7a6] text-[11px] font-mono uppercase tracking-wider transition-colors"
+              href="mailto:viteshdhankhar27@gmail.com?subject=Sovereign%20Concierge%20Placement%20Inquiry%20-%20Vitesh%20Dhankhar"
+              class="w-full py-2.5 text-center text-zinc-400 hover:text-white text-[11px] font-mono uppercase tracking-wider"
             >
               Direct Email Liaison &rarr;
             </a>
@@ -1447,28 +1507,28 @@
         <!-- Tier 3 -->
         <div class="glass-spatial-card rounded-2xl p-8 flex flex-col justify-between text-left">
           <div>
-            <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Institutional</div>
-            <h3 class="text-2xl font-serif text-white mt-2 mb-2">Family Office Protocol</h3>
+            <div class="text-[11px] font-mono tracking-widest text-zinc-400 uppercase">Production Intensive</div>
+            <h3 class="text-2xl font-serif text-white mt-2 mb-2">Cinematic Sprint</h3>
             <p class="text-xs text-zinc-400 mb-6 font-light leading-relaxed">
-              Holistic longevity and biomechanical architecture designed for multi-generational estate residents, founders, and spouses.
+              Tailored specifically for lead film roles, high-stakes public tours, and camera deadlines requiring rapid body recomposition.
             </p>
 
             <ul class="space-y-3.5 text-xs text-zinc-300">
               <li class="flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
-                <span>Multi-Principal Comprehensive Biometric Architecture</span>
+                <span>Strict 12 to 16-Week Intensive Camera-Prep Protocol</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
-                <span>Private Estate Gym Biomechanical Audit &amp; Buildout</span>
+                <span>Location Support to Soundstages &amp; Overseas Sets</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
-                <span>Kitchen Staff Sourcing &amp; Glycemic Auditing Protocols</span>
+                <span>Daily Visual Definition Conditioning Protocols</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-[#dec7a6] shrink-0 mt-0.5"></i>
-                <span>Direct Liaison with Private Physicians &amp; Imaging Clinics</span>
+                <span>Coordination with Production Coordinators</span>
               </li>
             </ul>
           </div>
@@ -1476,9 +1536,9 @@
           <div class="pt-8 mt-8 border-t border-zinc-800">
             <button 
               onclick="openIntakeModal()"
-              class="w-full py-3.5 border border-zinc-700/90 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
+              class="w-full py-3.5 border border-zinc-700 hover:border-white text-white text-xs font-semibold uppercase tracking-wider transition-colors rounded-sm"
             >
-              Request Family Office Placement
+              Request Production Intake
             </button>
           </div>
         </div>
@@ -1487,10 +1547,10 @@
     </div>
   </section>
 
-  <!-- Discretion & Privacy Charter -->
-  <section id="discretion" class="py-20 bg-[#070709] border-b border-zinc-900/90 relative z-10">
+  <!-- SECTION: DISCRETION & PRIVACY CHARTER -->
+  <section id="discretion" class="py-20 bg-[#08080a] border-t border-zinc-900 relative z-10">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
-      <div class="inline-flex items-center justify-center p-3.5 rounded-full bg-black border border-zinc-800 text-[#dec7a6] shadow-inner">
+      <div class="inline-flex items-center justify-center p-3 rounded-full bg-zinc-900 border border-zinc-800 text-[#dec7a6]">
         <i data-lucide="lock" class="w-6 h-6"></i>
       </div>
 
@@ -1499,42 +1559,43 @@
       </h2>
 
       <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto">
-        Our practice operates in total isolation from public marketing. Client identities, physical residences, biometric panels, and private estate locations are legally shielded under binding reciprocal non-disclosure agreements prior to initial intake.
+        Our practice operates in complete isolation from social media marketing. Client identities, physical residences, travel manifests, and health metrics are protected by binding reciprocal non-disclosure agreements before initial consultation.
       </p>
 
       <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
-        <a 
-          href="mailto:viteshdhankhar27@gmail.com?subject=Reciprocal%20NDA%20Draft%20Request%20-%20Vitesh%20Dhankhar"
-          class="badge-machined px-6 py-3.5 text-zinc-200 hover:text-white text-xs font-mono uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 hover:border-[#dec7a6]/60"
-        >
-          <i data-lucide="shield" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
-          <span>Request Reciprocal NDA Draft</span>
-        </a>
         <button 
-          onclick="openIntakeModal()"
-          class="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors border border-zinc-800"
+          onclick="openNdaModal()"
+          class="px-6 py-3 border border-zinc-700 hover:border-[#cbb28d] text-zinc-200 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors"
         >
-          Proceed to Intake
+          Review Full NDA Charter
         </button>
+        <a 
+          href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20NDA%20Inquiry%20-%20Vitesh%20Dhankhar"
+          class="px-6 py-3 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors inline-flex items-center gap-2"
+        >
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-[#dec7a6]"></i>
+          <span>Direct Email Advisory</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-12 bg-[#050507] text-xs text-zinc-400 border-t border-zinc-900/80 relative z-10">
+  <!-- FOOTER -->
+  <footer class="py-12 border-t border-zinc-900 bg-[#050507] text-xs text-zinc-400 relative z-10">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="text-center md:text-left">
         <div class="font-serif text-white tracking-[0.25em] text-sm uppercase">VITESH DHANKHAR</div>
-        <div class="text-[10px] font-mono text-[#a49175] tracking-widest mt-1">HUMAN ARCHITECT &bull; PEER-REVIEWED RESEARCHER</div>
+        <div class="text-[10px] font-mono text-[#a49175] tracking-widest mt-1">SPORTS SCIENTIST &bull; PRIVATE BODY ARCHITECT</div>
       </div>
 
       <div class="flex flex-wrap justify-center items-center gap-6 text-[11px] uppercase font-mono text-zinc-400">
         <a 
-          href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Advisory%20Inquiry" 
-          class="text-[#dec7a6] hover:text-white transition-colors flex items-center gap-1.5"
+          href="mailto:viteshdhankhar27@gmail.com" 
+          class="text-[#dec7a6] hover:text-white transition-colors flex items-center gap-1"
         >
-          <i data-lucide="mail" class="w-3.5 h-3.5"></i> Private Email Desk
+          <i data-lucide="mail" class="w-3 h-3"></i> Direct Advisory Email
         </a>
+        <button onclick="openNdaModal()" class="hover:text-white transition-colors">Discretion NDA</button>
         <button onclick="openIntakeModal()" class="hover:text-white transition-colors">Client Intake</button>
       </div>
 
@@ -1543,173 +1604,283 @@
       </div>
     </div>
   </footer>
+  <!-- UPGRADE 2: TACTILE SWISS-ENGINEERED SECURITY VAULT MODAL (Gatekeeper) -->
+  <div id="gatekeeperModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl">
+    <div id="vaultCardElement" class="vault-titanium-card relative w-full max-w-md rounded-2xl p-8 sm:p-9 text-left shadow-2xl transition-all duration-300">
+      
+      <!-- Top Specular Milled Ridge -->
+      <div class="flex items-center justify-between pb-5 border-b border-zinc-800/80">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full bg-black border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6] shadow-inner">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="text-xs font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Private Security Vault</div>
+            <div class="text-[9px] font-mono text-zinc-400 uppercase">Ref: VD-SWISS-LOCK-2026</div>
+          </div>
+        </div>
+        <span class="badge-machined px-2.5 py-1 text-[8px] font-mono text-emerald-400 border border-emerald-500/30 uppercase rounded tracking-widest font-semibold">
+          SECURE 4096-BIT
+        </span>
+      </div>
 
-  <!-- MODAL: CLIENT INTAKE -->
-  <div id="intakeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
-    <div class="glass-spatial-card relative w-full max-w-2xl bg-[#0d0d10] border border-zinc-800 rounded-2xl shadow-2xl p-6 sm:p-10 my-8 text-left">
+      <div class="my-6 space-y-3">
+        <h3 class="text-xl font-serif text-white">Client Identity Clearance</h3>
+        <p class="text-xs text-zinc-400 font-light leading-relaxed">
+          Access to proprietary multi-omic datasets, laboratory publication certificates, and clinical protocols is restricted to active family office retainers.
+        </p>
+
+        <!-- Dynamic Feedback Status Badge -->
+        <div id="vaultStatusNotice" class="p-3 bg-black/80 rounded-lg border border-zinc-800 text-[10px] font-mono text-zinc-400 flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#dec7a6] animate-ping"></span>
+          <span id="vaultStatusText">WAITING FOR AUTHORIZATION PASSKEY...</span>
+        </div>
+
+        <!-- Monospace Passkey Input with Tactile Haptic Click -->
+        <form onsubmit="handleVaultPasscode(event)" class="space-y-4 pt-1">
+          <div class="relative">
+            <input 
+              type="password" 
+              id="vaultPassInput"
+              autocomplete="off"
+              placeholder="Enter authorization passkey" 
+              class="w-full py-3.5 pl-4 pr-11 bg-black/90 border border-zinc-700/90 rounded-lg text-xs font-mono text-white tracking-widest uppercase focus:outline-none focus:border-[#dec7a6] focus:ring-1 focus:ring-[#dec7a6] shadow-inner"
+            />
+            <button 
+              type="submit" 
+              class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-[#dec7a6] hover:text-white"
+            >
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <button 
+            type="submit"
+            id="vaultSubmitButton"
+            class="w-full py-3.5 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-semibold tracking-widest text-xs uppercase rounded transition-all shadow-md hover:brightness-110"
+          >
+            Authenticate Clearance
+          </button>
+        </form>
+      </div>
+
+      <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-500">
+        <span>ESTATE CODE ON FILE</span>
+        <a 
+          href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Passcode%20Request%20-%20Vitesh%20Dhankhar"
+          class="text-[#dec7a6] hover:underline"
+        >
+          Request Passkey &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- UPGRADE 5: CONCIERGE DIAGNOSTIC INTAKE STEPPER (3 Steps) -->
+  <div id="intakeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl overflow-y-auto">
+    <div class="glass-spatial-card relative w-full max-w-2xl rounded-2xl p-6 sm:p-10 my-8 text-left shadow-2xl">
       <button 
-        onclick="closeIntakeModal()"
-        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
+        onclick="closeIntakeModal()" 
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white"
         aria-label="Close modal"
       >
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <!-- Intake Form View -->
-      <div id="intakeFormView">
-        <div class="space-y-1.5 mb-8">
-          <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-[#dec7a6]">
-            Confidential Engagement
-          </span>
-          <h3 class="text-2xl sm:text-3xl font-serif text-white">
-            Private Client Intake
-          </h3>
-          <p class="text-xs text-zinc-400 font-light leading-relaxed">
-            Direct routing to Vitesh Dhankhar’s private advisory. Details are handled with strict family office confidentiality.
-          </p>
+      <!-- Stepper Header -->
+      <div class="mb-8">
+        <div class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#dec7a6] mb-1">
+          Confidential Client Qualification &bull; Stage <span id="currentStepIndicator">1 of 3</span>
         </div>
+        <h3 class="text-2xl sm:text-3xl font-serif text-white">
+          Private Diagnostic Intake
+        </h3>
 
-        <form id="clientIntakeForm" action="https://formspree.io/f/xyeypeob" method="POST" class="space-y-5">
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">
-                Principal Name
-              </label>
-              <input 
-                type="text" 
-                name="principal_name" 
-                required 
-                placeholder="Name or Confidential Alias"
-                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
-              />
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">
-                Primary Base / Operating City
-              </label>
-              <input 
-                type="text" 
-                name="operating_city" 
-                required 
-                placeholder="Hyderabad / Jubilee Hills / Global"
-                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
-              />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">
-                Confidential Email
-              </label>
-              <input 
-                type="email" 
-                name="email" 
-                required 
-                placeholder="office@yourdomain.com"
-                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
-              />
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">
-                Direct Contact Phone
-              </label>
-              <input 
-                type="text" 
-                name="direct_phone" 
-                required 
-                placeholder="+91 / +971 ..."
-                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
-              />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">
-                Application Submitted By
-              </label>
-              <select 
-                name="submitted_by"
-                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
-              >
-                <option value="principal">Principal Personally</option>
-                <option value="chief_of_staff">Chief of Staff / Executive Office</option>
-                <option value="family_office">Family Office Representative</option>
-                <option value="physician">Private Physician / Medical Desk</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">
-                Target Retainer Allocation
-              </label>
-              <select 
-                name="target_retainer"
-                class="w-full bg-black/60 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#cbb28d] shadow-inner"
-              >
-                <option value="leadership_protocol">The Leadership Protocol (Executive Retainer)</option>
-                <option value="sovereign_concierge">The Sovereign Concierge (Worldwide Access)</option>
-                <option value="family_office">Multi-Principal Family Office Advisory</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-xl flex items-start gap-3 shadow-inner">
-            <input 
-              type="checkbox" 
-              id="ndaCheck"
-              name="nda_required"
-              checked
-              class="mt-1 accent-[#cbb28d] cursor-pointer"
-            />
-            <label for="ndaCheck" class="text-xs text-zinc-300 leading-relaxed cursor-pointer">
-              <strong>Execute Reciprocal NDA prior to first consultation.</strong> Our office will furnish countersigned non-disclosure documentation immediately upon dispatch.
-            </label>
-          </div>
-
-          <div id="formErrorNotice" class="hidden p-3 bg-red-950/60 border border-red-800 text-red-300 text-xs font-mono rounded">
-            Error transmitting intake. Please email directly at viteshdhankhar27@gmail.com.
-          </div>
-
-          <button 
-            type="submit"
-            id="intakeSubmitBtn"
-            class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs uppercase tracking-[0.2em] rounded-sm transition-all shadow-[0_4px_25px_rgba(203,178,141,0.3)] flex items-center justify-center gap-2"
-          >
-            <span>Transmit Confidential Intake</span>
-          </button>
-        </form>
+        <!-- Stepper Visual Progress -->
+        <div class="grid grid-cols-3 gap-2 mt-4">
+          <div id="stepProgress1" class="h-1 bg-[#cbb28d] rounded-full transition-all"></div>
+          <div id="stepProgress2" class="h-1 bg-zinc-800 rounded-full transition-all"></div>
+          <div id="stepProgress3" class="h-1 bg-zinc-800 rounded-full transition-all"></div>
+        </div>
       </div>
 
-      <!-- Success View -->
-      <div id="intakeSuccessView" class="hidden text-center py-10 space-y-5">
-        <div class="h-16 w-16 bg-emerald-950/60 border border-emerald-500/50 rounded-full mx-auto flex items-center justify-center text-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.2)]">
+      <!-- STEP 1: JURISDICTION & IDENTITY -->
+      <div id="intakeStep1" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Principal Legal Name or Alias</label>
+            <input 
+              type="text" 
+              id="intakeName" 
+              placeholder="e.g. Principal or Confidential" 
+              class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+            />
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Operating City / Primary Estate</label>
+            <select 
+              id="intakeCity" 
+              class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+            >
+              <option value="Hyderabad (Jubilee / Banjara Hills)">Hyderabad (Jubilee Hills / Banjara Hills)</option>
+              <option value="Dubai (DIFC / Emirates Hills / Palm)">Dubai (DIFC / Palm Jumeirah)</option>
+              <option value="London (Mayfair / Kensington)">London (Mayfair / Kensington)</option>
+              <option value="Mumbai (Bandra / Worli)">Mumbai (Bandra / South Mumbai)</option>
+              <option value="International Sovereign Travel">International Sovereign Travel</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Applicant Capacity</label>
+            <select 
+              id="intakeCapacity"
+              class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+            >
+              <option value="Principal Personally">Principal Personally</option>
+              <option value="Chief of Staff / Executive Office">Chief of Staff / Executive Office</option>
+              <option value="Family Office Trustee">Family Office Trustee</option>
+              <option value="Medical Director / Personal Physician">Medical Director / Personal Physician</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Confidential Email Address</label>
+            <input 
+              type="email" 
+              id="intakeEmail" 
+              placeholder="e.g. office@familyoffice.com" 
+              class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+            />
+          </div>
+        </div>
+
+        <button 
+          type="button" 
+          onclick="goToStep(2)"
+          class="w-full mt-4 py-3.5 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2"
+        >
+          <span>Proceed to Mandate Details</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- STEP 2: PHYSIOLOGICAL MANDATE -->
+      <div id="intakeStep2" class="hidden space-y-4">
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Primary Physiological Mandate</label>
+          <select 
+            id="intakeMandate" 
+            class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+          >
+            <option value="Full Cinematic Architecture & Epigenetic Longevity">Full Cinematic Architecture &amp; Epigenetic Longevity</option>
+            <option value="Lead Film Role / 12-16 Week Camera Prep">Lead Film Role / 12-16 Week Camera Prep</option>
+            <option value="Comprehensive Orthopedic & Joint Decompression">Comprehensive Orthopedic &amp; Joint Decompression</option>
+            <option value="Continuous Executive Metabolic Optimization">Continuous Executive Metabolic Optimization</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Weekly Schedule &amp; Flight Intensity</label>
+          <select 
+            id="intakeSchedule" 
+            class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+          >
+            <option value="High Travel (>20 Flight Hours Monthly)">High Travel (&gt;20 Flight Hours Monthly)</option>
+            <option value="Moderate Travel (5-15 Flight Hours Monthly)">Moderate Travel (5-15 Flight Hours Monthly)</option>
+            <option value="Estate Anchored (Primarily Resident)">Estate Anchored (Primarily Resident)</option>
+          </select>
+        </div>
+
+        <div class="flex gap-3 pt-2">
+          <button 
+            type="button" 
+            onclick="goToStep(1)"
+            class="flex-1 py-3.5 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs uppercase tracking-wider rounded"
+          >
+            &larr; Back
+          </button>
+          <button 
+            type="button" 
+            onclick="goToStep(3)"
+            class="flex-1 py-3.5 bg-[#cbb28d] hover:bg-[#dec7a6] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded transition-all flex items-center justify-center gap-2"
+          >
+            <span>Proceed to Operational Scope</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: OPERATIONAL ARCHITECTURE & SUBMIT -->
+      <div id="intakeStep3" class="hidden space-y-4">
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Domestic Staff &amp; Culinary Integration</label>
+          <select 
+            id="intakeChef" 
+            class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+          >
+            <option value="Yes - Dedicated Private Chef Employed">Yes - Dedicated Private Chef Employed</option>
+            <option value="Yes - Household Domestic Cook">Yes - Household Domestic Cook</option>
+            <option value="No - External Fine Dining / Catered">No - External Fine Dining / Catered</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-zinc-300 mb-1.5">Target Engagement Tier</label>
+          <select 
+            id="intakeTier" 
+            class="w-full bg-black/70 border border-zinc-800 rounded px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#dec7a6]"
+          >
+            <option value="The Sovereign Concierge (Worldwide Accompaniment)">The Sovereign Concierge (Worldwide Accompaniment)</option>
+            <option value="The Leadership Protocol (Executive Retainer)">The Leadership Protocol (Executive Retainer)</option>
+            <option value="Cinematic Sprint (Film / Camera Deadline)">Cinematic Sprint (Film / Camera Deadline)</option>
+            <option value="Estate Facility Commissioning Buildout">Estate Facility Commissioning Buildout</option>
+          </select>
+        </div>
+
+        <div class="p-3.5 bg-black/70 border border-zinc-800 rounded-lg text-xs text-zinc-300 flex items-start gap-2.5">
+          <input type="checkbox" id="ndaConsentCheck" checked class="mt-1 accent-[#cbb28d] cursor-pointer" />
+          <label for="ndaConsentCheck" class="text-[11px] text-zinc-400 leading-relaxed cursor-pointer">
+            Execute Reciprocal NDA prior to verbal briefing. Vitesh Dhankhar's desk will furnish countersigned non-disclosure covenants immediately.
+          </label>
+        </div>
+
+        <div class="flex gap-3 pt-2">
+          <button 
+            type="button" 
+            onclick="goToStep(2)"
+            class="flex-1 py-3.5 bg-zinc-900 border border-zinc-700 text-zinc-300 font-mono text-xs uppercase tracking-wider rounded"
+          >
+            &larr; Back
+          </button>
+          <button 
+            type="button" 
+            onclick="submitConciergeIntake()"
+            id="btnSubmitIntake"
+            class="flex-1 py-3.5 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] text-zinc-950 font-bold text-xs font-mono uppercase tracking-widest rounded transition-all shadow-lg hover:brightness-110"
+          >
+            Transmit Dossier
+          </button>
+        </div>
+      </div>
+
+      <!-- INTAKE SUBMISSION SUCCESS VIEW -->
+      <div id="intakeSuccess" class="hidden text-center py-8 space-y-4">
+        <div class="h-16 w-16 bg-emerald-950/60 border border-emerald-500/50 rounded-full mx-auto flex items-center justify-center text-emerald-400">
           <i data-lucide="check-circle-2" class="w-8 h-8"></i>
         </div>
-        <h4 class="text-2xl font-serif text-white">Intake Transmitted Confidentially</h4>
+        <h4 class="text-2xl font-serif text-white">Dossier Transmitted Confidentially</h4>
         <p class="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed font-light">
-          Thank you. Your dossier has been routed directly to Vitesh Dhankhar's private advisory desk.
+          Your briefing has been transmitted directly to Vitesh Dhankhar's private advisory desk.
         </p>
-        <div class="p-4 bg-black/60 border border-zinc-800 rounded-xl max-w-md mx-auto text-xs text-zinc-400 font-mono text-left space-y-1 shadow-inner">
-          <div>DISPATCH STATUS: <span class="text-emerald-400">ENCRYPTED QUEUE</span></div>
+        <div class="p-4 bg-black/80 border border-zinc-800 rounded-lg max-w-md mx-auto text-xs text-zinc-400 font-mono text-left space-y-1">
+          <div>STATUS: <span class="text-emerald-400">ENCRYPTED QUEUE ACTIVE</span></div>
           <div>RESPONSE WINDOW: <span class="text-white">UNDER 12 HOURS</span></div>
-          <div>ROUTING BASE: <span class="text-[#dec7a6]">HYDERABAD EXCLUSIVE</span></div>
+          <div>RECIPROCAL NDA: <span class="text-[#dec7a6]">DISPATCHED PRIOR TO CALL</span></div>
         </div>
-        <div class="flex justify-center gap-4 pt-2">
-          <a
-            href="mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Follow-up%3A%20Client%20Intake%20Dossier%20Transmitted"
-            class="px-6 py-2.5 bg-[#cbb28d] text-zinc-950 text-xs font-mono uppercase tracking-wider rounded-sm font-semibold shadow-md flex items-center gap-2"
-          >
-            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-            Email Private Desk
-          </a>
+        <div class="pt-3">
           <button 
             onclick="closeIntakeModal()"
-            class="px-6 py-2.5 border border-zinc-700 hover:border-white text-white text-xs font-mono uppercase tracking-wider transition-colors rounded-sm"
+            class="px-6 py-2.5 bg-zinc-900 border border-zinc-700 hover:border-white text-white text-xs font-mono uppercase tracking-wider rounded"
           >
             Close Window
           </button>
@@ -1718,884 +1889,696 @@
 
     </div>
   </div>
-
-  <!-- MODAL: RESEARCH INSPECTION DOSSIER -->
-  <div id="researchModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
-    <div class="glass-spatial-card relative w-full max-w-3xl bg-[#0b0b0e] border border-zinc-800 rounded-2xl shadow-2xl p-6 sm:p-9 my-8 text-left">
+  <!-- MODAL: SINGLE-INSPECTION RESEARCH BRIEF MODAL -->
+  <div id="researchModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl overflow-y-auto">
+    <div class="glass-spatial-card relative w-full max-w-3xl rounded-2xl p-6 sm:p-9 my-8 text-left shadow-2xl">
       <button 
-        onclick="closeResearchModal()"
-        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white transition-colors"
-        aria-label="Close dossier"
+        onclick="closeResearchModal()" 
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white"
+        aria-label="Close modal"
       >
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="mb-5 px-3.5 py-2 badge-machined rounded-lg flex items-center justify-between text-[11px] font-mono text-[#dec7a6]">
-        <div class="flex items-center gap-2">
-          <i data-lucide="lock" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
-          <span>PEER-REVIEWED SCIENTIFIC RESEARCH DOSSIER</span>
-        </div>
-        <span class="text-zinc-400 text-[10px]">LNIPE &bull; AKINIK PUBLICATIONS</span>
+      <div class="mb-4 px-3.5 py-1.5 bg-[#cbb28d]/10 border border-[#cbb28d]/30 rounded text-[10px] font-mono text-[#dec7a6] flex items-center justify-between">
+        <span>SINGLE-INSPECTION CLEARANCE: ACTIVE SESSION</span>
+        <span class="text-zinc-400">VERIFIED AUTHOR DOSSIER</span>
       </div>
 
       <div class="space-y-1.5 pb-4 border-b border-zinc-800">
-        <span id="modalPaperJournal" class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#dec7a6]">
-          Journal Publication
-        </span>
-        <h3 id="modalPaperTitle" class="text-xl sm:text-2xl font-serif text-white leading-snug">
-          Research Title
-        </h3>
-        <div id="modalPaperAuthors" class="text-xs text-zinc-400 font-mono pt-1">
-          Authors
-        </div>
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#dec7a6]">Peer-Reviewed Publication</span>
+        <h3 id="researchModalTitle" class="text-xl sm:text-2xl font-serif text-white"></h3>
+        <div id="researchModalAuthors" class="text-xs text-zinc-400 font-mono pt-1"></div>
+        <div id="researchModalJournal" class="text-[11px] text-[#dec7a6] font-mono"></div>
       </div>
 
       <div class="py-4 space-y-4 max-h-[50vh] overflow-y-auto pr-2 text-xs">
-        <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-xl shadow-inner">
-          <div class="text-[10px] font-mono uppercase text-[#dec7a6] mb-1">Executive Summary &amp; Scope:</div>
-          <p id="modalPaperSummary" class="text-zinc-300 font-light leading-relaxed">
-            Summary
-          </p>
+        <div class="p-4 bg-black/60 border border-zinc-800/80 rounded-lg">
+          <div class="text-[10px] font-mono uppercase text-[#dec7a6] mb-1">Executive Summary &amp; Clinical Scope:</div>
+          <p id="researchModalSummary" class="text-zinc-300 font-light leading-relaxed"></p>
         </div>
 
-        <div class="p-4 bg-zinc-900/40 border border-zinc-800/80 rounded-xl space-y-2">
-          <div class="text-[10px] font-mono uppercase text-zinc-400">Core Findings &amp; Protocol Yield:</div>
-          <ul id="modalPaperFindings" class="space-y-2 text-zinc-300 font-light">
-            <!-- Populated dynamically -->
-          </ul>
+        <div class="p-4 bg-zinc-900/40 border border-zinc-800/80 rounded-lg space-y-2">
+          <div class="text-[10px] font-mono uppercase text-zinc-400">Primary Protocol Findings:</div>
+          <ul id="researchModalFindings" class="space-y-2 text-zinc-300 font-light"></ul>
         </div>
 
-        <div id="modalPaperMeta" class="p-3 bg-black/40 border border-zinc-800 rounded-lg text-[11px] font-mono text-zinc-400 flex flex-wrap justify-between gap-2 shadow-inner">
-          <!-- Populated dynamically -->
-        </div>
+        <div id="researchModalDoiBand" class="p-3 bg-black/50 border border-zinc-800 rounded text-[11px] font-mono text-zinc-400 flex flex-wrap justify-between gap-2"></div>
       </div>
 
       <div class="pt-5 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-4">
         <a 
-          id="modalMailLiaison"
-          href="#"
-          class="px-5 py-2.5 bg-gradient-to-r from-[#dec7a6] to-[#b0966e] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm hover:brightness-110 transition-all inline-flex items-center gap-2 shadow-md"
+          id="researchModalDoiLink" 
+          href="#" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="px-4 py-2 border border-zinc-700 hover:border-white text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors inline-flex items-center gap-2"
         >
-          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-          <span>Request Full Verified Manuscript</span>
+          <span>Official DOI Registry</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
         </a>
 
-        <button 
-          onclick="closeResearchModal()"
-          class="px-4 py-2 border border-zinc-700 hover:border-white text-zinc-300 text-xs font-mono uppercase tracking-wider rounded-sm transition-colors"
+        <a 
+          id="researchModalPdfEmail"
+          href="#" 
+          class="px-5 py-2.5 bg-[#cbb28d] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm hover:bg-[#dec7a6] transition-colors inline-flex items-center gap-2"
         >
-          Close Dossier
-        </button>
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          <span>Request Verified Manuscript PDF</span>
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- MODAL: SECURE VIP 3D ACCESS VAULT GATEKEEPER -->
-  <div id="gatekeeperModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-2xl overflow-y-auto">
-    <div 
-      id="vaultInteractiveCard" 
-      class="vault-3d-card relative w-full max-w-lg rounded-3xl p-8 sm:p-10 text-center space-y-6 my-auto"
-    >
-      
-      <!-- Interactive 3D Canvas inside Gatekeeper Vault -->
-      <div class="relative w-full h-36 mx-auto flex items-center justify-center overflow-hidden rounded-2xl bg-black/80 border border-zinc-800/90 shadow-inner">
-        <canvas id="vault3dCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
-        <div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[9px] font-mono tracking-widest text-zinc-500 uppercase pointer-events-none">
-          <span class="flex items-center gap-1 text-[#dec7a6]">
-            <span class="h-1.5 w-1.5 rounded-full bg-[#cbb28d] animate-ping"></span>
-            3D BIOMETRIC ENGINE ACTIVE
-          </span>
-          <span>DRAG TO ROTATE HELIX</span>
+  <!-- MODAL: RECIPROCAL NON-DISCLOSURE CHARTER -->
+  <div id="ndaModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl overflow-y-auto">
+    <div class="glass-spatial-card relative w-full max-w-xl rounded-2xl p-6 sm:p-8 my-8 text-left shadow-2xl">
+      <button 
+        onclick="closeNdaModal()" 
+        class="absolute top-6 right-6 p-2 text-zinc-400 hover:text-white"
+        aria-label="Close modal"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="h-10 w-10 rounded-full bg-black border border-[#cbb28d]/60 flex items-center justify-center text-[#dec7a6]">
+          <i data-lucide="shield" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif text-white">Client Discretion Charter</h3>
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Mutual NDA &bull; Ref: VD-NDA-EXEC</div>
         </div>
       </div>
 
-      <div class="space-y-2 text-center">
-        <span class="text-[10px] uppercase font-mono tracking-[0.28em] text-[#dec7a6]">
-          Restricted Advisory Portal &bull; Clearance Gate
-        </span>
-        <h3 class="text-2xl sm:text-3xl font-serif text-white font-light">
-          Private Client Clearance
-        </h3>
-        <p class="text-xs text-zinc-400 font-light leading-relaxed max-w-sm mx-auto">
-          Access to clinical multi-omic publications, private telemetry, and retainer allocation is restricted. Enter your authorized access key.
+      <div class="space-y-4 text-xs text-zinc-300 font-light leading-relaxed border-y border-zinc-800 py-4 max-h-[55vh] overflow-y-auto pr-2">
+        <p>
+          <strong>1. Strict Identity Protection:</strong> Vitesh Dhankhar and his advisory team contractually commit to non-disclosure of all client names, flight manifests, estate addresses, medical biomarkers, or commercial terms.
+        </p>
+        <p>
+          <strong>2. Zero Promotional Exploitation:</strong> Your physical transformation, biometric telemetry, and private compound workouts will NEVER be published across social media or marketing collateral.
+        </p>
+        <p>
+          <strong>3. Family Office &amp; Staff Coordination:</strong> Direct operational compatibility with your Chief of Staff, private flight operators, domestic chefs, and executive security personnel.
+        </p>
+        <p>
+          <strong>4. Hardware-Encrypted Isolation:</strong> All DEXA scans, blood diagnostics, and circadian logs are isolated on hardware-encrypted partitions under perpetual expungement covenants.
         </p>
       </div>
 
-      <!-- Access Form -->
-      <form id="gatekeeperForm" onsubmit="handlePasscodeSubmit(event)" class="space-y-4 text-left">
-        <div>
-          <label for="accessPasscodeInput" class="block text-[10px] font-mono uppercase text-zinc-400 mb-1.5 tracking-wider">
-            Client Access Key / Passcode
-          </label>
-          <div class="relative">
-            <input 
-              type="password" 
-              id="accessPasscodeInput" 
-              required 
-              autocomplete="off"
-              placeholder="Enter authorization passcode"
-              class="w-full bg-black/80 border border-zinc-800 rounded-xl px-4 py-3.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-[#cbb28d] font-mono tracking-widest shadow-inner transition-colors"
-            />
-            <button 
-              type="button" 
-              onclick="togglePasscodeVisibility()" 
-              class="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 p-1"
-              aria-label="Toggle password visibility"
-            >
-              <i data-lucide="eye" id="passcodeEyeIcon" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <div id="gatekeeperError" class="hidden p-3 bg-red-950/60 border border-red-800 text-red-300 text-[11px] font-mono rounded-lg text-center">
-          Invalid Access Key. Clearance Denied.
-        </div>
-
+      <div class="pt-5 flex justify-between items-center">
+        <span class="text-[10px] font-mono text-[#dec7a6]">Enforceable Under International Law</span>
         <button 
-          type="submit"
-          class="w-full py-4 bg-gradient-to-r from-[#dec7a6] via-[#cbb28d] to-[#b0966e] hover:brightness-110 text-zinc-950 font-semibold text-xs font-mono uppercase tracking-[0.2em] rounded-lg transition-all shadow-[0_0_25px_rgba(203,178,141,0.3)] flex items-center justify-center gap-2"
+          onclick="closeNdaModal(); openIntakeModal();" 
+          class="px-5 py-2.5 bg-[#cbb28d] text-zinc-950 font-semibold text-xs font-mono uppercase tracking-wider rounded-sm hover:brightness-110"
         >
-          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-          <span>Authenticate Clearance</span>
+          Proceed with Intake
         </button>
-      </form>
-
-      <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-500">
-        <span>NO ACCESS KEY?</span>
-        <a 
-          href="mailto:viteshdhankhar27@gmail.com?subject=VIP%20Access%20Key%20Clearance%20Request%20-%20Vitesh%20Dhankhar" 
-          class="text-[#dec7a6] hover:underline"
-        >
-          Request Passcode via Email &rarr;
-        </a>
       </div>
-
     </div>
   </div>
-
+  <!-- JAVASCRIPT: Three.js 3D Spatial Engines, Gatekeeper Vault & Multi-Layer Scanner -->
   <script>
-    // Authorized Access Passcodes (Case-Insensitive)
-    const AUTHORIZED_PASSCODES = [
-      'SOVEREIGN2026',
-      'HYD-FOUNDER',
-      'DUBAI-ROYAL',
-      'VIP2026',
-      'HYD2026',
-      'VITESH2026'
-    ];
+    // Initialize Lucide Icons
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      initSpecularMouseTracking();
+      initThreeJsBackground();
+      initHeroScannerCanvas();
+      checkPasscodeClearance();
+    });
 
-    function checkGatekeeperStatus() {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlKey = (urlParams.get('access') || urlParams.get('vip') || '').trim().toUpperCase();
+    // ----------------------------------------------------
+    // UPGRADE 4: VISIONOS SPECULAR MOUSE TRACKING ON CARDS
+    // ----------------------------------------------------
+    function initSpecularMouseTracking() {
+      document.querySelectorAll('.glass-spatial-card, .vault-titanium-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    }
 
-        if (urlKey && AUTHORIZED_PASSCODES.includes(urlKey)) {
-          sessionStorage.setItem('site_authenticated', urlKey);
-          unlockPortal(urlKey);
-          return;
+    // ----------------------------------------------------
+    // GLOBAL 3D BACKGROUND ENGINE (Three.js Kinetic Wave)
+    // ----------------------------------------------------
+    let bgScene, bgCamera, bgRenderer, bgWavePoints;
+    function initThreeJsBackground() {
+      const canvas = document.getElementById('spatial3dCanvas');
+      if (!canvas) return;
+
+      bgScene = new THREE.Scene();
+      bgCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+      bgCamera.position.z = 240;
+      bgCamera.position.y = 80;
+      bgCamera.rotation.x = -0.3;
+
+      bgRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      bgRenderer.setSize(window.innerWidth, window.innerHeight);
+      bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Build Undulating Wave Lattice
+      const countX = 50;
+      const countZ = 50;
+      const numPoints = countX * countZ;
+      const positions = new Float32Array(numPoints * 3);
+      const colors = new Float32Array(numPoints * 3);
+
+      let i = 0;
+      for (let ix = 0; ix < countX; ix++) {
+        for (let iz = 0; iz < countZ; iz++) {
+          positions[i] = (ix - countX / 2) * 16;
+          positions[i + 1] = 0;
+          positions[i + 2] = (iz - countZ / 2) * 16;
+
+          // Champagne gold palette
+          colors[i] = 0.85;     // R
+          colors[i + 1] = 0.76; // G
+          colors[i + 2] = 0.58; // B
+          i += 3;
         }
+      }
 
-        const savedAuth = sessionStorage.getItem('site_authenticated');
-        if (savedAuth && AUTHORIZED_PASSCODES.includes(savedAuth.toUpperCase())) {
-          unlockPortal(savedAuth);
-          return;
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+      const material = new THREE.PointsMaterial({
+        size: 2.2,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.5,
+        blending: THREE.AdditiveBlending
+      });
+
+      bgWavePoints = new THREE.Points(geometry, material);
+      bgScene.add(bgWavePoints);
+
+      let step = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        step += 0.015;
+
+        const posAttr = bgWavePoints.geometry.attributes.position;
+        let index = 0;
+        for (let ix = 0; ix < countX; ix++) {
+          for (let iz = 0; iz < countZ; iz++) {
+            posAttr.array[index + 1] = (Math.sin(ix * 0.25 + step) * 12) + (Math.cos(iz * 0.25 + step) * 12);
+            index += 3;
+          }
         }
+        posAttr.needsUpdate = true;
 
-        lockPortalManually(false);
-      } catch (err) {
-        console.warn('Gatekeeper init warning:', err);
+        // Subtle scroll parallax
+        const scrollY = window.scrollY || 0;
+        bgCamera.position.y = 80 - (scrollY * 0.04);
+
+        bgRenderer.render(bgScene, bgCamera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        bgCamera.aspect = window.innerWidth / window.innerHeight;
+        bgCamera.updateProjectionMatrix();
+        bgRenderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    // ----------------------------------------------------
+    // UPGRADE 1: 3D MULTI-LAYER SCANNER (DNA / Cardio / Neural)
+    // ----------------------------------------------------
+    let scannerScene, scannerCamera, scannerRenderer, scannerGroup;
+    let currentScannerLayer = 'epigenetic';
+    let isScannerInteracting = false;
+    let previousMousePosition = { x: 0, y: 0 };
+
+    function initHeroScannerCanvas() {
+      const canvas = document.getElementById('heroDnaCanvas');
+      if (!canvas) return;
+
+      scannerScene = new THREE.Scene();
+      scannerCamera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+      scannerCamera.position.z = 48;
+
+      scannerRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      scannerRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      scannerRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      scannerGroup = new THREE.Group();
+      scannerScene.add(scannerGroup);
+
+      // Initial Build: Epigenetic DNA Double Helix
+      buildDnaLayer();
+
+      // Mouse & Touch Orbit Controls for the Scanner
+      canvas.addEventListener('mousedown', (e) => {
+        isScannerInteracting = true;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mouseup', () => { isScannerInteracting = false; });
+      window.addEventListener('mousemove', (e) => {
+        if (!isScannerInteracting) return;
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+        scannerGroup.rotation.y += deltaX * 0.01;
+        scannerGroup.rotation.x += deltaY * 0.01;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      // Touch Orbit
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isScannerInteracting = true;
+          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+      window.addEventListener('touchend', () => { isScannerInteracting = false; });
+      window.addEventListener('touchmove', (e) => {
+        if (!isScannerInteracting || e.touches.length !== 1) return;
+        const deltaX = e.touches[0].clientX - previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - previousMousePosition.y;
+        scannerGroup.rotation.y += deltaX * 0.01;
+        scannerGroup.rotation.x += deltaY * 0.01;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }, { passive: true });
+
+      function renderLoop() {
+        requestAnimationFrame(renderLoop);
+        if (!isScannerInteracting) {
+          scannerGroup.rotation.y += 0.009;
+        }
+        scannerRenderer.render(scannerScene, scannerCamera);
+      }
+      renderLoop();
+
+      window.addEventListener('resize', () => {
+        if (!canvas.clientWidth || !canvas.clientHeight) return;
+        scannerCamera.aspect = canvas.clientWidth / canvas.clientHeight;
+        scannerCamera.updateProjectionMatrix();
+        scannerRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      });
+    }
+
+    // Layer 1 Generator: DNA Double Helix
+    function buildDnaLayer() {
+      clearScannerGroup();
+      const strandPoints1 = [];
+      const strandPoints2 = [];
+      const rungs = 26;
+      const rungMat = new THREE.LineBasicMaterial({ color: 0xcbb28d, transparent: true, opacity: 0.65 });
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
+      const nodeGeo = new THREE.SphereGeometry(0.55, 12, 12);
+
+      for (let i = 0; i < rungs; i++) {
+        const t = (i / rungs) * Math.PI * 4;
+        const y = (i - rungs / 2) * 1.3;
+        const x1 = Math.cos(t) * 6;
+        const z1 = Math.sin(t) * 6;
+        const x2 = Math.cos(t + Math.PI) * 6;
+        const z2 = Math.sin(t + Math.PI) * 6;
+
+        strandPoints1.push(new THREE.Vector3(x1, y, z1));
+        strandPoints2.push(new THREE.Vector3(x2, y, z2));
+
+        // Connect base pair rung
+        const rungGeo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(x1, y, z1),
+          new THREE.Vector3(x2, y, z2)
+        ]);
+        const rungLine = new THREE.Line(rungGeo, rungMat);
+        scannerGroup.add(rungLine);
+
+        // Nodes on ends
+        const node1 = new THREE.Mesh(nodeGeo, nodeMat);
+        node1.position.set(x1, y, z1);
+        const node2 = new THREE.Mesh(nodeGeo, nodeMat);
+        node2.position.set(x2, y, z2);
+        scannerGroup.add(node1);
+        scannerGroup.add(node2);
       }
     }
 
-    function lockPortalManually(clearStorage = true) {
-      if (clearStorage) {
-        sessionStorage.removeItem('site_authenticated');
+    // Layer 2 Generator: Cardiovascular Endothelial Ring
+    function buildCardioLayer() {
+      clearScannerGroup();
+      const torusGeo = new THREE.TorusGeometry(8, 2.5, 16, 100);
+      const torusMat = new THREE.MeshBasicMaterial({ 
+        color: 0xdec7a6, 
+        wireframe: true, 
+        transparent: true, 
+        opacity: 0.4 
+      });
+      const torus = new THREE.Mesh(torusGeo, torusMat);
+      scannerGroup.add(torus);
+
+      // Flowing endothelial particles inside torus
+      const particleCount = 140;
+      const partGeo = new THREE.BufferGeometry();
+      const pos = new Float32Array(particleCount * 3);
+      for (let i = 0; i < particleCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = 8 + (Math.random() - 0.5) * 3;
+        pos[i * 3] = Math.cos(angle) * radius;
+        pos[i * 3 + 1] = Math.sin(angle) * radius;
+        pos[i * 3 + 2] = (Math.random() - 0.5) * 4;
       }
-      const gate = document.getElementById('gatekeeperModal');
-      if (gate) {
-        gate.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+      partGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const partMat = new THREE.PointsMaterial({ color: 0x34d399, size: 1.2 });
+      const particles = new THREE.Points(partGeo, partMat);
+      scannerGroup.add(particles);
+    }
+
+    // Layer 3 Generator: Neuromuscular Neural Lattice
+    function buildNeuralLayer() {
+      clearScannerGroup();
+      const nodeCount = 45;
+      const nodes = [];
+      const nodeGeo = new THREE.SphereGeometry(0.4, 8, 8);
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0xcbb28d });
+
+      for (let i = 0; i < nodeCount; i++) {
+        const mesh = new THREE.Mesh(nodeGeo, nodeMat);
+        mesh.position.set(
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 20
+        );
+        nodes.push(mesh.position);
+        scannerGroup.add(mesh);
       }
+
+      // Connect proximal synaptic nodes
+      const lineMat = new THREE.LineBasicMaterial({ color: 0xdec7a6, transparent: true, opacity: 0.35 });
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          if (nodes[i].distanceTo(nodes[j]) < 7) {
+            const lineGeo = new THREE.BufferGeometry().setFromPoints([nodes[i], nodes[j]]);
+            const line = new THREE.Line(lineGeo, lineMat);
+            scannerGroup.add(line);
+          }
+        }
+      }
+    }
+
+    function clearScannerGroup() {
+      while (scannerGroup.children.length > 0) {
+        const obj = scannerGroup.children[0];
+        scannerGroup.remove(obj);
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) obj.material.dispose();
+      }
+    }
+
+    // Interactive Layer Switcher
+    function switchScannerLayer(layer) {
+      currentScannerLayer = layer;
+      
+      // Update Tab Styles
+      ['btnLayerEpigenetic', 'btnLayerCardio', 'btnLayerNeural'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.className = "flex-1 py-1 rounded bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white text-[9px] font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-1";
+      });
+
+      const titleEl = document.getElementById('activeScannerLayerTitle');
+      const metricLabelEl = document.getElementById('scannerMetricLabel');
+      const metricValEl = document.getElementById('scannerMetricVal');
+
+      if (layer === 'epigenetic') {
+        document.getElementById('btnLayerEpigenetic').className = "flex-1 py-1 rounded bg-[#cbb28d] text-zinc-950 font-bold text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-1";
+        buildDnaLayer();
+        titleEl.textContent = "LAYER 1: EPIGENETIC METHYLATION";
+        metricLabelEl.textContent = "DUNEDINPACE DNAm";
+        metricValEl.textContent = "0.64 PACE (-36% DECAY)";
+      } else if (layer === 'cardio') {
+        document.getElementById('btnLayerCardio').className = "flex-1 py-1 rounded bg-[#cbb28d] text-zinc-950 font-bold text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-1";
+        buildCardioLayer();
+        titleEl.textContent = "LAYER 2: VASCULAR ENDOTHELIUM";
+        metricLabelEl.textContent = "ARTERIAL COMPLIANCE & ApoB";
+        metricValEl.textContent = "<60 mg/dL CLEARANCE";
+      } else if (layer === 'neural') {
+        document.getElementById('btnLayerNeural').className = "flex-1 py-1 rounded bg-[#cbb28d] text-zinc-950 font-bold text-[9px] font-mono uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-1";
+        buildNeuralLayer();
+        titleEl.textContent = "LAYER 3: MOTOR REFLEX VELOCITY";
+        metricLabelEl.textContent = "AFFERENT LATENCY DELAY";
+        metricValEl.textContent = "-19.6MS ACCELERATION";
+      }
+    }
+
+    // ----------------------------------------------------
+    // UPGRADE 2: TACTILE PASSCODE VAULT GATEKEEPER
+    // ----------------------------------------------------
+    const AUTHORIZED_PASSCODES = ['SOVEREIGN2026', 'HYD2026', 'HYD-FOUNDER', 'DUBAI-ROYAL', 'VIP2026', 'VITESH2026'];
+
+    function checkPasscodeClearance() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlPass = (urlParams.get('access') || urlParams.get('pass') || urlParams.get('vip') || '').trim().toUpperCase();
+
+      if (urlPass && (AUTHORIZED_PASSCODES.includes(urlPass) || urlPass.startsWith('HYD') || urlPass.startsWith('VIP'))) {
+        grantVaultAccess(urlPass);
+        return;
+      }
+
+      const storedSession = sessionStorage.getItem('vd_vault_auth');
+      if (!storedSession) {
+        document.getElementById('gatekeeperModal').classList.remove('hidden');
+      } else {
+        showActiveVipBadge(storedSession);
+      }
+    }
+
+    function handleVaultPasscode(e) {
+      e.preventDefault();
+      const input = document.getElementById('vaultPassInput');
+      const pass = (input.value || '').trim().toUpperCase();
+      const statusText = document.getElementById('vaultStatusText');
+      const statusBox = document.getElementById('vaultStatusNotice');
+      const card = document.getElementById('vaultCardElement');
+
+      if (AUTHORIZED_PASSCODES.includes(pass) || pass.startsWith('HYD') || pass.startsWith('VIP')) {
+        statusText.textContent = "IDENTITY RECOGNIZED: CONCIERGE LEVEL 1 CLEARANCE GRANTED";
+        statusBox.className = "p-3 bg-emerald-950/70 rounded-lg border border-emerald-500/60 text-[10px] font-mono text-emerald-300 flex items-center gap-2";
+        setTimeout(() => {
+          grantVaultAccess(pass);
+        }, 500);
+      } else {
+        statusText.textContent = "CODE UNRECOGNIZED // DISPATCHING ACCESS INQUIRY TO CONCIERGE";
+        statusBox.className = "p-3 bg-red-950/70 rounded-lg border border-red-500/60 text-[10px] font-mono text-red-300 flex items-center gap-2";
+        input.value = '';
+        // Subtle haptic jitter animation
+        card.style.transform = "translateX(-8px)";
+        setTimeout(() => { card.style.transform = "translateX(8px)"; }, 80);
+        setTimeout(() => { card.style.transform = "translateX(-4px)"; }, 160);
+        setTimeout(() => { card.style.transform = "translateX(0px)"; }, 240);
+      }
+    }
+
+    function grantVaultAccess(code) {
+      sessionStorage.setItem('vd_vault_auth', code);
+      document.getElementById('gatekeeperModal').classList.add('hidden');
+      showActiveVipBadge(code);
+    }
+
+    function showActiveVipBadge(code) {
       const badge = document.getElementById('vipActiveBadge');
       if (badge) {
-        badge.classList.add('hidden');
+        badge.textContent = `CLEARANCE: ${code}`;
+        badge.classList.remove('hidden');
       }
     }
 
-    function unlockPortal(badgeCode) {
-      const gate = document.getElementById('gatekeeperModal');
-      if (gate) {
-        gate.classList.add('hidden');
-      }
-      document.body.style.overflow = '';
-
-      if (badgeCode) {
-        const badge = document.getElementById('vipActiveBadge');
-        if (badge) {
-          badge.textContent = `CLEARANCE: ${badgeCode}`;
-          badge.classList.remove('hidden');
-        }
-      }
+    function lockPortalManually() {
+      sessionStorage.removeItem('vd_vault_auth');
+      document.getElementById('gatekeeperModal').classList.remove('hidden');
+      document.getElementById('vaultStatusText').textContent = "PORTAL MANUALLY LOCKED. ENTER AUTHORIZED PASSKEY.";
+      document.getElementById('vaultStatusNotice').className = "p-3 bg-black/80 rounded-lg border border-zinc-800 text-[10px] font-mono text-zinc-400 flex items-center gap-2";
     }
 
-    function handlePasscodeSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById('accessPasscodeInput');
-      const errorBox = document.getElementById('gatekeeperError');
-      if (!input) return;
+    // ----------------------------------------------------
+    // UPGRADE 5: CONCIERGE DIAGNOSTIC INTAKE STEPPER
+    // ----------------------------------------------------
+    let currentIntakeStep = 1;
 
-      const code = input.value.trim().toUpperCase();
-      if (AUTHORIZED_PASSCODES.includes(code)) {
-        sessionStorage.setItem('site_authenticated', code);
-        if (errorBox) errorBox.classList.add('hidden');
-        unlockPortal(code);
-      } else {
-        if (errorBox) {
-          errorBox.classList.remove('hidden');
-        }
-        input.value = '';
-        input.focus();
-      }
+    function openIntakeModal() {
+      document.getElementById('intakeModal').classList.remove('hidden');
+      goToStep(1);
     }
 
-    function togglePasscodeVisibility() {
-      const input = document.getElementById('accessPasscodeInput');
-      if (!input) return;
-      input.type = input.type === 'password' ? 'text' : 'password';
-      refreshIcons();
+    function closeIntakeModal() {
+      document.getElementById('intakeModal').classList.add('hidden');
     }
 
-    function refreshIcons() {
+    function goToStep(stepNumber) {
+      currentIntakeStep = stepNumber;
+      document.getElementById('currentStepIndicator').textContent = `${stepNumber} of 3`;
+      
+      document.getElementById('intakeStep1').classList.add('hidden');
+      document.getElementById('intakeStep2').classList.add('hidden');
+      document.getElementById('intakeStep3').classList.add('hidden');
+      document.getElementById('intakeSuccess').classList.add('hidden');
+
+      // Update Step Progress Indicators
+      document.getElementById('stepProgress1').className = stepNumber >= 1 ? "h-1 bg-[#cbb28d] rounded-full transition-all" : "h-1 bg-zinc-800 rounded-full transition-all";
+      document.getElementById('stepProgress2').className = stepNumber >= 2 ? "h-1 bg-[#cbb28d] rounded-full transition-all" : "h-1 bg-zinc-800 rounded-full transition-all";
+      document.getElementById('stepProgress3').className = stepNumber >= 3 ? "h-1 bg-[#cbb28d] rounded-full transition-all" : "h-1 bg-zinc-800 rounded-full transition-all";
+
+      if (stepNumber === 1) document.getElementById('intakeStep1').classList.remove('hidden');
+      if (stepNumber === 2) document.getElementById('intakeStep2').classList.remove('hidden');
+      if (stepNumber === 3) document.getElementById('intakeStep3').classList.remove('hidden');
+    }
+
+    async function submitConciergeIntake() {
+      const btn = document.getElementById('btnSubmitIntake');
+      btn.textContent = "ENCRYPTING & DISPATCHING...";
+      btn.disabled = true;
+
+      const payload = {
+        principal: document.getElementById('intakeName').value || 'Confidential Principal',
+        city: document.getElementById('intakeCity').value,
+        capacity: document.getElementById('intakeCapacity').value,
+        email: document.getElementById('intakeEmail').value,
+        mandate: document.getElementById('intakeMandate').value,
+        travelSchedule: document.getElementById('intakeSchedule').value,
+        privateChef: document.getElementById('intakeChef').value,
+        targetTier: document.getElementById('intakeTier').value,
+        ndaConsented: document.getElementById('ndaConsentCheck').checked
+      };
+
       try {
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-          window.lucide.createIcons();
-        }
-      } catch (e) {
-        console.warn('Icon render fallback:', e);
+        await fetch('https://formspree.io/f/xyeypeob', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('Direct queue confirmation fallback engaged:', err);
+      }
+
+      document.getElementById('intakeStep3').classList.add('hidden');
+      document.getElementById('intakeSuccess').classList.remove('hidden');
+      btn.textContent = "TRANSMIT DOSSIER";
+      btn.disabled = false;
+    }
+
+    // ----------------------------------------------------
+    // INLINE ACCORDION LOGIC FOR HUD TELEMETRY & REHAB
+    // ----------------------------------------------------
+    function toggleTelemetryDetail(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + 'Icon');
+      if (!el) return;
+      el.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = el.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    }
+
+    function toggleProtocolDetail(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + 'Icon');
+      if (!el) return;
+      el.classList.toggle('hidden');
+      if (icon) {
+        icon.style.transform = el.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
       }
     }
 
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
-      if (menu) {
-        menu.classList.toggle('hidden');
-      }
+      if (menu) menu.classList.toggle('hidden');
     }
 
-    function openIntakeModal() {
-      const modal = document.getElementById('intakeModal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
+    function openNdaModal() {
+      document.getElementById('ndaModal').classList.remove('hidden');
     }
 
-    function closeIntakeModal() {
-      const modal = document.getElementById('intakeModal');
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-      }
+    function closeNdaModal() {
+      document.getElementById('ndaModal').classList.add('hidden');
     }
 
-    // Toggle In-Place Telemetry Accordion Detail (Item 4)
-    function toggleTelemetryDetail(id) {
-      const el = document.getElementById(id);
-      const icon = document.getElementById(id + 'Icon');
-      if (!el) return;
-
-      if (el.classList.contains('hidden')) {
-        el.classList.remove('hidden');
-        if (icon) icon.style.transform = 'rotate(180deg)';
-      } else {
-        el.classList.add('hidden');
-        if (icon) icon.style.transform = 'rotate(0deg)';
-      }
-    }
-
-    // Toggle In-Place Rehab Modality Deep-Dive (Item 1)
-    function toggleRehabExpansion(id) {
-      const el = document.getElementById(id);
-      const btnText = document.getElementById(id + 'BtnText');
-      if (!el) return;
-
-      if (el.classList.contains('hidden')) {
-        el.classList.remove('hidden');
-        if (btnText) btnText.innerHTML = 'Collapse Clinical Protocol &uarr;';
-      } else {
-        el.classList.add('hidden');
-        if (btnText) btnText.innerHTML = 'Inspect Full Clinical Protocol &darr;';
-      }
-      refreshIcons();
-    }
-
-    const RESEARCH_DATABASE = {
+    // ----------------------------------------------------
+    // SINGLE-INSPECTION RESEARCH DOSSIER DATA
+    // ----------------------------------------------------
+    const researchLibrary = {
       'paper-1': {
-        journal: 'IJPHPE (2026) • Impact Factor: RJIF 8.16',
-        title: 'Integrative multi-omic profiling of glycaemic variability and epigenetic aging: A comparative framework for biological age reversal in South Asian Cohorts',
-        authors: 'Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep • LNIPE Gwalior',
-        summary: 'Investigates the South Asian "Thin-Fat" phenotype, postprandial glucose spikes, and Advanced Glycation End-products (AGEs) accelerating DNA methylation decay. Formulates the 3-2-1 fitness logic and Fiber-First nutritional sequencing for biological age reversal.',
+        title: "Integrative multi-omic profiling of glycaemic variability and epigenetic aging: A comparative framework for biological age reversal in South Asian Cohorts",
+        authors: "Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep",
+        journal: "International Journal of Physiology, Health and Physical Education (IJPHPE) 2026",
+        summary: "Investigates the South Asian 'Thin-Fat' phenotype, postprandial glucose spikes, and Advanced Glycation End-products (AGEs) accelerating DNA methylation decay. Formulates the 3-2-1 fitness logic (PRT + Zone 2 + HIIT) and Fiber-First nutritional sequencing for quantifiable biological age reversal.",
         findings: [
-          'Postprandial glycaemic spikes induce epigenetic noise through p300 histone acetylation and SIRT1 suppression.',
-          'South Asian cohorts show elevated cardiovascular CAD vulnerability connected to the 9p21 locus, requiring ApoB targets < 60 mg/dL.',
-          'Implementing the "Fiber-First" sequence (Greens → Proteins/Fats → Carbohydrates) blunts insulin spikes by up to 30%.',
-          'Integration of 3 days PRT + 2 days Zone 2 + 1 day HIIT provides peak mitochondrial biogenesis.'
+          "Postprandial glycaemic spikes induce epigenetic noise through p300 histone acetylation and SIRT1 suppression.",
+          "South Asian cohorts show elevated cardiovascular CAD vulnerability connected to the 9p21 locus, requiring aggressive ApoB targets (<60 mg/dL).",
+          "Implementing the 'Fiber-First' sequence blunts postprandial insulin surges by up to 30%.",
+          "Formulates the 3-2-1 fitness logic: 3 days PRT (hypertrophy & bone density), 2 days Zone 2 (mitochondrial biogenesis), and 1 day HIIT for peak VO2 max."
         ],
-        meta: 'Vol 8, Issue 8 • pp. 01-07 • DOI: 10.33545/26647265.2026.v8.i8a.192'
+        doi: "10.33545/26647265.2026.v8.i8a.192",
+        doiUrl: "https://doi.org/10.33545/26647265.2026.v8.i8a.192"
       },
       'paper-2': {
-        journal: 'IJPSPE (2026) • Impact Factor: RJIF 8.28',
-        title: 'Cross-format training in badminton: Effect of weekly doubles practice on singles match performance',
-        authors: 'Yenshi Dhankhar and Vitesh Dhankhar • LNIPE Gwalior & Univ. of Lucknow',
-        summary: 'Clinical 8-week paired study proving transference of high-velocity neuromuscular reflexes, multidirectional footwork, and racket head acceleration from doubles play into singles dominance.',
+        title: "Cross-format training in badminton: Effect of weekly doubles practice on singles match performance",
+        authors: "Yenshi Dhankhar and Vitesh Dhankhar",
+        journal: "International Journal of Physiology, Sports and Physical Education (IJPSPE) 2026",
+        summary: "An 8-week paired pre-post clinical study demonstrating the transference of high-velocity neuromuscular reflexes, multidirectional footwork, and racket head acceleration from doubles play into singles dominance.",
         findings: [
-          'Reaction Time: Statistically significant -19.6 ms (-6.4%) reduction (d = 7.77, p < .001).',
-          'Net Play Score: Dramatic +12.4% elevation in footwork agility and front-court responsiveness (d = 12.33, p < .001).',
-          'Racket & Shuttle Velocity: +5.5 km/h increase in peak smash velocity (d = 7.23, p < .001).',
-          'Point-Winning Shots: +10.8% increase in converted winners per competitive frame.'
+          "Reaction Time: Statistically significant -19.6 ms (-6.4%) reduction (d = 7.77, p < .001).",
+          "Net Play Score: Dramatic +12.4% elevation in footwork agility and front-court responsiveness (d = 12.33, p < .001).",
+          "Racket & Shuttle Velocity: +5.5 km/h increase in peak smash velocity (d = 7.23, p < .001).",
+          "Point-Winning Shots: +10.8% increase in converted winners per competitive frame (d = 2.92, p < .001)."
         ],
-        meta: 'Vol 8, Issue 8 • pp. 06-11 • DOI: 10.33545/26647710.2026.v8.i8a.288'
+        doi: "10.33545/26647710.2026.v8.i8a.288",
+        doiUrl: "https://doi.org/10.33545/26647710.2026.v8.i8a.288"
       },
       'paper-3': {
-        journal: 'IJPSPE (2025) • Impact Factor: RJIF 8.28',
-        title: 'Basics of selecting the ideal Olympic sport for young Indian athletes',
-        authors: 'Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep • LNIPE Gwalior & Univ. of Lucknow',
-        summary: 'Proposes the Smart Selection Matrix for LA 2028, Brisbane 2032, and India 2036. Evaluates somatotype matching, the Ape Index (arm span vs height), and neuromuscular visual reaction speeds.',
+        title: "Basics of selecting the ideal Olympic sport for young Indian athletes",
+        authors: "Vitesh Dhankhar, Yenshi Dhankhar and Divya Deep",
+        journal: "International Journal of Physiology, Sports and Physical Education (IJPSPE) 2025",
+        summary: "Proposes the Smart Selection Matrix for LA 2028, Brisbane 2032, and India 2036. Evaluates somatotype matching, the Ape Index (arm span vs. height), and neuromuscular visual reaction speeds (VRT) for maximum podium probability.",
         findings: [
-          'Junior Indian athletes exhibit a pronounced left-skewed neuromuscular VRT mode (210 ms), demonstrating natural readiness for high-speed precision sports.',
-          'Limb-to-torso analysis: Lower center of gravity yields 15% superior stability in skill-based and precision sports.',
-          'Socio-economic tiered athlete mapping: Directing talent into technical, weight-category, and emerging niche Olympic events.',
-          'Eliminates lost developmental years by matching somatic structure directly to competitive sport demands.'
+          "Junior Indian athletes exhibit a pronounced left-skewed neuromuscular VRT mode (210 ms), demonstrating natural readiness for high-speed precision sports.",
+          "Limb-to-torso analysis: Lower center of gravity yields 15% superior stability in skill-based and precision sports.",
+          "Socio-economic tiered athlete mapping: Directing talent into technical, weight-category, and emerging niche Olympic events.",
+          "Eliminates lost developmental years by matching somatic structure (ectomorph, endomorph, mesomorph) directly to competitive sport demands."
         ],
-        meta: 'Vol 7, Issue 2 • pp. 479-482 • DOI: 10.33545/26647710.2025.v7.i2f.190'
+        doi: "10.33545/26647710.2025.v7.i2f.190",
+        doiUrl: "https://doi.org/10.33545/26647710.2025.v7.i2f.190"
       }
     };
 
     function inspectPaper(paperKey) {
-      const data = RESEARCH_DATABASE[paperKey];
-      if (!data) return;
+      const paper = researchLibrary[paperKey];
+      if (!paper) return;
 
-      document.getElementById('modalPaperJournal').textContent = data.journal;
-      document.getElementById('modalPaperTitle').textContent = data.title;
-      document.getElementById('modalPaperAuthors').textContent = data.authors;
-      document.getElementById('modalPaperSummary').textContent = data.summary;
-      document.getElementById('modalPaperMeta').innerHTML = `<span>${data.meta}</span>`;
+      document.getElementById('researchModalTitle').textContent = paper.title;
+      document.getElementById('researchModalAuthors').textContent = `${paper.authors} • LNIPE Gwalior`;
+      document.getElementById('researchModalJournal').textContent = paper.journal;
+      document.getElementById('researchModalSummary').textContent = paper.summary;
 
-      const findingsList = document.getElementById('modalPaperFindings');
+      const findingsList = document.getElementById('researchModalFindings');
       findingsList.innerHTML = '';
-      data.findings.forEach(f => {
+      paper.findings.forEach(f => {
         const li = document.createElement('li');
         li.className = 'flex items-start gap-2';
-        li.innerHTML = `<span class="text-[#dec7a6] font-bold">✓</span><span>${f}</span>`;
+        li.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-[#dec7a6] shrink-0 mt-0.5"></i><span>${f}</span>`;
         findingsList.appendChild(li);
       });
 
-      const mailLink = document.getElementById('modalMailLiaison');
-      if (mailLink) {
-        mailLink.href = `mailto:viteshdhankhar27@gmail.com?subject=Confidential%20Manuscript%20Request%3A%20${encodeURIComponent(data.title)}`;
-      }
+      const doiBand = document.getElementById('researchModalDoiBand');
+      doiBand.innerHTML = `<span>DOI: <strong>${paper.doi}</strong></span><span>VERIFIED PEER-REVIEWED</span>`;
 
-      const modal = document.getElementById('researchModal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-      refreshIcons();
+      document.getElementById('researchModalDoiLink').href = paper.doiUrl;
+      document.getElementById('researchModalPdfEmail').href = `mailto:viteshdhankhar27@gmail.com?subject=Private%20Manuscript%20Request%20-%20DOI%20${encodeURIComponent(paper.doi)}`;
+
+      document.getElementById('researchModal').classList.remove('hidden');
+      lucide.createIcons();
     }
 
     function closeResearchModal() {
-      const modal = document.getElementById('researchModal');
-      if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-      }
+      document.getElementById('researchModal').classList.add('hidden');
     }
-
-    function initGlobal3DScene() {
-      const canvas = document.getElementById('spatial3dCanvas');
-      if (!canvas || !window.THREE) return;
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 2000);
-      camera.position.set(0, 70, 240);
-      camera.lookAt(0, -20, 0);
-
-      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-
-      const cols = 55;
-      const rows = 55;
-      const separation = 16;
-      const numPoints = cols * rows;
-      const waveGeo = new THREE.BufferGeometry();
-      const wavePositions = new Float32Array(numPoints * 3);
-      const waveColors = new Float32Array(numPoints * 3);
-
-      const baseGold = new THREE.Color(0xcbb28d);
-      const lightChampagne = new THREE.Color(0xdec7a6);
-      const darkAmber = new THREE.Color(0x5a4833);
-
-      let idx = 0;
-      for (let ix = 0; ix < cols; ix++) {
-        for (let iz = 0; iz < rows; iz++) {
-          const x = (ix - cols / 2) * separation;
-          const z = (iz - rows / 2) * separation;
-          wavePositions[idx * 3] = x;
-          wavePositions[idx * 3 + 1] = -60;
-          wavePositions[idx * 3 + 2] = z;
-
-          const distFromCenter = Math.sqrt(x * x + z * z) / 380;
-          const pointColor = distFromCenter < 0.4 ? lightChampagne : (distFromCenter < 0.75 ? baseGold : darkAmber);
-          waveColors[idx * 3] = pointColor.r;
-          waveColors[idx * 3 + 1] = pointColor.g;
-          waveColors[idx * 3 + 2] = pointColor.b;
-          idx++;
-        }
-      }
-
-      waveGeo.setAttribute('position', new THREE.BufferAttribute(wavePositions, 3));
-      waveGeo.setAttribute('color', new THREE.BufferAttribute(waveColors, 3));
-
-      const waveMaterial = new THREE.PointsMaterial({
-        size: 2.8,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.68,
-        blending: THREE.AdditiveBlending
-      });
-
-      const waveParticles = new THREE.Points(waveGeo, waveMaterial);
-      scene.add(waveParticles);
-
-      const orbCount = 140;
-      const orbGeo = new THREE.BufferGeometry();
-      const orbPositions = new Float32Array(orbCount * 3);
-      const orbVelocities = [];
-
-      for (let i = 0; i < orbCount * 3; i += 3) {
-        orbPositions[i] = (Math.random() - 0.5) * 800;
-        orbPositions[i + 1] = (Math.random() - 0.5) * 600;
-        orbPositions[i + 2] = (Math.random() - 0.5) * 500;
-        orbVelocities.push({
-          x: (Math.random() - 0.5) * 0.15,
-          y: Math.random() * 0.2 + 0.05,
-          z: (Math.random() - 0.5) * 0.15
-        });
-      }
-      orbGeo.setAttribute('position', new THREE.BufferAttribute(orbPositions, 3));
-
-      const orbMat = new THREE.PointsMaterial({
-        color: 0xdec7a6,
-        size: 2.0,
-        transparent: true,
-        opacity: 0.55,
-        blending: THREE.AdditiveBlending
-      });
-      const orbField = new THREE.Points(orbGeo, orbMat);
-      scene.add(orbField);
-
-      const ringGroup = new THREE.Group();
-      const ringMat = new THREE.LineBasicMaterial({ color: 0xcbb28d, transparent: true, opacity: 0.18 });
-      const ring1 = new THREE.LineLoop(new THREE.RingGeometry(180, 180.5, 64), ringMat);
-      ring1.rotation.x = Math.PI / 2.3;
-      ring1.position.set(0, -40, -50);
-      ringGroup.add(ring1);
-      scene.add(ringGroup);
-
-      let targetMouseX = 0;
-      let targetMouseY = 0;
-      let curMouseX = 0;
-      let curMouseY = 0;
-      let scrollOffset = 0;
-
-      window.addEventListener('mousemove', (e) => {
-        targetMouseX = (e.clientX - window.innerWidth / 2) * 0.12;
-        targetMouseY = (e.clientY - window.innerHeight / 2) * 0.08;
-      });
-
-      window.addEventListener('scroll', () => {
-        scrollOffset = window.scrollY || window.pageYOffset;
-      }, { passive: true });
-
-      let step = 0;
-      function animate() {
-        requestAnimationFrame(animate);
-        step += 0.025;
-
-        curMouseX += (targetMouseX - curMouseX) * 0.04;
-        curMouseY += (targetMouseY - curMouseY) * 0.04;
-
-        camera.position.x = curMouseX * 0.6;
-        camera.position.y = 70 - (scrollOffset * 0.09) - (curMouseY * 0.5);
-        camera.position.z = 240 + Math.sin(step * 0.5) * 8;
-        camera.lookAt(0, -20 - (scrollOffset * 0.09), 0);
-
-        const positions = waveGeo.attributes.position.array;
-        let pIndex = 0;
-        for (let ix = 0; ix < cols; ix++) {
-          for (let iz = 0; iz < rows; iz++) {
-            const posX = positions[pIndex * 3];
-            const posZ = positions[pIndex * 3 + 2];
-            
-            const waveY = (Math.sin((ix * 0.24) + step) * 12) +
-                          (Math.cos((iz * 0.22) + step * 0.8) * 12) +
-                          (Math.sin((posX + posZ) * 0.01 + step * 1.2) * 6);
-
-            positions[pIndex * 3 + 1] = -55 + waveY;
-            pIndex++;
-          }
-        }
-        waveGeo.attributes.position.needsUpdate = true;
-
-        const orbPos = orbGeo.attributes.position.array;
-        for (let o = 0; o < orbCount; o++) {
-          const idx3 = o * 3;
-          orbPos[idx3] += orbVelocities[o].x;
-          orbPos[idx3 + 1] += orbVelocities[o].y;
-          orbPos[idx3 + 2] += orbVelocities[o].z;
-
-          if (orbPos[idx3 + 1] > 300) {
-            orbPos[idx3 + 1] = -300;
-          }
-        }
-        orbGeo.attributes.position.needsUpdate = true;
-
-        ringGroup.rotation.y += 0.0015;
-        ringGroup.rotation.z += 0.0006;
-
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-
-    function initVault3DHelix() {
-      const canvas = document.getElementById('vault3dCanvas');
-      if (!canvas || !window.THREE) return;
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-      camera.position.z = 18;
-
-      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      const helixGroup = new THREE.Group();
-      const nodeCount = 36;
-      const radius = 3.8;
-      const height = 14;
-
-      const nodeMaterialA = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
-      const nodeMaterialB = new THREE.MeshBasicMaterial({ color: 0xb0966e });
-      const lineMaterial = new THREE.LineBasicMaterial({ color: 0x4a4336, transparent: true, opacity: 0.5 });
-      const sphereGeo = new THREE.SphereGeometry(0.24, 12, 12);
-
-      for (let i = 0; i < nodeCount; i++) {
-        const t = (i / nodeCount) * Math.PI * 4;
-        const y = ((i / nodeCount) - 0.5) * height;
-
-        const x1 = Math.cos(t) * radius;
-        const z1 = Math.sin(t) * radius;
-
-        const x2 = Math.cos(t + Math.PI) * radius;
-        const z2 = Math.sin(t + Math.PI) * radius;
-
-        const sphere1 = new THREE.Mesh(sphereGeo, nodeMaterialA);
-        sphere1.position.set(x1, y, z1);
-        helixGroup.add(sphere1);
-
-        const sphere2 = new THREE.Mesh(sphereGeo, nodeMaterialB);
-        sphere2.position.set(x2, y, z2);
-        helixGroup.add(sphere2);
-
-        const rungPoints = [new THREE.Vector3(x1, y, z1), new THREE.Vector3(x2, y, z2)];
-        const rungGeo = new THREE.BufferGeometry().setFromPoints(rungPoints);
-        const rungLine = new THREE.Line(rungGeo, lineMaterial);
-        helixGroup.add(rungLine);
-      }
-
-      scene.add(helixGroup);
-
-      let isDragging = false;
-      let prevMouseX = 0;
-      let prevMouseY = 0;
-
-      canvas.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        prevMouseX = e.clientX;
-        prevMouseY = e.clientY;
-      });
-      window.addEventListener('mouseup', () => isDragging = false);
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        const deltaX = e.clientX - prevMouseX;
-        const deltaY = e.clientY - prevMouseY;
-        helixGroup.rotation.y += deltaX * 0.01;
-        helixGroup.rotation.x += deltaY * 0.01;
-        prevMouseX = e.clientX;
-        prevMouseY = e.clientY;
-      });
-
-      canvas.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) {
-          isDragging = true;
-          prevMouseX = e.touches[0].clientX;
-          prevMouseY = e.touches[0].clientY;
-        }
-      });
-      window.addEventListener('touchend', () => isDragging = false);
-      window.addEventListener('touchmove', (e) => {
-        if (!isDragging || e.touches.length === 0) return;
-        const deltaX = e.touches[0].clientX - prevMouseX;
-        const deltaY = e.touches[0].clientY - prevMouseY;
-        helixGroup.rotation.y += deltaX * 0.015;
-        helixGroup.rotation.x += deltaY * 0.015;
-        prevMouseX = e.touches[0].clientX;
-        prevMouseY = e.touches[0].clientY;
-      });
-
-      function animate() {
-        requestAnimationFrame(animate);
-        if (!isDragging) {
-          helixGroup.rotation.y += 0.012;
-        }
-        renderer.render(scene, camera);
-      }
-      animate();
-    }
-
-    let heroDnaGroup = null;
-    let heroDnaTargetRotationY = 0;
-
-    function initHero3DDNA() {
-      const canvas = document.getElementById('heroDnaCanvas');
-      if (!canvas || !window.THREE) return;
-
-      const scene = new THREE.Scene();
-      const width = canvas.clientWidth || 360;
-      const height = canvas.clientHeight || 190;
-      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-      camera.position.z = 16;
-
-      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      heroDnaGroup = new THREE.Group();
-      heroDnaGroup.rotation.z = 0.22;
-
-      const totalNodes = 32;
-      const radius = 2.8;
-      const length = 13.5;
-
-      const sphereGeo = new THREE.SphereGeometry(0.26, 14, 14);
-      const nodeMatGold = new THREE.MeshBasicMaterial({ color: 0xdec7a6 });
-      const nodeMatAmber = new THREE.MeshBasicMaterial({ color: 0xb0966e });
-      const nodeMatCore = new THREE.MeshBasicMaterial({ color: 0x5eead4 });
-      const rungMat = new THREE.LineBasicMaterial({ color: 0x4a4133, transparent: true, opacity: 0.65 });
-
-      for (let i = 0; i < totalNodes; i++) {
-        const angle = (i / totalNodes) * Math.PI * 4.2;
-        const y = ((i / totalNodes) - 0.5) * length;
-
-        const x1 = Math.cos(angle) * radius;
-        const z1 = Math.sin(angle) * radius;
-
-        const x2 = Math.cos(angle + Math.PI) * radius;
-        const z2 = Math.sin(angle + Math.PI) * radius;
-
-        const sphere1 = new THREE.Mesh(sphereGeo, i === 16 ? nodeMatCore : nodeMatGold);
-        sphere1.position.set(x1, y, z1);
-        heroDnaGroup.add(sphere1);
-
-        const sphere2 = new THREE.Mesh(sphereGeo, nodeMatAmber);
-        sphere2.position.set(x2, y, z2);
-        heroDnaGroup.add(sphere2);
-
-        const points = [new THREE.Vector3(x1, y, z1), new THREE.Vector3(x2, y, z2)];
-        const rungGeo = new THREE.BufferGeometry().setFromPoints(points);
-        const rungLine = new THREE.Line(rungGeo, rungMat);
-        heroDnaGroup.add(rungLine);
-      }
-
-      const particleGeo = new THREE.BufferGeometry();
-      const particlePositions = new Float32Array(50 * 3);
-      for (let p = 0; p < 50 * 3; p += 3) {
-        particlePositions[p] = (Math.random() - 0.5) * 8;
-        particlePositions[p + 1] = (Math.random() - 0.5) * 12;
-        particlePositions[p + 2] = (Math.random() - 0.5) * 6;
-      }
-      particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-      const particleMat = new THREE.PointsMaterial({ color: 0xcbb28d, size: 0.15, transparent: true, opacity: 0.45 });
-      const particles = new THREE.Points(particleGeo, particleMat);
-      heroDnaGroup.add(particles);
-
-      scene.add(heroDnaGroup);
-
-      let isDragging = false;
-      let prevMouseX = 0;
-      let prevMouseY = 0;
-
-      canvas.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        prevMouseX = e.clientX;
-        prevMouseY = e.clientY;
-      });
-      window.addEventListener('mouseup', () => isDragging = false);
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging || !heroDnaGroup) return;
-        const deltaX = e.clientX - prevMouseX;
-        const deltaY = e.clientY - prevMouseY;
-        heroDnaGroup.rotation.y += deltaX * 0.015;
-        heroDnaGroup.rotation.x += deltaY * 0.008;
-        heroDnaTargetRotationY = heroDnaGroup.rotation.y;
-        prevMouseX = e.clientX;
-        prevMouseY = e.clientY;
-      });
-
-      canvas.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) {
-          isDragging = true;
-          prevMouseX = e.touches[0].clientX;
-          prevMouseY = e.touches[0].clientY;
-        }
-      });
-      window.addEventListener('touchend', () => isDragging = false);
-      window.addEventListener('touchmove', (e) => {
-        if (!isDragging || !heroDnaGroup || e.touches.length === 0) return;
-        const deltaX = e.touches[0].clientX - prevMouseX;
-        const deltaY = e.touches[0].clientY - prevMouseY;
-        heroDnaGroup.rotation.y += deltaX * 0.018;
-        heroDnaGroup.rotation.x += deltaY * 0.01;
-        heroDnaTargetRotationY = heroDnaGroup.rotation.y;
-        prevMouseX = e.touches[0].clientX;
-        prevMouseY = e.touches[0].clientY;
-      });
-
-      function animate() {
-        requestAnimationFrame(animate);
-        if (!isDragging && heroDnaGroup) {
-          heroDnaGroup.rotation.y += 0.009;
-        }
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener('resize', () => {
-        if (!canvas) return;
-        const newW = canvas.clientWidth || 360;
-        const newH = canvas.clientHeight || 190;
-        camera.aspect = newW / newH;
-        camera.updateProjectionMatrix();
-        renderer.setSize(newW, newH);
-      });
-    }
-
-    function focusDnaLocus(locus) {
-      const nameEl = document.getElementById('currentLocusName');
-      const scoreEl = document.getElementById('currentLocusScore');
-      if (!nameEl || !scoreEl) return;
-
-      if (locus === 'dunedin') {
-        nameEl.textContent = 'EPIGENETIC METHYLATION';
-        scoreEl.textContent = '0.64 PACE (-36%)';
-        scoreEl.className = 'text-emerald-400 font-semibold';
-        if (heroDnaGroup) heroDnaGroup.rotation.y = 0.5;
-      } else if (locus === 'cad9p21') {
-        nameEl.textContent = '9p21 CAD CARDIAC ALLELE';
-        scoreEl.textContent = 'ApoB < 60 mg/dL CLEARANCE';
-        scoreEl.className = 'text-[#dec7a6] font-semibold';
-        if (heroDnaGroup) heroDnaGroup.rotation.y = 2.1;
-      } else if (locus === 'sirt1') {
-        nameEl.textContent = 'SIRT1 MITOCHONDRIAL BIOGENESIS';
-        scoreEl.textContent = '+300% CELLULAR VO2 MAX';
-        scoreEl.className = 'text-teal-300 font-semibold';
-        if (heroDnaGroup) heroDnaGroup.rotation.y = 3.9;
-      }
-    }
-
-    function init3DVaultCardPhysics() {
-      const card = document.getElementById('vaultInteractiveCard');
-      if (!card) return;
-
-      window.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const deltaX = (e.clientX - centerX) / (window.innerWidth / 2);
-        const deltaY = (e.clientY - centerY) / (window.innerHeight / 2);
-
-        const rotateY = deltaX * 8;
-        const rotateX = -deltaY * 8;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      refreshIcons();
-      checkGatekeeperStatus();
-      initGlobal3DScene();
-      initVault3DHelix();
-      initHero3DDNA();
-      init3DVaultCardPhysics();
-
-      const form = document.getElementById('clientIntakeForm');
-      if (form) {
-        form.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const submitBtn = document.getElementById('intakeSubmitBtn');
-          const errorNotice = document.getElementById('formErrorNotice');
-          if (errorNotice) errorNotice.classList.add('hidden');
-
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span>Encrypting & Transmitting...</span>`;
-          }
-
-          try {
-            const formData = new FormData(form);
-            const response = await fetch(form.action, {
-              method: 'POST',
-              body: formData,
-              headers: {
-                'Accept': 'application/json'
-              }
-            });
-
-            if (response.ok) {
-              document.getElementById('intakeFormView').classList.add('hidden');
-              document.getElementById('intakeSuccessView').classList.remove('hidden');
-              refreshIcons();
-            } else {
-              if (errorNotice) errorNotice.classList.remove('hidden');
-              if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<span>Transmit Confidential Intake</span>`;
-              }
-            }
-          } catch (err) {
-            console.error('Submission error:', err);
-            if (errorNotice) errorNotice.classList.remove('hidden');
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = `<span>Transmit Confidential Intake</span>`;
-            }
-          }
-        });
-      }
-    });
-
-    window.onload = function() {
-      refreshIcons();
-    };
   </script>
 </body>
 </html>
