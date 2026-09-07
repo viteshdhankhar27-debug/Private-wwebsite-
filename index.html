@@ -141,6 +141,26 @@
       user-select: none;
       pointer-events: none;
     }
+
+    /* Infinite Luxury Marquee Animation */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+    .marquee-wrapper {
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
   </style>
 </head>
 <body class="bg-[#070709] text-[#ecebe8] font-sans antialiased selection:bg-[#cbb28d] selection:text-black relative">
@@ -186,7 +206,11 @@
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-zinc-400 font-mono">
+      <nav class="hidden lg:flex items-center gap-7 text-[11px] uppercase tracking-[0.22em] text-zinc-400 font-mono">
+        <a href="#clientele" class="hover:text-[#dec7a6] transition-colors flex items-center gap-1.5">
+          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>Client Roster</span>
+        </a>
         <a href="#publications" class="hover:text-[#dec7a6] text-[#dec7a6] transition-colors flex items-center gap-1.5">
           <i data-lucide="microscope" class="w-3.5 h-3.5"></i>
           <span>Researches</span>
@@ -232,7 +256,8 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden lg:hidden border-b border-zinc-800 bg-[#0a0a0d]/95 backdrop-blur-xl p-6 flex flex-col gap-4 text-xs tracking-widest uppercase font-mono shadow-2xl">
-      <a href="#publications" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80 text-[#dec7a6]">Published Researches</a>
+      <a href="#clientele" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80 text-[#dec7a6]">Client Roster</a>
+      <a href="#publications" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Published Researches</a>
       <a href="#certificates" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Certifications</a>
       <a href="#rehab" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Rehab Suite</a>
       <a href="#methodology" onclick="toggleMobileMenu()" class="py-2.5 border-b border-zinc-800/80">Architecture</a>
@@ -551,6 +576,107 @@
                 Direct Line &rarr;
               </a>
             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- LUXURY INFINITE SLIDING CLIENT MARQUEE SECTION                            -->
+  <!-- ========================================================================= -->
+  <section id="clientele" class="py-14 border-y border-zinc-900 bg-[#0a0a0d]/80 backdrop-blur-md relative overflow-hidden z-20">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-[#dec7a6]">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#cbb28d]"></i>
+          <span>Institutional &amp; Executive Clientele Base</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-serif text-white font-light mt-1">
+          Trusted by Industry Titans &amp; Executive Leadership
+        </h2>
+      </div>
+      <div class="text-[11px] font-mono text-zinc-400 tracking-wider flex items-center gap-2">
+        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+        <span>RECIPROCAL NON-DISCLOSURE STANDARDS</span>
+      </div>
+    </div>
+
+    <!-- Infinite Sliding Marquee Track -->
+    <div class="marquee-wrapper w-full py-2">
+      <div class="marquee-track flex items-center gap-6">
+        
+        <!-- CLIENT 1: Sanro Projects (Rohit Reddy) -->
+        <div class="glass-spatial-card px-8 py-5 rounded-xl flex items-center gap-5 shrink-0 min-w-[320px] sm:min-w-[380px]">
+          <div class="h-12 w-12 rounded-lg bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner">
+            SP
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Infrastructure &amp; Estates</div>
+            <div class="text-base font-serif text-white tracking-wide font-medium">Sanro Projects</div>
+            <div class="text-[11px] font-mono text-zinc-400 tracking-wider">Rohit Reddy</div>
+          </div>
+        </div>
+
+        <!-- CLIENT 2: GVPR Infras -->
+        <div class="glass-spatial-card px-8 py-5 rounded-xl flex items-center gap-5 shrink-0 min-w-[320px] sm:min-w-[380px]">
+          <div class="h-12 w-12 rounded-lg bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner">
+            GI
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Mega Civil Infrastructure</div>
+            <div class="text-base font-serif text-white tracking-wide font-medium">GVPR Infras</div>
+            <div class="text-[11px] font-mono text-zinc-400 tracking-wider">Executive Directorate</div>
+          </div>
+        </div>
+
+        <!-- CLIENT 3: Mytrah Energy (Vikram Kailas) -->
+        <div class="glass-spatial-card px-8 py-5 rounded-xl flex items-center gap-5 shrink-0 min-w-[320px] sm:min-w-[380px]">
+          <div class="h-12 w-12 rounded-lg bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner">
+            ME
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Renewable Energy Enterprise</div>
+            <div class="text-base font-serif text-white tracking-wide font-medium">Mytrah Energy</div>
+            <div class="text-[11px] font-mono text-zinc-400 tracking-wider">Vikram Kailas</div>
+          </div>
+        </div>
+
+        <!-- DUPLICATE SET FOR SEAMLESS MARQUEE LOOP -->
+        <!-- CLIENT 1 Duplicate -->
+        <div class="glass-spatial-card px-8 py-5 rounded-xl flex items-center gap-5 shrink-0 min-w-[320px] sm:min-w-[380px]">
+          <div class="h-12 w-12 rounded-lg bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner">
+            SP
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Infrastructure &amp; Estates</div>
+            <div class="text-base font-serif text-white tracking-wide font-medium">Sanro Projects</div>
+            <div class="text-[11px] font-mono text-zinc-400 tracking-wider">Rohit Reddy</div>
+          </div>
+        </div>
+
+        <!-- CLIENT 2 Duplicate -->
+        <div class="glass-spatial-card px-8 py-5 rounded-xl flex items-center gap-5 shrink-0 min-w-[320px] sm:min-w-[380px]">
+          <div class="h-12 w-12 rounded-lg bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner">
+            GI
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Mega Civil Infrastructure</div>
+            <div class="text-base font-serif text-white tracking-wide font-medium">GVPR Infras</div>
+            <div class="text-[11px] font-mono text-zinc-400 tracking-wider">Executive Directorate</div>
+          </div>
+        </div>
+
+        <!-- CLIENT 3 Duplicate -->
+        <div class="glass-spatial-card px-8 py-5 rounded-xl flex items-center gap-5 shrink-0 min-w-[320px] sm:min-w-[380px]">
+          <div class="h-12 w-12 rounded-lg bg-black border border-[#cbb28d]/40 flex items-center justify-center text-[#dec7a6] font-serif font-semibold text-lg shadow-inner">
+            ME
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#dec7a6]">Renewable Energy Enterprise</div>
+            <div class="text-base font-serif text-white tracking-wide font-medium">Mytrah Energy</div>
+            <div class="text-[11px] font-mono text-zinc-400 tracking-wider">Vikram Kailas</div>
           </div>
         </div>
 
