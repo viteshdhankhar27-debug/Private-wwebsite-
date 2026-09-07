@@ -1867,6 +1867,8 @@
       'VITESH2026'
     ];
 
+    let isAuthenticating = false;
+
     function checkPasscodeClearance() {
       // 1. Check for VIP Query Parameter in URL
       const urlParams = new URLSearchParams(window.location.search);
@@ -1888,12 +1890,90 @@
 
     function verifyPasscode(e) {
       e.preventDefault();
+      if (isAuthenticating) return;
+
       const input = document.getElementById('passcodeInput');
       const error = document.getElementById('passcodeError');
+      const submitBtn = document.getElementById('gatekeeperSubmitBtn');
+      const modalCard = document.querySelector('#gatekeeperModal .glass-spatial-card');
+      const canvasViewport = document.getElementById('gatekeeperViewport');
       const val = (input.value || '').trim().toUpperCase();
 
       if (AUTHORIZED_PASSCODES.includes(val) || val === 'HYD2026' || val.startsWith('HYD') || val.startsWith('VIP')) {
-        grantVaultAccess(val);
+        isAuthenticating = true;
+        error.classList.add('hidden');
+        input.blur();
+
+        // 1. Inject Sweeping Laser Beam across Entrance Card
+        const laser = document.createElement('div');
+        laser.className = 'auth-laser-beam';
+        modalCard.appendChild(laser);
+
+        // 2. Telemetry Keywords Array
+        const telemetryKeywords = [
+          { text: 'DNA // METHYLATION', top: '15%', left: '8%' },
+          { text: 'LONGEVITY // 0.64', top: '18%', right: '8%' },
+          { text: 'SCIENCE // PEER-REVIEWED', top: '46%', left: '5%' },
+          { text: 'HEALTH // AUTOPHAGY', top: '44%', right: '5%' },
+          { text: 'TRAINING // 3-2-1', top: '74%', left: '10%' },
+          { text: 'VO2 MAX // PEAK', top: '75%', right: '10%' }
+        ];
+
+        // Spawn orbiting tags into 3D Viewport container
+        if (canvasViewport) {
+          telemetryKeywords.forEach((item, index) => {
+            setTimeout(() => {
+              const badge = document.createElement('div');
+              badge.className = 'auth-telemetry-tag';
+              badge.textContent = item.text;
+              if (item.top) badge.style.top = item.top;
+              if (item.left) badge.style.left = item.left;
+              if (item.right) badge.style.right = item.right;
+              canvasViewport.appendChild(badge);
+            }, index * 90);
+          });
+        }
+
+        // 3. Accelerate 3D Helix Angular Velocity
+        let spinBoost = 0.014;
+        const accelInterval = setInterval(() => {
+          if (gkDnaGroup) {
+            spinBoost += 0.009;
+            gkDnaGroup.rotation.y += spinBoost;
+            gkDnaGroup.rotation.x += 0.004;
+          }
+        }, 16);
+
+        // 4. Sequential Authentication Stages on Submit Button
+        submitBtn.innerHTML = `
+          <span class="inline-block animate-spin mr-2">⟳</span>
+          <span>DECRYPTING BIOMETRIC HASH...</span>
+        `;
+        submitBtn.style.background = 'linear-gradient(90deg, #cbb28d, #dec7a6)';
+
+        setTimeout(() => {
+          submitBtn.innerHTML = `
+            <span class="text-emerald-950 font-black">✓</span>
+            <span>GENOMIC LOCI VERIFIED &bull; CLEARANCE GRANTED</span>
+          `;
+          submitBtn.classList.remove('from-[#dec7a6]', 'via-[#cbb28d]', 'to-[#b0966e]');
+          submitBtn.classList.add('bg-emerald-400', 'text-emerald-950');
+        }, 600);
+
+        // 5. Card Dissolve & Seamless Transition into Advisory Platform
+        setTimeout(() => {
+          clearInterval(accelInterval);
+          modalCard.classList.add('vault-unlocked-dissolve');
+          
+          setTimeout(() => {
+            grantVaultAccess(val);
+            modalCard.classList.remove('vault-unlocked-dissolve');
+            laser.remove();
+            document.querySelectorAll('.auth-telemetry-tag').forEach(el => el.remove());
+            isAuthenticating = false;
+          }, 700);
+        }, 1250);
+
       } else {
         error.classList.remove('hidden');
         input.value = '';
